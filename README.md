@@ -37,6 +37,6 @@
 ```
 
 ### Examples
-* #x(P[x] -> Q[x]) --> P[x] -> #xQ[x]
-* @x(P[x] || Q[x]) -> @xP[x] || @xQ[x]
-* @x(P[x] && Q[x] -> R[y]) --> #xP[x]
+* `#x(P[x] -> Q[x]) --> P[x] -> #xQ[x]`
+* `@x(P[x] || Q[x]) -> @xP[x] || @xQ[x]`
+* `@x(P[x] && Q[x] -> R[y]) --> #xP[x]`
