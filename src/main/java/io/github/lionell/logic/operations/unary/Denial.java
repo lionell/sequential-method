@@ -34,4 +34,9 @@ public class Denial extends UnaryOperation {
     public Denial clone() {
         return new Denial(formula.clone(), value);
     }
+
+    @Override
+    public String toString() {
+        return "!(" + formula + ")";
+    }
 }

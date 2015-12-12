@@ -1,5 +1,7 @@
 package io.github.lionell.wrappers;
 
+import io.github.lionell.containers.CounterExample;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,20 +11,19 @@ import java.util.Map;
  * @author Ruslan Sakevych
  */
 
-public class Tree {
-    private Node root;
+public class WrapperTree {
+    private WrapperNode root;
     private String verdict;
-    private List<Map<String, String>> example;
+    private List<CounterExample> example;
 
-    public Tree(Node root) {
-        this.root = root;
+    public WrapperTree() {
     }
 
-    public Node getRoot() {
+    public WrapperNode getRoot() {
         return root;
     }
 
-    public void setRoot(Node root) {
+    public void setRoot(WrapperNode root) {
         this.root = root;
     }
 
@@ -34,11 +35,11 @@ public class Tree {
         this.verdict = verdict;
     }
 
-    public List<Map<String, String>> getExample() {
+    public List<CounterExample> getExample() {
         return example;
     }
 
-    public void setExample(List<Map<String, String>> example) {
+    public void setExample(List<CounterExample> example) {
         this.example = example;
     }
 }

@@ -77,6 +77,20 @@ public class Predicate extends Formula {
         return result;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(name);
+        builder.append("[");
+        builder.append(args.get(0));
+        for (int i = 1; i < args.size(); i++) {
+            builder.append(",");
+            builder.append(args.get(i));
+        }
+        builder.append("]");
+        return builder.toString();
+    }
+
     public Triple<String, List<String>, Boolean> getCounterExample() {
         checkValue();
         return new Triple<>(name, args, value.toBoolean());

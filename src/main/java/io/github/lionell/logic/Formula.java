@@ -10,6 +10,10 @@ import java.util.Set;
 public abstract class Formula {
     protected LogicalValue value = LogicalValue.UNKNOWN;
 
+    public LogicalValue getValue() {
+        return value;
+    }
+
     public void setValue(LogicalValue value) {
         this.value = value;
     }

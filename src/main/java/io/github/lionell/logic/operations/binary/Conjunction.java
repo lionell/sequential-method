@@ -50,4 +50,9 @@ public class Conjunction extends BinaryOperation {
     public Conjunction clone() {
         return new Conjunction(left.clone(), right.clone(), value);
     }
+
+    @Override
+    public String toString() {
+        return "(" + right + ") && (" + left + ")";
+    }
 }

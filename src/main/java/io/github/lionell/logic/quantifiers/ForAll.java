@@ -30,4 +30,9 @@ public class ForAll extends Quantifier {
     public ForAll clone() {
         return new ForAll(variableName, formula.clone(), value);
     }
+
+    @Override
+    public String toString() {
+        return "@" + variableName + "(" + formula + ")";
+    }
 }

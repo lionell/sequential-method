@@ -50,4 +50,9 @@ public class Disjunction extends BinaryOperation {
     public Disjunction clone() {
         return new Disjunction(left.clone(), right.clone(), value);
     }
+
+    @Override
+    public String toString() {
+        return "(" + right + ") || (" + left + ")";
+    }
 }

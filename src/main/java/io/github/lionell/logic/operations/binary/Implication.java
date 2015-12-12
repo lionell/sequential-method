@@ -50,4 +50,9 @@ public class Implication extends BinaryOperation {
     public Implication clone() {
         return new Implication(left.clone(), right.clone(), value);
     }
+
+    @Override
+    public String toString() {
+        return "(" + right + ") -> (" + left + ")";
+    }
 }

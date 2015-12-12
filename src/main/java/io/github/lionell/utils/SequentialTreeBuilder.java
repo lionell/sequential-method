@@ -1,10 +1,11 @@
-package io.github.lionell.logic;
+package io.github.lionell.utils;
 
 import io.github.lionell.containers.CounterExample;
 import io.github.lionell.containers.SequentialTree;
 import io.github.lionell.containers.SequentialTree.SequentialNode;
 import io.github.lionell.containers.Tree.Node;
-import io.github.lionell.utils.SequenceParser;
+import io.github.lionell.logic.LogicalValue;
+import io.github.lionell.logic.Sequence;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -16,32 +17,32 @@ import java.util.Queue;
  *
  * @author Ruslan Sakevych
  */
-public class SequentialBuilder {
+public class SequentialTreeBuilder {
     private static final int STEP_LIMIT = 30;
     private SequentialTree tree;
-    private Verdict verdict = Verdict.UNKNOWN;
+    private LogicalValue verdict = LogicalValue.UNKNOWN;
     private Queue<Node<Sequence>> leavesQueue = new ArrayDeque<>();
     private List<Node<Sequence>> unclosedLeaves = new ArrayList<>();
 
-    public SequentialBuilder() {
-        SequenceParser parser = new SequenceParser();
-        tree = new SequentialTree(parser.parse());
+    public SequentialTreeBuilder(String input) {
+        FormulaParser parser = new FormulaParser(input);
+        tree = new SequentialTree(new Sequence(parser.getFormula()));
         verdict = transform();
     }
 
-    private Verdict transform() {
+    private LogicalValue transform() {
         leavesQueue.add(tree.getRoot());
         int stepsLeft = STEP_LIMIT;
         while (!leavesQueue.isEmpty()) {
             activateNode(leavesQueue.poll());
             stepsLeft--;
             if (stepsLeft == 0) {
-                return Verdict.INFINITE_LOOP;
+                return LogicalValue.FALSE;
             }
         }
         return unclosedLeaves.isEmpty()
-                ? Verdict.DEDUCIBLE
-                : Verdict.NOT_DEDUCIBLE;
+                ? LogicalValue.TRUE
+                : LogicalValue.FALSE;
     }
 
     private void activateNode(Node<Sequence> node) {
@@ -71,7 +72,7 @@ public class SequentialBuilder {
     }
 
     public List<CounterExample> getCounterExamples() {
-        if (isDeducible()) {
+        if (verdict == LogicalValue.TRUE) {
             throw new IllegalStateException("Input sequence is deducible!");
         }
         List<CounterExample> counterExamples = new ArrayList<>();
@@ -84,11 +85,7 @@ public class SequentialBuilder {
         return tree;
     }
 
-    public boolean isDeducible() {
-        return verdict == Verdict.DEDUCIBLE;
-    }
-
-    private enum Verdict {
-        DEDUCIBLE, NOT_DEDUCIBLE, INFINITE_LOOP, UNKNOWN
+    public Boolean getVerdict() {
+        return verdict.toBoolean();
     }
 }

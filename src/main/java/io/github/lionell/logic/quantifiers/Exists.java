@@ -49,4 +49,9 @@ public class Exists extends Quantifier {
     public Exists clone() {
         return new Exists(variableName, formula.clone(), value);
     }
+
+    @Override
+    public String toString() {
+        return "#" + variableName + "(" + formula + ")";
+    }
 }

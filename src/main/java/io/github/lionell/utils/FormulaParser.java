@@ -1,24 +1,29 @@
 package io.github.lionell.utils;
 
+import io.github.lionell.logic.Formula;
 import io.github.lionell.logic.LogicalValue;
 import io.github.lionell.logic.Predicate;
-import io.github.lionell.logic.Sequence;
 import io.github.lionell.logic.operations.binary.Implication;
 import io.github.lionell.logic.quantifiers.Exists;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SequenceParser {
-    public SequenceParser() {
+public class FormulaParser {
+    private Formula formula;
+    public FormulaParser(String input) {
+        if (input.equals("true")) {
+            formula = getDeducible();
+        } else {
+            formula = getNotDeducible();
+        }
     }
 
-    public Sequence parse() {
-        System.out.println();
-        return getNotDeducible();
+    public Formula getFormula() {
+        return formula;
     }
 
-    private Sequence getDeducible() {
+    private Formula getDeducible() {
         System.out.println("#xP[x] -> Q[x] |= P[x] -> #xQ[x]");
         List<String> arguments = new ArrayList<>();
         arguments.add("x");
@@ -28,10 +33,10 @@ public class SequenceParser {
         Implication im2 = new Implication(new Predicate("P", arguments), ex2);
         Implication im3 = new Implication(im1, im2);
         im3.setValue(LogicalValue.FALSE);
-        return new Sequence(im3);
+        return im3;
     }
 
-    private Sequence getNotDeducible() {
+    private Formula getNotDeducible() {
         System.out.println("P[x] -> #xQ[x] |= #xP[x] -> Q[x]");
         List<String> arguments = new ArrayList<>();
         arguments.add("x");
@@ -41,6 +46,6 @@ public class SequenceParser {
         Implication im2 = new Implication(ex2, new Predicate("Q", arguments));
         Implication im3 = new Implication(im1, im2);
         im3.setValue(LogicalValue.FALSE);
-        return new Sequence(im3);
+        return im3;
     }
 }

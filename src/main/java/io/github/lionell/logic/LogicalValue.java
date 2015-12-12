@@ -15,7 +15,7 @@ public enum LogicalValue {
         return value == TRUE ? FALSE : TRUE;
     }
 
-    Boolean toBoolean() {
+    public Boolean toBoolean() {
         if (this == TRUE) {
             return true;
         } else if (this == FALSE) {

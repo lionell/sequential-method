@@ -40,4 +40,28 @@ public class CounterExample {
         example.get(predicateVariablesValue.getFirst())
                 .put(newVariables, predicateVariablesValue.getThird());
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Map<String, String> getDelta() {
+        return delta;
+    }
+
+    public void setDelta(Map<String, String> delta) {
+        this.delta = delta;
+    }
+
+    public Map<String, Map<List<String>, Boolean>> getExample() {
+        return example;
+    }
+
+    public void setExample(Map<String, Map<List<String>, Boolean>> example) {
+        this.example = example;
+    }
 }
