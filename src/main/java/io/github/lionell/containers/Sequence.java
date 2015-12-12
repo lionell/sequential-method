@@ -2,7 +2,6 @@ package io.github.lionell.containers;
 
 import io.github.lionell.formulas.Formula;
 import io.github.lionell.formulas.Predicate;
-import io.github.lionell.miscellaneous.LogicalValue;
 import io.github.lionell.wrappers.Example;
 
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by lionell on 08.12.2015.
@@ -33,7 +33,7 @@ public class Sequence {
             if (formula.isAtomic()) {
                 Predicate predicate = (Predicate) formula;
                 Predicate denialPredicate = predicate.clone();
-                denialPredicate.setValue(LogicalValue.negate(denialPredicate.getValue()));
+                denialPredicate.setValue(denialPredicate.getValue().negate());
                 if (predicateSet.contains(denialPredicate)) {
                     return true;
                 }
@@ -67,11 +67,11 @@ public class Sequence {
     }
 
     public Set<String> getFreeVariableNames() {
-        Set<String> freeNames = new HashSet<>();
-        formulas.stream()
+        return formulas
+                .stream()
                 .map(Formula::getFreeVariableNames)
-                .forEach(freeNames::addAll);
-        return freeNames;
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
     }
 
     public Example getCounterExample() {

@@ -1,7 +1,7 @@
 package io.github.lionell.formulas.operations;
 
 import io.github.lionell.formulas.Formula;
-import io.github.lionell.formulas.LogicalOperation;
+import io.github.lionell.formulas.Operation;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +11,7 @@ import java.util.Set;
  *
  * @author Ruslan Sakevych
  */
-public abstract class BinaryOperation extends LogicalOperation {
+public abstract class BinaryOperation extends Operation {
     protected Formula left;
     protected Formula right;
 

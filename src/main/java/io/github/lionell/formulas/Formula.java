@@ -13,6 +13,16 @@ import java.util.Set;
 public abstract class Formula {
     protected LogicalValue value = LogicalValue.UNKNOWN;
 
+    public abstract boolean isAtomic();
+
+    public abstract Sequence[] expand(Sequence sigma);
+
+    public abstract void rename(String from, String to);
+
+    public abstract Set<String> getFreeVariableNames();
+
+    public abstract Formula clone();
+
     public LogicalValue getValue() {
         return value;
     }
@@ -30,14 +40,4 @@ public abstract class Formula {
             throw new IllegalStateException("FormulaWrap is not evaluated!");
         }
     }
-
-    public abstract Formula clone();
-
-    public abstract boolean isAtomic();
-
-    public abstract Sequence[] expand(Sequence sigma);
-
-    public abstract void rename(String from, String to);
-
-    public abstract Set<String> getFreeVariableNames();
 }

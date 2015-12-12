@@ -25,7 +25,7 @@ public class Denial extends UnaryOperation {
         checkValue();
         Sequence resultSequence = new Sequence(sigma);
         Formula newFormula = formula.clone();
-        newFormula.setValue(LogicalValue.negate(value));
+        newFormula.setValue(value.negate());
         resultSequence.addFront(newFormula);
         return new Sequence[]{resultSequence};
     }

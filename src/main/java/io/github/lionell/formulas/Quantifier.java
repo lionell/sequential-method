@@ -1,7 +1,5 @@
 package io.github.lionell.formulas;
 
-import io.github.lionell.formulas.Formula;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +21,8 @@ public abstract class Quantifier extends Formula {
 
     @Override
     public Set<String> getFreeVariableNames() {
-        Set<String> freeVariableNames = new HashSet<>(formula.getFreeVariableNames());
+        Set<String> freeVariableNames =
+                new HashSet<>(formula.getFreeVariableNames());
         if (freeVariableNames.contains(variableName)) {
             freeVariableNames.remove(variableName);
         }

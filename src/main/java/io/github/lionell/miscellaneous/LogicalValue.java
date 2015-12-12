@@ -8,20 +8,17 @@ package io.github.lionell.miscellaneous;
 public enum LogicalValue {
     TRUE, FALSE, UNKNOWN;
 
-    public static LogicalValue negate(LogicalValue value) {
-        if (value == UNKNOWN) {
+    public LogicalValue negate() {
+        if (this == UNKNOWN) {
             throw new IllegalArgumentException("Can't negate LogicalValue.UNKNOWN");
         }
-        return value == TRUE ? FALSE : TRUE;
+        return this == TRUE ? FALSE : TRUE;
     }
 
     public Boolean toBoolean() {
-        if (this == TRUE) {
-            return true;
-        } else if (this == FALSE) {
-            return false;
-        } else {
+        if (this == UNKNOWN) {
             return null;
         }
+        return this == TRUE;
     }
 }

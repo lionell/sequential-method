@@ -1,7 +1,7 @@
 package io.github.lionell.formulas.operations;
 
 import io.github.lionell.formulas.Formula;
-import io.github.lionell.formulas.LogicalOperation;
+import io.github.lionell.formulas.Operation;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import java.util.Set;
  *
  * @author Ruslan Sakevych
  */
-public abstract class UnaryOperation extends LogicalOperation {
+public abstract class UnaryOperation extends Operation {
     protected Formula formula;
 
     @Override
