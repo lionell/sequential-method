@@ -1,5 +1,6 @@
-package io.github.lionell.containers;
+package io.github.lionell.wrappers;
 
+import io.github.lionell.containers.Triple;
 import io.github.lionell.utils.NameGenerator;
 
 import java.util.ArrayList;

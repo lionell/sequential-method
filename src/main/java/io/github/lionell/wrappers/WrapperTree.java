@@ -1,9 +1,6 @@
 package io.github.lionell.wrappers;
 
-import io.github.lionell.containers.CounterExample;
-
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by lionell on 08.12.2015.

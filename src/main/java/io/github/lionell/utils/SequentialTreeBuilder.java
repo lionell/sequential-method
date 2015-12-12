@@ -1,6 +1,6 @@
 package io.github.lionell.utils;
 
-import io.github.lionell.containers.CounterExample;
+import io.github.lionell.wrappers.CounterExample;
 import io.github.lionell.containers.SequentialTree;
 import io.github.lionell.containers.SequentialTree.SequentialNode;
 import io.github.lionell.containers.Tree.Node;

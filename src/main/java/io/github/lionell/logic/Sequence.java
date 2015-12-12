@@ -1,6 +1,6 @@
 package io.github.lionell.logic;
 
-import io.github.lionell.containers.CounterExample;
+import io.github.lionell.wrappers.CounterExample;
 
 import java.util.ArrayList;
 import java.util.Arrays;

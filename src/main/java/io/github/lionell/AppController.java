@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AppController {
     @RequestMapping("/check")
     public @ResponseBody
-    WrapperTree solve(@RequestParam(value = "expr", defaultValue = "NaN") String expression) {
+    WrapperTree solve(@RequestParam(value = "expr", defaultValue = "true") String expression) {
         SequentialTreeBuilder sequentialTreeBuilder =
                 new SequentialTreeBuilder(expression);
         WrapperTreeBuilder treeWrapper = new WrapperTreeBuilder();
