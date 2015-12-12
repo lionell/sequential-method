@@ -23,9 +23,9 @@ public class SequentialBuilder {
     private Queue<Node<Sequence>> leavesQueue = new ArrayDeque<>();
     private List<Node<Sequence>> unclosedLeaves = new ArrayList<>();
 
-    public SequentialBuilder(String example) {
+    public SequentialBuilder() {
         SequenceParser parser = new SequenceParser();
-        tree = new SequentialTree(parser.parse(example));
+        tree = new SequentialTree(parser.parse());
         verdict = transform();
     }
 

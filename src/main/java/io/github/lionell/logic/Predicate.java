@@ -78,6 +78,7 @@ public class Predicate extends Formula {
     }
 
     public Triple<String, List<String>, Boolean> getCounterExample() {
-        return new Triple<>(name, args, true);
+        checkValue();
+        return new Triple<>(name, args, value.toBoolean());
     }
 }

@@ -33,6 +33,6 @@ public class NameGenerator {
     }
 
     private static String nextName() {
-        return (random.nextInt(26) + 'a') + "";
+        return (char) (random.nextInt(26) + 'a') + "";
     }
 }

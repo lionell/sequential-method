@@ -13,9 +13,7 @@ import java.util.List;
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        String input = "(exists x P(x) -> Q(x)) -> (P(x) -> exists x Q(x))";
-        SequentialBuilder builder = new SequentialBuilder(input);
+        SequentialBuilder builder = new SequentialBuilder();
         if (builder.isDeducible()) {
             System.out.println("Input expression is deducible");
         } else {
