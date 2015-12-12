@@ -97,11 +97,11 @@ public class Sequence {
         formulas.add(formula);
     }
 
-    public List<Formula> getFormulas() {
-        return formulas;
-    }
-
     public Sequence clone() {
         return new Sequence(this);
+    }
+
+    public List<Formula> getFormulas() {
+        return formulas;
     }
 }

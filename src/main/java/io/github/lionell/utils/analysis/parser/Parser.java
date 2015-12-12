@@ -1,4 +1,4 @@
-package io.github.lionell.utils;
+package io.github.lionell.utils.analysis.parser;
 
 import io.github.lionell.formulas.Formula;
 import io.github.lionell.formulas.operations.binary.Implication;
@@ -9,11 +9,11 @@ import io.github.lionell.formulas.quantifiers.Exists;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FormulaParser {
+public class Parser {
     private String input;
     private Formula formula;
 
-    public FormulaParser(String input) {
+    public Parser(String input) {
         this.input = input;
     }
 

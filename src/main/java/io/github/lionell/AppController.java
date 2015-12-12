@@ -1,6 +1,6 @@
 package io.github.lionell;
 
-import io.github.lionell.utils.FormulaParser;
+import io.github.lionell.utils.analysis.parser.Parser;
 import io.github.lionell.utils.SequentialMethod;
 import io.github.lionell.utils.WrapBuilder;
 import io.github.lionell.wrappers.Wrap;
@@ -22,21 +22,20 @@ public class AppController {
     @ResponseBody
     Wrap solve(@RequestParam(value = "expr", defaultValue = "true") String expression) {
         WrapBuilder wrapBuilder = new WrapBuilder();
-        FormulaParser formulaParser = new FormulaParser(expression);
+        Parser parser = new Parser(expression);
         try {
-            formulaParser.run();
+            parser.run();
+            SequentialMethod sequentialMethod =
+                    new SequentialMethod(parser.getFormula());
+            sequentialMethod.run();
+            wrapBuilder
+                    .setSequentialTree(sequentialMethod.getTree())
+                    .setVerity(sequentialMethod.getVerity());
+            if (!sequentialMethod.getVerity()) {
+                wrapBuilder.setExamples(sequentialMethod.getCounterExamples());
+            }
         } catch (Exception e) {
             wrapBuilder.setError(e.getMessage());
-            return wrapBuilder.getWrap();
-        }
-        SequentialMethod sequentialMethod =
-                new SequentialMethod(formulaParser.getFormula());
-        sequentialMethod.run();
-        wrapBuilder
-                .setSequentialTree(sequentialMethod.getTree())
-                .setVerity(sequentialMethod.getVerity());
-        if (!sequentialMethod.getVerity()) {
-            wrapBuilder.setExamples(sequentialMethod.getCounterExamples());
         }
         return wrapBuilder.getWrap();
     }
