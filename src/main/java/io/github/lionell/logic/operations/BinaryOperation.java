@@ -7,7 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by lionell on 07.12.2015.
+ * Created by lionell on 08.12.2015.
+ *
+ * @author Ruslan Sakevych
  */
 public abstract class BinaryOperation extends LogicalOperation {
     protected Formula left;

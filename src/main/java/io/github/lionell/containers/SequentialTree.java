@@ -5,6 +5,11 @@ import io.github.lionell.logic.Sequence;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by lionell on 08.12.2015.
+ *
+ * @author Ruslan Sakevych
+ */
 public class SequentialTree implements Tree<Sequence> {
     private Node<Sequence> root;
 

@@ -6,7 +6,9 @@ import io.github.lionell.logic.Quantifier;
 import io.github.lionell.logic.Sequence;
 
 /**
- * Created by lionell on 07.12.2015.
+ * Created by lionell on 08.12.2015.
+ *
+ * @author Ruslan Sakevych
  */
 public class ForAll extends Quantifier {
     public ForAll(String variableName, Formula formula) {

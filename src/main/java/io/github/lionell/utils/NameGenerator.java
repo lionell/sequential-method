@@ -5,7 +5,9 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- * Created by lionell on 07.12.2015.
+ * Created by lionell on 08.12.2015.
+ *
+ * @author Ruslan Sakevych
  */
 public class NameGenerator {
     private static Set<String> usedVariableNames = new HashSet<>();
@@ -30,7 +32,7 @@ public class NameGenerator {
         return name;
     }
 
-    public static String nextName() {
+    private static String nextName() {
         return (random.nextInt(26) + 'a') + "";
     }
 }

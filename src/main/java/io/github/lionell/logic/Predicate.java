@@ -1,12 +1,16 @@
 package io.github.lionell.logic;
 
+import io.github.lionell.containers.Triple;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
- * Created by lionell on 07.12.2015.
+ * Created by lionell on 08.12.2015.
+ *
+ * @author Ruslan Sakevych
  */
 public class Predicate extends Formula {
     private String name;
@@ -62,10 +66,7 @@ public class Predicate extends Formula {
 
         Predicate predicate = (Predicate) o;
 
-        if (!name.equals(predicate.name)) {
-            return false;
-        }
-        return args.equals(predicate.args);
+        return name.equals(predicate.name) && args.equals(predicate.args);
 
     }
 
@@ -74,5 +75,9 @@ public class Predicate extends Formula {
         int result = name.hashCode();
         result = 31 * result + args.hashCode();
         return result;
+    }
+
+    public Triple<String, List<String>, Boolean> getCounterExample() {
+        return new Triple<>(name, args, true);
     }
 }

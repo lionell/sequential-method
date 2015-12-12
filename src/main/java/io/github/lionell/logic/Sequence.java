@@ -8,6 +8,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Created by lionell on 08.12.2015.
+ *
+ * @author Ruslan Sakevych
+ */
 public class Sequence {
     private List<Formula> formulas;
 
@@ -39,17 +44,6 @@ public class Sequence {
         return findFirstExpandable() == null;
     }
 
-    public boolean isCompleted() {
-        return isAtomic() || isClosed();
-    }
-
-    public CounterExample getCounterExample() {
-        if (!isAtomic()) {
-            throw new IllegalStateException("The sequence is expandable, can't find counterexample");
-        }
-        return null;
-    }
-
     private Formula findFirstExpandable() {
         for (Formula formula : formulas) {
             if (!formula.isAtomic()) {
@@ -71,10 +65,25 @@ public class Sequence {
 
     public Set<String> getFreeVariableNames() {
         Set<String> freeNames = new HashSet<>();
-        for (Formula formula : formulas) {
-            freeNames.addAll(formula.getFreeVariableNames());
-        }
+        formulas.stream()
+                .map(Formula::getFreeVariableNames)
+                .forEach(freeNames::addAll);
         return freeNames;
+    }
+
+    public CounterExample getCounterExample() {
+        if (isClosed()) {
+            throw new IllegalStateException("Can't get counterexample from closed sequence!");
+        }
+        if (!isAtomic()) {
+            throw new IllegalStateException("Can't get counterexample from expandable sequence!");
+        }
+        CounterExample counterExample = new CounterExample();
+        formulas.stream()
+                .map(formula -> ((Predicate) formula))
+                .map(Predicate::getCounterExample)
+                .forEach(counterExample::addPredicateValue);
+        return counterExample;
     }
 
     public void addFront(Formula formula) {

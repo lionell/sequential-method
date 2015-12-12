@@ -1,7 +1,9 @@
 package io.github.lionell.logic;
 
 /**
- * Created by lionell on 07.12.2015.
+ * Created by lionell on 08.12.2015.
+ *
+ * @author Ruslan Sakevych
  */
 public enum LogicalValue {
     TRUE, FALSE, UNKNOWN;

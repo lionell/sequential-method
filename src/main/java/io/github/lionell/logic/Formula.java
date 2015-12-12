@@ -3,7 +3,9 @@ package io.github.lionell.logic;
 import java.util.Set;
 
 /**
- * Created by lionell on 07.12.2015.
+ * Created by lionell on 08.12.2015.
+ *
+ * @author Ruslan Sakevych
  */
 public abstract class Formula {
     protected LogicalValue value = LogicalValue.UNKNOWN;

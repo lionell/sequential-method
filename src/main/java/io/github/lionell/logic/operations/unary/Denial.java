@@ -6,7 +6,9 @@ import io.github.lionell.logic.Sequence;
 import io.github.lionell.logic.operations.UnaryOperation;
 
 /**
- * Created by lionell on 07.12.2015.
+ * Created by lionell on 08.12.2015.
+ *
+ * @author Ruslan Sakevych
  */
 public class Denial extends UnaryOperation {
     public Denial(Formula formula) {

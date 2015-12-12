@@ -9,9 +9,6 @@ import io.github.lionell.logic.quantifiers.Exists;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by lionell on 07.12.2015.
- */
 public class SequenceParser {
     public SequenceParser() {
     }

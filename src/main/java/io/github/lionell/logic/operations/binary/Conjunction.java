@@ -6,7 +6,9 @@ import io.github.lionell.logic.Sequence;
 import io.github.lionell.logic.operations.BinaryOperation;
 
 /**
- * Created by lionell on 07.12.2015.
+ * Created by lionell on 08.12.2015.
+ *
+ * @author Ruslan Sakevych
  */
 public class Conjunction extends BinaryOperation {
     public Conjunction(Formula left, Formula right) {
