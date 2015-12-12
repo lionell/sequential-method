@@ -1,6 +1,8 @@
-package io.github.lionell.logic;
+package io.github.lionell.formulas;
 
 import io.github.lionell.containers.Triple;
+import io.github.lionell.miscellaneous.LogicalValue;
+import io.github.lionell.containers.Sequence;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -1,6 +1,9 @@
-package io.github.lionell.logic;
+package io.github.lionell.containers;
 
-import io.github.lionell.wrappers.CounterExample;
+import io.github.lionell.formulas.Formula;
+import io.github.lionell.formulas.Predicate;
+import io.github.lionell.miscellaneous.LogicalValue;
+import io.github.lionell.wrappers.Example;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +33,7 @@ public class Sequence {
             if (formula.isAtomic()) {
                 Predicate predicate = (Predicate) formula;
                 Predicate denialPredicate = predicate.clone();
-                denialPredicate.setValue(LogicalValue.negate(denialPredicate.value));
+                denialPredicate.setValue(LogicalValue.negate(denialPredicate.getValue()));
                 if (predicateSet.contains(denialPredicate)) {
                     return true;
                 }
@@ -71,19 +74,19 @@ public class Sequence {
         return freeNames;
     }
 
-    public CounterExample getCounterExample() {
+    public Example getCounterExample() {
         if (isClosed()) {
             throw new IllegalStateException("Can't get counterexample from closed sequence!");
         }
         if (!isAtomic()) {
             throw new IllegalStateException("Can't get counterexample from expandable sequence!");
         }
-        CounterExample counterExample = new CounterExample();
+        Example example = new Example();
         formulas.stream()
                 .map(formula -> ((Predicate) formula))
                 .map(Predicate::getCounterExample)
-                .forEach(counterExample::addPredicateValue);
-        return counterExample;
+                .forEach(example::addPredicateValue);
+        return example;
     }
 
     public void addFront(Formula formula) {

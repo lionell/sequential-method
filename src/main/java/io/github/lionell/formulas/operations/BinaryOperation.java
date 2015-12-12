@@ -1,7 +1,7 @@
-package io.github.lionell.logic.operations;
+package io.github.lionell.formulas.operations;
 
-import io.github.lionell.logic.Formula;
-import io.github.lionell.logic.LogicalOperation;
+import io.github.lionell.formulas.Formula;
+import io.github.lionell.formulas.LogicalOperation;
 
 import java.util.HashSet;
 import java.util.Set;

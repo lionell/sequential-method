@@ -8,27 +8,27 @@ import java.util.List;
  * @author Ruslan Sakevych
  */
 
-public class WrapperNode {
-    private List<WrapperFormula> formulas;
-    private List<WrapperNode> children;
+public class NodeWrap {
+    private List<FormulaWrap> formulas;
+    private List<NodeWrap> children;
     private boolean closed;
 
-    public WrapperNode() {
+    public NodeWrap() {
     }
 
-    public List<WrapperFormula> getFormulas() {
+    public List<FormulaWrap> getFormulas() {
         return formulas;
     }
 
-    public void setFormulas(List<WrapperFormula> formulas) {
+    public void setFormulas(List<FormulaWrap> formulas) {
         this.formulas = formulas;
     }
 
-    public List<WrapperNode> getChildren() {
+    public List<NodeWrap> getChildren() {
         return children;
     }
 
-    public void setChildren(List<WrapperNode> children) {
+    public void setChildren(List<NodeWrap> children) {
         this.children = children;
     }
 

@@ -1,4 +1,6 @@
-package io.github.lionell.logic;
+package io.github.lionell.formulas;
+
+import io.github.lionell.formulas.Formula;
 
 /**
  * Created by lionell on 08.12.2015.

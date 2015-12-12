@@ -1,4 +1,4 @@
-package io.github.lionell.logic;
+package io.github.lionell.miscellaneous;
 
 /**
  * Created by lionell on 08.12.2015.

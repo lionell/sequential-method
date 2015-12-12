@@ -1,9 +1,9 @@
-package io.github.lionell.logic.operations.unary;
+package io.github.lionell.formulas.operations.unary;
 
-import io.github.lionell.logic.Formula;
-import io.github.lionell.logic.LogicalValue;
-import io.github.lionell.logic.Sequence;
-import io.github.lionell.logic.operations.UnaryOperation;
+import io.github.lionell.formulas.Formula;
+import io.github.lionell.formulas.operations.UnaryOperation;
+import io.github.lionell.miscellaneous.LogicalValue;
+import io.github.lionell.containers.Sequence;
 
 /**
  * Created by lionell on 08.12.2015.

@@ -1,4 +1,7 @@
-package io.github.lionell.logic;
+package io.github.lionell.formulas;
+
+import io.github.lionell.miscellaneous.LogicalValue;
+import io.github.lionell.containers.Sequence;
 
 import java.util.Set;
 
@@ -24,7 +27,7 @@ public abstract class Formula {
 
     protected void checkValue() {
         if (!isEvaluated()) {
-            throw new IllegalStateException("Formula is not evaluated!");
+            throw new IllegalStateException("FormulaWrap is not evaluated!");
         }
     }
 

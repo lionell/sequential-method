@@ -1,7 +1,5 @@
 package io.github.lionell.containers;
 
-import io.github.lionell.logic.Sequence;
-
 import java.util.ArrayList;
 import java.util.List;
 

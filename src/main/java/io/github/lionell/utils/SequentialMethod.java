@@ -1,33 +1,41 @@
 package io.github.lionell.utils;
 
-import io.github.lionell.wrappers.CounterExample;
+import io.github.lionell.containers.Sequence;
 import io.github.lionell.containers.SequentialTree;
 import io.github.lionell.containers.SequentialTree.SequentialNode;
 import io.github.lionell.containers.Tree.Node;
-import io.github.lionell.logic.LogicalValue;
-import io.github.lionell.logic.Sequence;
+import io.github.lionell.formulas.Formula;
+import io.github.lionell.miscellaneous.LogicalValue;
+import io.github.lionell.wrappers.Example;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
+import java.util.stream.Collectors;
 
 /**
  * Created by lionell on 08.12.2015.
  *
  * @author Ruslan Sakevych
  */
-public class SequentialTreeBuilder {
+public class SequentialMethod {
     private static final int STEP_LIMIT = 30;
     private SequentialTree tree;
-    private LogicalValue verdict = LogicalValue.UNKNOWN;
+    private LogicalValue verity = LogicalValue.UNKNOWN;
     private Queue<Node<Sequence>> leavesQueue = new ArrayDeque<>();
     private List<Node<Sequence>> unclosedLeaves = new ArrayList<>();
 
-    public SequentialTreeBuilder(String input) {
-        FormulaParser parser = new FormulaParser(input);
-        tree = new SequentialTree(new Sequence(parser.getFormula()));
-        verdict = transform();
+    public SequentialMethod(Formula formula) {
+        tree = new SequentialTree(new Sequence(formula));
+    }
+
+    public void run() {
+        try{
+            verity = transform();
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private LogicalValue transform() {
@@ -71,21 +79,21 @@ public class SequentialTreeBuilder {
         }
     }
 
-    public List<CounterExample> getCounterExamples() {
-        if (verdict == LogicalValue.TRUE) {
+    public List<Example> getCounterExamples() {
+        if (verity == LogicalValue.TRUE) {
             throw new IllegalStateException("Input sequence is deducible!");
         }
-        List<CounterExample> counterExamples = new ArrayList<>();
-        unclosedLeaves.forEach(
-                leaf -> counterExamples.add(leaf.getValue().getCounterExample()));
-        return counterExamples;
+        return unclosedLeaves.stream()
+                .map(Node::getValue)
+                .map(Sequence::getCounterExample)
+                .collect(Collectors.toList());
     }
 
     public SequentialTree getTree() {
         return tree;
     }
 
-    public Boolean getVerdict() {
-        return verdict.toBoolean();
+    public Boolean getVerity() {
+        return verity.toBoolean();
     }
 }

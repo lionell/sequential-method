@@ -1,22 +1,22 @@
-package io.github.lionell.logic.operations.binary;
+package io.github.lionell.formulas.operations.binary;
 
-import io.github.lionell.logic.Formula;
-import io.github.lionell.logic.LogicalValue;
-import io.github.lionell.logic.Sequence;
-import io.github.lionell.logic.operations.BinaryOperation;
+import io.github.lionell.formulas.Formula;
+import io.github.lionell.formulas.operations.BinaryOperation;
+import io.github.lionell.miscellaneous.LogicalValue;
+import io.github.lionell.containers.Sequence;
 
 /**
  * Created by lionell on 08.12.2015.
  *
  * @author Ruslan Sakevych
  */
-public class Implication extends BinaryOperation {
-    public Implication(Formula left, Formula right) {
+public class Disjunction extends BinaryOperation {
+    public Disjunction(Formula left, Formula right) {
         this.left = left;
         this.right = right;
     }
 
-    public Implication(Formula left, Formula right, LogicalValue value) {
+    public Disjunction(Formula left, Formula right, LogicalValue value) {
         this(left, right);
         this.value = value;
     }
@@ -27,7 +27,7 @@ public class Implication extends BinaryOperation {
         if (value == LogicalValue.TRUE) {
             Sequence firstBranch = new Sequence(sigma);
             Formula newLeft = left.clone();
-            newLeft.setValue(LogicalValue.FALSE);
+            newLeft.setValue(LogicalValue.TRUE);
             firstBranch.addFront(newLeft);
             Sequence secondBranch = new Sequence(sigma);
             Formula newRight = right.clone();
@@ -36,23 +36,23 @@ public class Implication extends BinaryOperation {
             return new Sequence[]{firstBranch, secondBranch};
         } else {
             Sequence resultSequence = new Sequence(sigma);
+            Formula newLeft = left.clone();
+            newLeft.setValue(LogicalValue.FALSE);
+            resultSequence.addFront(newLeft);
             Formula newRight = right.clone();
             newRight.setValue(LogicalValue.FALSE);
             resultSequence.addFront(newRight);
-            Formula newLeft = left.clone();
-            newLeft.setValue(LogicalValue.TRUE);
-            resultSequence.addFront(newLeft);
             return new Sequence[]{resultSequence};
         }
     }
 
     @Override
-    public Implication clone() {
-        return new Implication(left.clone(), right.clone(), value);
+    public Disjunction clone() {
+        return new Disjunction(left.clone(), right.clone(), value);
     }
 
     @Override
     public String toString() {
-        return "(" + left + ") -> (" + right + ")";
+        return "(" + left + ") || (" + right + ")";
     }
 }

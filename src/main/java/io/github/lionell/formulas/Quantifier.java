@@ -1,4 +1,6 @@
-package io.github.lionell.logic;
+package io.github.lionell.formulas;
+
+import io.github.lionell.formulas.Formula;
 
 import java.util.HashSet;
 import java.util.Set;

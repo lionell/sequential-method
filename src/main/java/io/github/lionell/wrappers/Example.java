@@ -13,12 +13,12 @@ import java.util.Map;
  *
  * @author Ruslan Sakevych
  */
-public class CounterExample {
+public class Example {
     private String name = NameGenerator.nextCounterExampleName();
     private Map<String, String> delta;
     private Map<String, Map<List<String>, Boolean>> example;
 
-    public CounterExample() {
+    public Example() {
         delta = new HashMap<>();
         example = new HashMap<>();
     }

@@ -5,14 +5,14 @@ package io.github.lionell.wrappers;
  *
  * @author Ruslan Sakevych
  */
-public class WrapperFormula {
+public class FormulaWrap {
     private String formula;
     private Boolean value;
 
-    public WrapperFormula() {
+    public FormulaWrap() {
     }
 
-    public WrapperFormula(String formula, Boolean value) {
+    public FormulaWrap(String formula, Boolean value) {
         this.formula = formula;
         this.value = value;
     }

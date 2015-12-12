@@ -1,17 +1,23 @@
 package io.github.lionell.utils;
 
-import io.github.lionell.logic.Formula;
-import io.github.lionell.logic.LogicalValue;
-import io.github.lionell.logic.Predicate;
-import io.github.lionell.logic.operations.binary.Implication;
-import io.github.lionell.logic.quantifiers.Exists;
+import io.github.lionell.formulas.Formula;
+import io.github.lionell.formulas.operations.binary.Implication;
+import io.github.lionell.miscellaneous.LogicalValue;
+import io.github.lionell.formulas.Predicate;
+import io.github.lionell.formulas.quantifiers.Exists;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FormulaParser {
+    private String input;
     private Formula formula;
+
     public FormulaParser(String input) {
+        this.input = input;
+    }
+
+    public void run() {
         if (input.equals("true")) {
             formula = getDeducible();
         } else if (input.equals("false")) {
