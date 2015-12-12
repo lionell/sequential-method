@@ -14,7 +14,7 @@ public class FormulaParser {
     public FormulaParser(String input) {
         if (input.equals("true")) {
             formula = getDeducible();
-        } else {
+        } else if (input.equals("false")) {
             formula = getNotDeducible();
         }
     }

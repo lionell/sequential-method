@@ -53,6 +53,6 @@ public class Disjunction extends BinaryOperation {
 
     @Override
     public String toString() {
-        return "(" + right + ") || (" + left + ")";
+        return "(" + left + ") || (" + right + ")";
     }
 }

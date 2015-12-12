@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AppController {
-    @RequestMapping("/solve")
+    @RequestMapping("/check")
     public @ResponseBody
     WrapperTree solve(@RequestParam(value = "expr", defaultValue = "NaN") String expression) {
         SequentialTreeBuilder sequentialTreeBuilder =
@@ -25,8 +25,7 @@ public class AppController {
         treeWrapper.addSequentialTree(sequentialTreeBuilder.getTree())
                 .addVerdict(sequentialTreeBuilder.getVerdict());
         if (!sequentialTreeBuilder.getVerdict()) {
-            treeWrapper
-                    .addCounterExamples(sequentialTreeBuilder.getCounterExamples());
+            treeWrapper.addCounterExamples(sequentialTreeBuilder.getCounterExamples());
         }
         return treeWrapper.createTree();
     }
