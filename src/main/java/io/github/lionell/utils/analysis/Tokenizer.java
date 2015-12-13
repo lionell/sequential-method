@@ -1,4 +1,4 @@
-package io.github.lionell.utils.analysis.lexer;
+package io.github.lionell.utils.analysis;
 
 import io.github.lionell.exceptions.TokenizerException;
 import io.github.lionell.utils.analysis.tokens.Token;
@@ -107,7 +107,8 @@ public class Tokenizer {
         for (char c : token.getValue().toCharArray()) {
             if (input.charAt(index) != c) {
                 throw new TokenizerException("Expected '" + c
-                        + "' found '" + input.charAt(index) + "' at position " + index);
+                        + "' found '" + input.charAt(index)
+                        + "' at position " + index);
             }
             index++;
         }

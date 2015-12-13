@@ -1,10 +1,11 @@
-package io.github.lionell.utils.analysis.parser;
+package io.github.lionell.utils.analysis;
 
 import io.github.lionell.formulas.Formula;
 import io.github.lionell.formulas.operations.binary.Implication;
 import io.github.lionell.miscellaneous.LogicalValue;
 import io.github.lionell.formulas.Predicate;
 import io.github.lionell.formulas.quantifiers.Exists;
+import io.github.lionell.utils.analysis.tokens.Token;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +19,9 @@ public class Parser {
     }
 
     public void run() {
-        if (input.equals("true")) {
-            formula = getDeducible();
-        } else if (input.equals("false")) {
-            formula = getNotDeducible();
-        }
+        Tokenizer tokenizer = new Tokenizer(input);
+        tokenizer.run();
+        List<Token> tokens = tokenizer.getTokens();
     }
 
     public Formula getFormula() {

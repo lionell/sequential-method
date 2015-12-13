@@ -4,7 +4,7 @@
 
 ### Backus-Naur Form
 ```
-<expression>				::= <formula> "|=" <formula>
+<expression>				::= <formula> "=" <formula>
 <formula>					::= [ "(" ] <predicate>
 										| <logical-operation>
 										| <quantifier>

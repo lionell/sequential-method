@@ -1,6 +1,6 @@
 package io.github.lionell;
 
-import io.github.lionell.utils.analysis.parser.Parser;
+import io.github.lionell.utils.analysis.Parser;
 import io.github.lionell.utils.SequentialMethod;
 import io.github.lionell.utils.WrapBuilder;
 import io.github.lionell.wrappers.Wrap;

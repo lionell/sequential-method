@@ -1,6 +1,6 @@
 package io.github.lionell;
 
-import io.github.lionell.utils.analysis.lexer.Tokenizer;
+import io.github.lionell.utils.analysis.Tokenizer;
 import io.github.lionell.utils.analysis.tokens.Token;
 
 /**
