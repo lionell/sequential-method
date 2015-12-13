@@ -55,6 +55,10 @@ public class Tokenizer {
                     token.setType(TokenType.OR);
                     token.setValue("||");
                     break;
+                case '=':
+                    token.setType(TokenType.ASSUME);
+                    token.setValue("=");
+                    break;
                 case '-':
                     token.setType(TokenType.IMPLIES);
                     token.setValue("->");

@@ -15,6 +15,7 @@ public enum TokenType {
     COMMA,
     AND,
     OR,
+    ASSUME,
     IMPLIES,
     DENY,
     EXISTS,
