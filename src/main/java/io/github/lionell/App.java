@@ -10,7 +10,7 @@ import io.github.lionell.utils.analysis.tokens.Token;
  */
 public class App {
     public static void main(String[] args) {
-        Tokenizer tokenizer = new Tokenizer("  ()[],  Predicate name && || -> !! #!@ -->");
+        Tokenizer tokenizer = new Tokenizer("  ()[],  Predicate name && || -> !! #!@ ->");
         tokenizer.run();
         for (Token token : tokenizer.getTokens()) {
             System.out.println(token.getType() + " --> " + token.getValue());
