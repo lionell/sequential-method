@@ -52,19 +52,19 @@ Let's look at example how this works.
 when implication and disjunction are in charge.
 
 ```
-                                  P[x] = P[x] || Q[x]
-                                          |
-                                          v
-                                -(P[x] -> P[x] || Q[x])
-                                          |
-                                          v
-                                +P[x], -(P[x] || Q[x])
-                                          |
-                                          v
-                                 -P[x], -Q[x], +P[x]
-                                          |
-                                          v
-                                          X
+                                              P[x] = P[x] || Q[x]
+                                                      |
+                                                      v
+                                            -(P[x] -> P[x] || Q[x])
+                                                      |
+                                                      v
+                                            +P[x], -(P[x] || Q[x])
+                                                      |
+                                                      v
+                                             -P[x], -Q[x], +P[x]
+                                                      |
+                                                      v
+                                                      X
 ```
 Generated `json` for this example will looks like
 ```
@@ -133,27 +133,30 @@ should contains field named `expr` with expression you want to check.
 
 ### Response
 ```
-{
-   "tree":              ...
-   "verity":            true\false\null
-   "examples":          null\...
-   "error":             null\...
-}
+"tree":         sequential tree
+"verity":       true,               if expression is truthful
+                false,              if expression is false
+                null,               if infinite loop detected
+"examples":     null,               if expression is truthful
+                counter example,    otherwise
+"error":        error message,      if error occurred
+                null,               otherwise
 ```
-Field `tree` contains sequential tree, that was build while checking.
 
-Field `verity` is a Big bool. It's `true` if expression is truthful, `false`
-if expression if false, and `null` if **loop** was detected while building a tree.
+### node
+```
+"formulas":     list of formulas
+"children":     list of children
+"closed":       true,               if sequence is closed
+                false,              otherwise
+```
 
-Field `example` is `null`, if expression is truthful(field `verity` should also be `true`),
-and structure of example, otherwise.
-
-Field `error` if `null`, if no error occurred while processing expression, and
-message of error otherwise.
-
-### root
-
-
+### formula
+```
+"formula":      actual formula
+"value":        true,               if formula holds true
+                false,               otherwise
+```
 
 ## How to run
 To run the application you should follow the steps above
