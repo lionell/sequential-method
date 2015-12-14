@@ -46,7 +46,7 @@
  * `#x@yP[x, y] = @y#xP[x, y]`
 
 ## Examples
-Let's look at example how this works.
+Let's look closer at examples.
 
 **Example 1.** First example, has only one branch. It shows how exactly sequences is expanding
 when implication and disjunction are in charge.
@@ -55,10 +55,10 @@ when implication and disjunction are in charge.
                                               P[x] = P[x] || Q[x]
                                                       |
                                                       v
-                                            -(P[x] -> P[x] || Q[x])
+                                            -{P[x] -> P[x] || Q[x]}
                                                       |
                                                       v
-                                            +P[x], -(P[x] || Q[x])
+                                            +P[x], -{P[x] || Q[x]}
                                                       |
                                                       v
                                              -P[x], -Q[x], +P[x]
@@ -125,11 +125,36 @@ This is very simple example. Let's look on something harder.
 **Example 2.** Here is more complicated example with quantifiers. It's also truthful,
 but now we have tow different closed branches.
 ```
+                                   #xP[x] -> Q[x] = P[x] -> #xQ[x]
+                                                  |
+                                                  v
+                                -{(#xP[x] -> Q[x]) -> P[x] -> #xQ[x]}
+                                                  |
+                                                  v
+                                +{#xP[x] -> Q[x]}, -{P[x] -> #xQ[x]}
+                               /                                   \
+                              /                                     \
+                             v                                       v
+                -#xP[x], -{P[x] -> #xQ[x]}                 +Q[x], -{P[x] -> #xQ[x]}
+                            |                                         |
+                            v                                         v
+            -P[x], -{P[x] -> #xQ[x]}, -#xP[x]                +P[x], -#xQ[x], +Q[x]
+                            |                                         |
+                            v                                         v
+             +P[x], -#xQ[x], -P[x], -#xP[x]               -Q[x], +P[x], +Q[x], -#xQ[x]
+                            |                                         |
+                            v                                         v
+                            X                                         X
+
 ```
 
 ## API
 There are only one service available, named `check`. To use it your query
 should contains field named `expr` with expression you want to check.
+
+For example `localhost:8080/check?expr=#yP[x]->@xQ[y]=Q[x]` will give response in `json`.
+
+Now let's look closer to response of the service.
 
 ### Response
 ```
@@ -155,20 +180,22 @@ should contains field named `expr` with expression you want to check.
 ```
 "formula":      actual formula
 "value":        true,               if formula holds true
-                false,               otherwise
+                false,              otherwise
 ```
 
-## How to run
+## Installation
+
+### Requirements
+ * JRE 1.8(at least)
+
+### Running
 To run the application you should follow the steps above
 
-### Steps:
  * Start Tomcat server with application.
  * Go to `localhost:8080/index.html`
  * That's all (:
 
 This will run a RESTful server with `check` service. Web-client uses this
 service to get a tree representation and verdict in `json` format. Then all
-data is processed with d3.js and a pretty nice graphic is generated.
+data is processed with `d3.js` and a pretty nice graphic is generated.
 
-### Requirements
- * JRE 1.8(at least)
