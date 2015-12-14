@@ -5,10 +5,10 @@ package io.github.lionell.utils.analysis.tokens;
  *
  * @author Ruslan Sakevych
  */
-public class Exists extends Token {
+public class ExistsToken extends Token {
     private String variable;
 
-    public Exists(String variable) {
+    public ExistsToken(String variable) {
         super(Type.EXISTS);
         this.variable = variable;
     }

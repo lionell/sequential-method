@@ -30,7 +30,7 @@ public class Predicate extends Formula {
 
     @Override
     public Sequence[] expand(Sequence sigma) {
-        throw new IllegalStateException("Predicate can't be expanded!");
+        throw new IllegalStateException("PredicateToken can't be expanded!");
     }
 
     @Override
@@ -68,14 +68,18 @@ public class Predicate extends Formula {
 
         Predicate predicate = (Predicate) o;
 
-        return name.equals(predicate.name) && args.equals(predicate.args);
+        return name.equals(predicate.name)
+                && args.equals(predicate.args)
+                && value.equals(predicate.value);
 
     }
 
     @Override
     public int hashCode() {
+        final int PRIME = 31;
         int result = name.hashCode();
-        result = 31 * result + args.hashCode();
+        result = PRIME * result + args.hashCode();
+        result = PRIME * result + value.hashCode();
         return result;
     }
 

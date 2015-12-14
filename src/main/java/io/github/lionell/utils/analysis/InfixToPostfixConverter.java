@@ -1,10 +1,10 @@
 package io.github.lionell.utils.analysis;
 
 import io.github.lionell.exceptions.ConverterException;
-import io.github.lionell.utils.analysis.tokens.Exists;
-import io.github.lionell.utils.analysis.tokens.ForAll;
+import io.github.lionell.utils.analysis.tokens.ExistsToken;
+import io.github.lionell.utils.analysis.tokens.ForAllToken;
 import io.github.lionell.utils.analysis.tokens.Lexeme;
-import io.github.lionell.utils.analysis.tokens.Predicate;
+import io.github.lionell.utils.analysis.tokens.PredicateToken;
 import io.github.lionell.utils.analysis.tokens.Token;
 
 import java.util.ArrayList;
@@ -42,16 +42,16 @@ public class InfixToPostfixConverter {
                         match(Lexeme.Type.VARIABLE);
                     }
                     match(Lexeme.Type.CLOSED_BRACKET);
-                    postfix.add(new Predicate(predicateName, args));
+                    postfix.add(new PredicateToken(predicateName, args));
                     break;
                 case EXISTS:
                     match(Lexeme.Type.EXISTS);
-                    opStack.push(new Exists(getLexeme().getValue()));
+                    opStack.push(new ExistsToken(getLexeme().getValue()));
                     match(Lexeme.Type.VARIABLE);
                     break;
                 case FOR_ALL:
                     match(Lexeme.Type.FOR_ALL);
-                    opStack.push(new ForAll(getLexeme().getValue()));
+                    opStack.push(new ForAllToken(getLexeme().getValue()));
                     match(Lexeme.Type.VARIABLE);
                     break;
                 case AND:

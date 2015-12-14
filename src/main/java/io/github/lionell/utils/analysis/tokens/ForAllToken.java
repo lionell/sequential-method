@@ -5,10 +5,10 @@ package io.github.lionell.utils.analysis.tokens;
  *
  * @author Ruslan Sakevych
  */
-public class ForAll extends Token {
+public class ForAllToken extends Token {
     private String variable;
 
-    public ForAll(String variable) {
+    public ForAllToken(String variable) {
         super(Type.FOR_ALL);
         this.variable = variable;
     }

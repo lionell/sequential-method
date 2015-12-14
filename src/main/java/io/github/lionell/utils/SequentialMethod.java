@@ -31,11 +31,7 @@ public class SequentialMethod {
     }
 
     public void run() {
-        try{
-            verity = transform();
-        } catch(Exception e) {
-            System.out.println(e.getMessage());
-        }
+        verity = transform();
     }
 
     private LogicalValue transform() {

@@ -7,11 +7,11 @@ import java.util.List;
  *
  * @author Ruslan Sakevych
  */
-public class Predicate extends Token {
+public class PredicateToken extends Token {
     private String name;
     private List<String> args;
 
-    public Predicate(String name, List<String> args) {
+    public PredicateToken(String name, List<String> args) {
         super(Type.PREDICATE);
         this.name = name;
         this.args = args;
