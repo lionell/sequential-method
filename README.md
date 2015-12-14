@@ -36,9 +36,136 @@
 								| "Z"
 ```
 
-### Examples
-* `#x(P[x] -> Q[x]) = P[x] -> #xQ[x]`
-* `@x(P[x] || Q[x]) = @xP[x] || @xQ[x]`
-* `@x(P[x] && Q[x] -> R[y]) = #xP[x]`
-* `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
-* `#x@yP[x, y] = @y#xP[x, y]`
+### Examples of expressions
+ * `P[x] = Q[x]`
+ * `P[x] = P[x] || Q[x]`
+ * `#x(P[x] -> Q[x]) = P[x] -> #xQ[x]`
+ * `@x(P[x] || Q[x]) = @xP[x] || @xQ[x]`
+ * `@x(P[x] && Q[x] -> R[y]) = #xP[x]`
+ * `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
+ * `#x@yP[x, y] = @y#xP[x, y]`
+
+## Examples
+Let's look at example how this works.
+
+**Example 1.** First example, has only one branch. It shows how exactly sequences is expanding
+when implication and disjunction are in charge.
+
+```
+                                  P[x] = P[x] || Q[x]
+                                          |
+                                          v
+                                -(P[x] -> P[x] || Q[x])
+                                          |
+                                          v
+                                +P[x], -(P[x] || Q[x])
+                                          |
+                                          v
+                                 -P[x], -Q[x], +P[x]
+                                          |
+                                          v
+                                          X
+```
+Generated `json` for this example will looks like
+```
+{
+   "tree":{
+      "root":{
+         "formulas":[
+            {
+               "formula":"(P[x]) -> ((P[x]) || (Q[x]))",
+               "value":false
+            }
+         ],
+         "children":[
+            {
+               "formulas":[
+                  {
+                     "formula":"P[x]",
+                     "value":true
+                  },
+                  {
+                     "formula":"(P[x]) || (Q[x])",
+                     "value":false
+                  }
+               ],
+               "children":[
+                  {
+                     "formulas":[
+                        {
+                           "formula":"Q[x]",
+                           "value":false
+                        },
+                        {
+                           "formula":"P[x]",
+                           "value":false
+                        },
+                        {
+                           "formula":"P[x]",
+                           "value":true
+                        }
+                     ],
+                     "children":[],
+                     "closed":true
+                  }
+               ],
+               "closed":false
+            }
+         ],
+         "closed":false
+      }
+   },
+   "verity":true,
+   "examples":null,
+   "error":null
+}
+```
+This is very simple example. Let's look on something harder.
+
+**Example 2.** Here is more complicated example with quantifiers. It's also truthful,
+but now we have tow different closed branches.
+```
+```
+
+## API
+There are only one service available, named `check`. To use it your query
+should contains field named `expr` with expression you want to check.
+
+### Response
+```
+{
+   "tree":              ...
+   "verity":            true\false\null
+   "examples":          null\...
+   "error":             null\...
+}
+```
+Field `tree` contains sequential tree, that was build while checking.
+
+Field `verity` is a Big bool. It's `true` if expression is truthful, `false`
+if expression if false, and `null` if **loop** was detected while building a tree.
+
+Field `example` is `null`, if expression is truthful(field `verity` should also be `true`),
+and structure of example, otherwise.
+
+Field `error` if `null`, if no error occurred while processing expression, and
+message of error otherwise.
+
+### root
+
+
+
+## How to run
+To run the application you should follow the steps above
+
+### Steps:
+ * Start Tomcat server with application.
+ * Go to `localhost:8080/index.html`
+ * That's all (:
+
+This will run a RESTful server with `check` service. Web-client uses this
+service to get a tree representation and verdict in `json` format. Then all
+data is processed with d3.js and a pretty nice graphic is generated.
+
+### Requirements
+ * JRE 1.8(at least)
