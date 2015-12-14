@@ -48,8 +48,8 @@
 ## Examples
 Let's look closer at examples.
 
-**Example 1.** First example, has only one branch. It shows how exactly sequences is expanding
-when implication and disjunction are in charge.
+**Example 1.** First example, has only one branch. It shows how exactly
+sequences is expanding when implication and disjunction are in charge.
 
 ```
                                               P[x] = P[x] || Q[x]
@@ -122,29 +122,29 @@ Generated `json` for this example will looks like
 ```
 This is very simple example. Let's look on something harder.
 
-**Example 2.** Here is more complicated example with quantifiers. It's also truthful,
-but now we have tow different closed branches.
+**Example 2.** Here is more complicated example with quantifiers.
+It's also truthful, but now we have tow different closed branches.
 ```
-                                   #xP[x] -> Q[x] = P[x] -> #xQ[x]
-                                                  |
-                                                  v
-                                -{(#xP[x] -> Q[x]) -> P[x] -> #xQ[x]}
-                                                  |
-                                                  v
-                                +{#xP[x] -> Q[x]}, -{P[x] -> #xQ[x]}
-                               /                                   \
-                              /                                     \
-                             v                                       v
-                -#xP[x], -{P[x] -> #xQ[x]}                 +Q[x], -{P[x] -> #xQ[x]}
-                            |                                         |
-                            v                                         v
-            -P[x], -{P[x] -> #xQ[x]}, -#xP[x]                +P[x], -#xQ[x], +Q[x]
-                            |                                         |
-                            v                                         v
-             +P[x], -#xQ[x], -P[x], -#xP[x]               -Q[x], +P[x], +Q[x], -#xQ[x]
-                            |                                         |
-                            v                                         v
-                            X                                         X
+                                           #xP[x] -> Q[x] = P[x] -> #xQ[x]
+                                                          |
+                                                          v
+                                        -{(#xP[x] -> Q[x]) -> P[x] -> #xQ[x]}
+                                                          |
+                                                          v
+                                        +{#xP[x] -> Q[x]}, -{P[x] -> #xQ[x]}
+                                       /                                   \
+                                      /                                     \
+                                     v                                       v
+                        -#xP[x], -{P[x] -> #xQ[x]}                 +Q[x], -{P[x] -> #xQ[x]}
+                                    |                                         |
+                                    v                                         v
+                    -P[x], -{P[x] -> #xQ[x]}, -#xP[x]                +P[x], -#xQ[x], +Q[x]
+                                    |                                         |
+                                    v                                         v
+                     +P[x], -#xQ[x], -P[x], -#xP[x]               -Q[x], +P[x], +Q[x], -#xQ[x]
+                                    |                                         |
+                                    v                                         v
+                                    X                                         X
 
 ```
 
@@ -152,7 +152,8 @@ but now we have tow different closed branches.
 There are only one service available, named `check`. To use it your query
 should contains field named `expr` with expression you want to check.
 
-For example `localhost:8080/check?expr=#yP[x]->@xQ[y]=Q[x]` will give response in `json`.
+For example `localhost:8080/check?expr=#yP[x]->@xQ[y]=Q[x]` will give response
+in `json`.
 
 Now let's look closer to response of the service.
 
