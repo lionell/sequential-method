@@ -11,7 +11,7 @@ import io.github.lionell.utils.analysis.Parser;
  */
 public class App {
     public static void main(String[] args) {
-        Parser parser = new Parser("@x(P[x] || Q[x]) = @xP[x] || @xQ[x]");
+        Parser parser = new Parser("#xP[x] -> Q[x] = P[x] -> #xQ[x]");
         parser.run();
         SequentialMethod sequentialMethod =
                 new SequentialMethod(parser.getFormula());

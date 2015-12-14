@@ -6,6 +6,10 @@ import io.github.lionell.formulas.Quantifier;
 import io.github.lionell.containers.Sequence;
 import io.github.lionell.utils.NameGenerator;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * Created by lionell on 08.12.2015.
  *
@@ -35,7 +39,10 @@ public class Exists extends Quantifier {
         } else {
             Sequence resultSequence = new Sequence(sigma);
             resultSequence.addBack(clone());
-            for (String freeVariableName : sigma.getFreeVariableNames()) {
+            Set<String> freeVariableNames =
+                    new HashSet<>(sigma.getFreeVariableNames());
+            freeVariableNames.addAll(getFreeVariableNames());
+            for (String freeVariableName : freeVariableNames) {
                 Formula newFormula = formula.clone();
                 newFormula.rename(variableName, freeVariableName);
                 newFormula.setValue(LogicalValue.FALSE);

@@ -4,6 +4,10 @@ import io.github.lionell.formulas.Formula;
 import io.github.lionell.miscellaneous.LogicalValue;
 import io.github.lionell.formulas.Quantifier;
 import io.github.lionell.containers.Sequence;
+import io.github.lionell.utils.NameGenerator;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by lionell on 08.12.2015.
@@ -23,7 +27,26 @@ public class ForAll extends Quantifier {
 
     @Override
     public Sequence[] expand(Sequence sigma) {
-        return new Sequence[0];
+        checkValue();
+        Sequence resultSequence = new Sequence(sigma);
+        if (value == LogicalValue.TRUE) {
+            resultSequence.addBack(clone());
+            Set<String> freeVariableNames =
+                    new HashSet<>(sigma.getFreeVariableNames());
+            freeVariableNames.addAll(getFreeVariableNames());
+            for (String freeVariableName : freeVariableNames) {
+                Formula newFormula = formula.clone();
+                newFormula.rename(variableName, freeVariableName);
+                newFormula.setValue(LogicalValue.TRUE);
+                resultSequence.addFront(newFormula);
+            }
+        } else {
+            Formula newFormula = formula.clone();
+            newFormula.rename(variableName, NameGenerator.nextVariableName());
+            newFormula.setValue(LogicalValue.FALSE);
+            resultSequence.addFront(newFormula);
+        }
+        return new Sequence[]{resultSequence};
     }
 
     @Override

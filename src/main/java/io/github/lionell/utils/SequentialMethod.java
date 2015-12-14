@@ -41,7 +41,7 @@ public class SequentialMethod {
             activateNode(leavesQueue.poll());
             stepsLeft--;
             if (stepsLeft == 0) {
-                return LogicalValue.FALSE;
+                return LogicalValue.UNKNOWN;
             }
         }
         return unclosedLeaves.isEmpty()
