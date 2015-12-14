@@ -5,7 +5,7 @@ import io.github.lionell.formulas.operations.binary.Implication;
 import io.github.lionell.miscellaneous.LogicalValue;
 import io.github.lionell.formulas.Predicate;
 import io.github.lionell.formulas.quantifiers.Exists;
-import io.github.lionell.utils.analysis.tokens.Token;
+import io.github.lionell.utils.analysis.tokens.Lexeme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class Parser {
     public void run() {
         Tokenizer tokenizer = new Tokenizer(input);
         tokenizer.run();
-        List<Token> tokens = tokenizer.getTokens();
+        List<Lexeme> lexemes = tokenizer.getLexemes();
     }
 
     public Formula getFormula() {

@@ -1,8 +1,7 @@
 package io.github.lionell.utils.analysis;
 
 import io.github.lionell.exceptions.TokenizerException;
-import io.github.lionell.utils.analysis.tokens.Token;
-import io.github.lionell.utils.analysis.tokens.TokenType;
+import io.github.lionell.utils.analysis.tokens.Lexeme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * @author Ruslan Sakevych
  */
 public class Tokenizer {
-    private List<Token> tokens = new ArrayList<>();
+    private List<Lexeme> lexemes = new ArrayList<>();
     private String input;
     private int index = 0;
 
@@ -24,91 +23,108 @@ public class Tokenizer {
     public void run() {
         skipWhitespaces();
         while (index < input.length()) {
-            Token token = new Token();
-            char c = input.charAt(index);
-            switch (c) {
+            Lexeme lexeme = new Lexeme();
+            switch (getChar()) {
                 case '(':
-                    token.setType(TokenType.OPEN_ROUND_BRACKET);
-                    token.setValue("(");
+                    lexeme.setType(Lexeme.Type.OPEN_ROUND_BRACKET);
+                    lexeme.setValue("(");
                     break;
                 case ')':
-                    token.setType(TokenType.CLOSED_ROUND_BRACKET);
-                    token.setValue(")");
+                    lexeme.setType(Lexeme.Type.CLOSED_ROUND_BRACKET);
+                    lexeme.setValue(")");
                     break;
                 case '[':
-                    token.setType(TokenType.OPEN_BRACKET);
-                    token.setValue("[");
+                    lexeme.setType(Lexeme.Type.OPEN_BRACKET);
+                    lexeme.setValue("[");
                     break;
                 case ']':
-                    token.setType(TokenType.CLOSED_BRACKET);
-                    token.setValue("]");
+                    lexeme.setType(Lexeme.Type.CLOSED_BRACKET);
+                    lexeme.setValue("]");
                     break;
                 case ',':
-                    token.setType(TokenType.COMMA);
-                    token.setValue(",");
+                    lexeme.setType(Lexeme.Type.COMMA);
+                    lexeme.setValue(",");
                     break;
                 case '&':
-                    token.setType(TokenType.AND);
-                    token.setValue("&&");
+                    lexeme.setType(Lexeme.Type.AND);
+                    lexeme.setValue("&&");
                     break;
                 case '|':
-                    token.setType(TokenType.OR);
-                    token.setValue("||");
+                    lexeme.setType(Lexeme.Type.OR);
+                    lexeme.setValue("||");
                     break;
                 case '=':
-                    token.setType(TokenType.ASSUME);
-                    token.setValue("=");
+                    lexeme.setType(Lexeme.Type.ASSUME);
+                    lexeme.setValue("=");
                     break;
                 case '-':
-                    token.setType(TokenType.IMPLIES);
-                    token.setValue("->");
+                    lexeme.setType(Lexeme.Type.IMPLIES);
+                    lexeme.setValue("->");
                     break;
                 case '!':
-                    token.setType(TokenType.DENY);
-                    token.setValue("!");
+                    lexeme.setType(Lexeme.Type.DENY);
+                    lexeme.setValue("!");
                     break;
                 case '#':
-                    token.setType(TokenType.EXISTS);
-                    token.setValue("#");
+                    lexeme.setType(Lexeme.Type.EXISTS);
+                    lexeme.setValue("#");
                     break;
                 case '@':
-                    token.setType(TokenType.FOR_ALL);
-                    token.setValue("@");
+                    lexeme.setType(Lexeme.Type.FOR_ALL);
+                    lexeme.setValue("@");
                     break;
                 default:
-                    if (Character.isAlphabetic(c)) {
-                        if (Character.isUpperCase(c)) {
-                            token.setType(TokenType.PREDICATE);
-                            token.setValue(getName());
+                    if (Character.isAlphabetic(getChar())) {
+                        if (Character.isUpperCase(getChar())) {
+                            lexeme.setType(Lexeme.Type.PREDICATE);
+                            lexeme.setValue(getPredicateName());
                         } else {
-                            token.setType(TokenType.VARIABLE);
-                            token.setValue(getName());
+                            lexeme.setType(Lexeme.Type.VARIABLE);
+                            lexeme.setValue(getVariableName());
                         }
                     } else {
                         throw new TokenizerException("Unknown symbol!");
                     }
             }
-            match(token);
-            tokens.add(token);
+            match(lexeme);
+            lexemes.add(lexeme);
         }
     }
 
     private void skipWhitespaces() {
-        while (index < input.length() && Character.isWhitespace(input.charAt(index))) {
+        while (index < input.length() && Character.isWhitespace(getChar())) {
             index++;
         }
     }
 
-    private String getName() {
-        int end = index;
-        while (end < input.length() && Character.isAlphabetic(input.charAt(end))) {
+    private String getLowerCaseName(int start) {
+        int end = start;
+        while (end < input.length() && Character.isLowerCase(input.charAt(end))) {
             end++;
         }
-        return input.substring(index, end);
+        return input.substring(start, end);
     }
 
-    private void match(Token token) {
-        for (char c : token.getValue().toCharArray()) {
+    private String getPredicateName() {
+        if (Character.isLowerCase(getChar())) {
+            throw new TokenizerException("Expected uppercase found lowercase");
+        }
+        return Character.toString(getChar()) + getLowerCaseName(index + 1);
+    }
+
+    private String getVariableName() {
+        if (Character.isUpperCase(getChar())) {
+            throw new TokenizerException("Expected lowercase found uppercase");
+        }
+        return getLowerCaseName(index);
+    }
+
+    private char getChar() {
+        return input.charAt(index);
+    }
+
+    private void match(Lexeme lexeme) {
+        for (char c : lexeme.getValue().toCharArray()) {
             if (input.charAt(index) != c) {
                 throw new TokenizerException("Expected '" + c
                         + "' found '" + input.charAt(index)
@@ -119,7 +135,7 @@ public class Tokenizer {
         skipWhitespaces();
     }
 
-    public List<Token> getTokens() {
-        return tokens;
+    public List<Lexeme> getLexemes() {
+        return lexemes;
     }
 }
