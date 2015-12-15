@@ -24,7 +24,7 @@ Let's look closer at examples.
 
 **Example 1.** First example, has only one branch. It shows how exactly
 sequences is expanding when implication and disjunction are in charge.
-```C++
+```C
                                               P[x] = P[x] || Q[x]
                                                       |
                                                       v
@@ -43,7 +43,7 @@ This is very simple example. Let's look on something harder.
 
 **Example 2.** Here is more complicated example with quantifiers.
 It's also truthful, but now we have tow different closed branches.
-```C++
+```C
                                            #xP[x] -> Q[x] = P[x] -> #xQ[x]
                                                           |
                                                           v
@@ -162,7 +162,7 @@ Now let's look closer to response structure.
 ## Formal Language Specification
 
 ### Backus-Naur Form
-```Pascal
+```XML
 <expression>				::= <formula> "=" <formula>
 <formula>					::= [ "(" ] <predicate>
 										| <logical-operation>
@@ -207,7 +207,7 @@ Now let's look closer to response structure.
 ## Installation
 
 ### Requirements
- * JRE 1.8(at least)
+ * Java SE8(or higher)
 
 ### Running
 To run the application you should follow the steps above
