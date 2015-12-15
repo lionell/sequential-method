@@ -162,7 +162,7 @@ Now let's look closer to response structure.
 ## Formal Language Specification
 
 ### Backus-Naur Form
-```XML
+```HTML
 <expression>				::= <formula> "=" <formula>
 <formula>					::= [ "(" ] <predicate>
 										| <logical-operation>
