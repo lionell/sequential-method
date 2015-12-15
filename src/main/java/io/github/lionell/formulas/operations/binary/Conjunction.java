@@ -1,9 +1,10 @@
 package io.github.lionell.formulas.operations.binary;
 
+import io.github.lionell.containers.Sequence;
+import io.github.lionell.exceptions.LogicalException;
 import io.github.lionell.formulas.Formula;
 import io.github.lionell.formulas.operations.BinaryOperation;
 import io.github.lionell.miscellaneous.LogicalValue;
-import io.github.lionell.containers.Sequence;
 
 /**
  * Created by lionell on 08.12.2015.
@@ -23,7 +24,9 @@ public class Conjunction extends BinaryOperation {
 
     @Override
     public Sequence[] expand(Sequence sigma) {
-        checkValue();
+        if (!isEvaluated()) {
+            throw new LogicalException("Can't expand not evaluated conjunction!");
+        }
         if (value == LogicalValue.TRUE) {
             Sequence resultSequence = new Sequence(sigma);
             Formula newRight = right.clone();

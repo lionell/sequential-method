@@ -1,13 +1,13 @@
 package io.github.lionell.formulas.quantifiers;
 
-import io.github.lionell.formulas.Formula;
-import io.github.lionell.miscellaneous.LogicalValue;
-import io.github.lionell.formulas.Quantifier;
 import io.github.lionell.containers.Sequence;
+import io.github.lionell.exceptions.LogicalException;
+import io.github.lionell.formulas.Formula;
+import io.github.lionell.formulas.Quantifier;
+import io.github.lionell.miscellaneous.LogicalValue;
 import io.github.lionell.utils.NameGenerator;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,7 +28,9 @@ public class Exists extends Quantifier {
 
     @Override
     public Sequence[] expand(Sequence sigma) {
-        checkValue();
+        if (!isEvaluated()) {
+            throw new LogicalException("Can't expand not evaluated exists!");
+        }
         if (value == LogicalValue.TRUE) {
             Sequence resultSequence = new Sequence(sigma);
             Formula newFormula = formula.clone();
@@ -39,12 +41,12 @@ public class Exists extends Quantifier {
         } else {
             Sequence resultSequence = new Sequence(sigma);
             resultSequence.addBack(clone());
-            Set<String> freeVariableNames =
+            Set<String> freeNames =
                     new HashSet<>(sigma.getFreeVariableNames());
-            freeVariableNames.addAll(getFreeVariableNames());
-            for (String freeVariableName : freeVariableNames) {
+            freeNames.addAll(getFreeVariableNames());
+            for (String freeName : freeNames) {
                 Formula newFormula = formula.clone();
-                newFormula.rename(variableName, freeVariableName);
+                newFormula.rename(variableName, freeName);
                 newFormula.setValue(LogicalValue.FALSE);
                 resultSequence.addFront(newFormula);
             }

@@ -21,12 +21,17 @@ public abstract class Quantifier extends Formula {
 
     @Override
     public Set<String> getFreeVariableNames() {
-        Set<String> freeVariableNames =
-                new HashSet<>(formula.getFreeVariableNames());
-        if (freeVariableNames.contains(variableName)) {
-            freeVariableNames.remove(variableName);
+        Set<String> names =
+                getVariableNames();
+        if (names.contains(variableName)) {
+            names.remove(variableName);
         }
-        return freeVariableNames;
+        return names;
+    }
+
+    @Override
+    public Set<String> getVariableNames() {
+        return new HashSet<>(formula.getFreeVariableNames());
     }
 
     @Override

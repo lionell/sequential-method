@@ -83,7 +83,7 @@ public class Tokenizer {
                             lexeme.setValue(getVariableName());
                         }
                     } else {
-                        throw new TokenizerException("Unknown symbol!");
+                        throw new TokenizerException("Unexpected symbol!");
                     }
             }
             match(lexeme);
@@ -106,16 +106,10 @@ public class Tokenizer {
     }
 
     private String getPredicateName() {
-        if (Character.isLowerCase(getChar())) {
-            throw new TokenizerException("Expected uppercase found lowercase");
-        }
         return Character.toString(getChar()) + getLowerCaseName(index + 1);
     }
 
     private String getVariableName() {
-        if (Character.isUpperCase(getChar())) {
-            throw new TokenizerException("Expected lowercase found uppercase");
-        }
         return getLowerCaseName(index);
     }
 

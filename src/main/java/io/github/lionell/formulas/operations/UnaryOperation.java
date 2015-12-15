@@ -22,4 +22,9 @@ public abstract class UnaryOperation extends Operation {
     public Set<String> getFreeVariableNames() {
         return formula.getFreeVariableNames();
     }
+
+    @Override
+    public Set<String> getVariableNames() {
+        return formula.getVariableNames();
+    }
 }

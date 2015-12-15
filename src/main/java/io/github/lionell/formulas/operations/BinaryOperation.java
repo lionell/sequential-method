@@ -23,9 +23,15 @@ public abstract class BinaryOperation extends Operation {
 
     @Override
     public Set<String> getFreeVariableNames() {
-        Set<String> freeVariableNames =
-                new HashSet<>(left.getFreeVariableNames());
-        freeVariableNames.addAll(right.getFreeVariableNames());
-        return freeVariableNames;
+        Set<String> names = new HashSet<>(left.getFreeVariableNames());
+        names.addAll(right.getFreeVariableNames());
+        return names;
+    }
+
+    @Override
+    public Set<String> getVariableNames() {
+        Set<String> names = new HashSet<>(left.getVariableNames());
+        names.addAll(right.getVariableNames());
+        return names;
     }
 }

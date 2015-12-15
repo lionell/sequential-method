@@ -5,7 +5,7 @@ package io.github.lionell.exceptions;
  *
  * @author Ruslan Sakevych
  */
-public class ConverterException extends RuntimeException {
+public class ConverterException extends SystemException {
     public ConverterException(String message) {
         super(message);
     }

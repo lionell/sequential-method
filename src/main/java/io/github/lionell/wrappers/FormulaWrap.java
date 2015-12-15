@@ -9,9 +9,6 @@ public class FormulaWrap {
     private String formula;
     private Boolean value;
 
-    public FormulaWrap() {
-    }
-
     public FormulaWrap(String formula, Boolean value) {
         this.formula = formula;
         this.value = value;

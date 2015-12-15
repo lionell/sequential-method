@@ -9,9 +9,6 @@ package io.github.lionell.wrappers;
 public class TreeWrap {
     private NodeWrap root;
 
-    public TreeWrap() {
-    }
-
     public TreeWrap(NodeWrap root) {
         this.root = root;
     }

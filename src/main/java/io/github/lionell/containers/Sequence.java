@@ -1,5 +1,6 @@
 package io.github.lionell.containers;
 
+import io.github.lionell.exceptions.LogicalException;
 import io.github.lionell.formulas.Formula;
 import io.github.lionell.formulas.Predicate;
 import io.github.lionell.wrappers.Example;
@@ -28,39 +29,44 @@ public class Sequence {
     }
 
     public boolean isClosed() {
-        Set<Predicate> predicateSet = new HashSet<>();
+        Set<Predicate> set = new HashSet<>();
         for (Formula formula : formulas) {
             if (formula.isAtomic()) {
                 Predicate predicate = (Predicate) formula;
                 Predicate denialPredicate = predicate.clone();
                 denialPredicate.setValue(denialPredicate.getValue().negate());
-                if (predicateSet.contains(denialPredicate)) {
+                if (set.contains(denialPredicate)) {
                     return true;
                 }
-                predicateSet.add(predicate);
+                set.add(predicate);
             }
         }
         return false;
     }
 
     public boolean isAtomic() {
-        return findFirstExpandable() == null;
+        for (Formula formula : formulas) {
+            if (!formula.isAtomic()) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    private Formula findFirstExpandable() {
+    private Formula getFirstExpandable() {
         for (Formula formula : formulas) {
             if (!formula.isAtomic()) {
                 return formula;
             }
         }
-        return null;
+        throw new LogicalException("Not found expandable formula in sequence!");
     }
 
     public Sequence[] expand() {
         if (isAtomic()) {
-            throw new IllegalStateException("Atomic formula cannot be expanded!");
+            throw new LogicalException("Atomic formula cannot be expanded!");
         }
-        Formula formula = findFirstExpandable();
+        Formula formula = getFirstExpandable();
         Sequence sigma = clone();
         sigma.formulas.remove(formula);
         return formula.expand(sigma);
@@ -76,10 +82,10 @@ public class Sequence {
 
     public Example getCounterExample() {
         if (isClosed()) {
-            throw new IllegalStateException("Can't get counterexample from closed sequence!");
+            throw new LogicalException("Can't get counter example from closed sequence!");
         }
         if (!isAtomic()) {
-            throw new IllegalStateException("Can't get counterexample from expandable sequence!");
+            throw new LogicalException("Can't get counter example from expandable sequence!");
         }
         Example example = new Example();
         formulas.stream()

@@ -1,5 +1,6 @@
 package io.github.lionell.utils.analysis;
 
+import io.github.lionell.exceptions.GeneratorException;
 import io.github.lionell.exceptions.ParserException;
 import io.github.lionell.formulas.Formula;
 import io.github.lionell.formulas.Predicate;
@@ -24,6 +25,7 @@ import java.util.Stack;
  */
 public class FormulaGenerator {
     private List<Token> rpn;
+    private Stack<Formula> stack = new Stack<>();
     private Formula formula;
 
     public FormulaGenerator(List<Token> rpn) {
@@ -31,7 +33,6 @@ public class FormulaGenerator {
     }
 
     public void run() {
-        Stack<Formula> stack = new Stack<>();
         for (Token token : rpn) {
             switch (token.getType()) {
                 case PREDICATE:
@@ -41,33 +42,57 @@ public class FormulaGenerator {
                     break;
                 case EXISTS:
                     ExistsToken existsToken = ((ExistsToken) token);
+                    if (stack.isEmpty()) {
+                        throw new GeneratorException("Unexpected empty stack!");
+                    }
                     stack.push(new Exists(existsToken.getVariable(), stack.pop()));
                     break;
                 case FOR_ALL:
                     ForAllToken forAllToken = ((ForAllToken) token);
+                    if (stack.isEmpty()) {
+                        throw new GeneratorException("Unexpected empty stack!");
+                    }
                     stack.push(new ForAll(forAllToken.getVariable(), stack.pop()));
                     break;
                 case DENY:
+                    if (stack.isEmpty()) {
+                        throw new GeneratorException("Unexpected empty stack!");
+                    }
                     stack.push(new Denial(stack.pop()));
                     break;
                 case AND:
+                    if (stack.size() < 2) {
+                        throw new GeneratorException("Unexpected stack size!");
+                    }
                     stack.push(new Conjunction(stack.pop(), stack.pop()));
                     break;
                 case OR:
+                    if (stack.size() < 2) {
+                        throw new GeneratorException("Unexpected stack size!");
+                    }
                     stack.push(new Disjunction(stack.pop(), stack.pop()));
                     break;
-                case IMPLIES:
                 case ASSUME:
+                    if (stack.isEmpty()) {
+                        throw new GeneratorException("Unexpected empty stack!");
+                    }
+                    if (stack.size() == 1) {
+                        break;
+                    }
+                case IMPLIES:
+                    if (stack.size() < 2) {
+                        throw new GeneratorException("Unexpected stack size!");
+                    }
                     Formula right = stack.pop();
                     Formula left = stack.pop();
                     stack.push(new Implication(left, right));
                     break;
                 default:
-                    throw new ParserException("Unexpected token!");
+                    throw new ParserException("Unexpected token while generating RPN!");
             }
         }
         if (stack.size() != 1) {
-            throw new ParserException("Unexpected stack size!");
+            throw new ParserException("Expecting stack size equals 1!");
         }
         formula = stack.pop();
     }

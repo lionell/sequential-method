@@ -12,27 +12,46 @@ import java.util.Set;
 public class NameGenerator {
     private static Set<String> usedVariableNames = new HashSet<>();
     private static Set<String> usedCounterExampleNames = new HashSet<>();
-    private static Random random = new Random();
+    private static StringBuilder currentVariableName = new StringBuilder();
+    private static StringBuilder currentCounterExampleName = new StringBuilder();
 
     public static String nextVariableName() {
-        String name;
         do {
-            name = nextName();
-        } while (usedVariableNames.contains(name));
-        usedVariableNames.add(name);
-        return name;
+            int index = currentVariableName.length() - 1;
+            while (index >= 0 && currentVariableName.charAt(index) == 'z') {
+                currentVariableName.replace(index, index + 1, "a");
+                index--;
+            }
+            if (index < 0) {
+                currentVariableName.append('a');
+            } else {
+                currentVariableName.replace(index, index + 1,
+                        Character.toString((char) (currentVariableName.charAt(index) + 1)));
+            }
+        } while (usedVariableNames.contains(currentVariableName.toString()));
+        usedVariableNames.add(currentVariableName.toString());
+        return currentVariableName.toString();
     }
 
     public static String nextCounterExampleName() {
-        String name;
         do {
-            name = nextName();
-        } while (usedCounterExampleNames.contains(name));
-        usedCounterExampleNames.add(name);
-        return name;
+            int index = currentCounterExampleName.length() - 1;
+            while (index >= 0 && currentCounterExampleName.charAt(index) == 'Z') {
+                currentCounterExampleName.replace(index, index + 1, "A");
+                index--;
+            }
+            if (index < 0) {
+                currentCounterExampleName.append('A');
+            } else {
+                currentCounterExampleName.replace(index, index + 1,
+                        Character.toString((char) (currentCounterExampleName.charAt(index) + 1)));
+            }
+        } while (usedCounterExampleNames.contains(currentCounterExampleName.toString()));
+        usedCounterExampleNames.add(currentCounterExampleName.toString());
+        return currentCounterExampleName.toString();
     }
 
-    private static String nextName() {
-        return (char) (random.nextInt(26) + 'a') + "";
+    public static void setUsedVariableNames(Set<String> variableNames) {
+        usedVariableNames.addAll(variableNames);
     }
 }

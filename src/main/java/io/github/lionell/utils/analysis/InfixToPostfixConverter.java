@@ -27,6 +27,9 @@ public class InfixToPostfixConverter {
     }
 
     public void run() {
+        if (infix.stream().filter(l -> l.getType() == Lexeme.Type.ASSUME).count() != 1) {
+            throw new ConverterException("Expected exactly one unique assumption in expression!");
+        }
         while (index < infix.size()) {
             switch (getLexeme().getType()) {
                 case PREDICATE:
@@ -66,8 +69,7 @@ public class InfixToPostfixConverter {
                         postfix.add(opStack.pop());
                     }
                     match(Lexeme.Type.AND, Lexeme.Type.OR, Lexeme.Type.ASSUME,
-                            Lexeme.Type.IMPLIES, Lexeme.Type.EXISTS,
-                            Lexeme.Type.FOR_ALL, Lexeme.Type.DENY);
+                            Lexeme.Type.IMPLIES, Lexeme.Type.DENY);
                     opStack.push(token);
                     break;
                 case OPEN_ROUND_BRACKET:
@@ -80,13 +82,13 @@ public class InfixToPostfixConverter {
                         postfix.add(opStack.pop());
                     }
                     if (opStack.isEmpty()) {
-                        throw new ConverterException("Opened bracket expected");
+                        throw new ConverterException("Expected open bracket in stack!");
                     }
                     opStack.pop();
                     match(Lexeme.Type.CLOSED_ROUND_BRACKET);
                     break;
                 default:
-                    throw new ConverterException("Unexpected lexeme!");
+                    throw new ConverterException("Unexpected lexeme type!");
             }
         }
         while (!opStack.isEmpty()) {
@@ -124,7 +126,8 @@ public class InfixToPostfixConverter {
                 return;
             }
         }
-        throw new ConverterException("Lexeme mismatch!");
+
+        throw new ConverterException("Lexeme type mismatch!");
     }
 
     public List<Token> getRPN() {

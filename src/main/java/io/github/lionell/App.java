@@ -1,8 +1,12 @@
 package io.github.lionell;
 
 import io.github.lionell.containers.SequentialTree;
+import io.github.lionell.utils.NameGenerator;
 import io.github.lionell.utils.SequentialMethod;
 import io.github.lionell.utils.analysis.Parser;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by lionell on 12.12.2015.

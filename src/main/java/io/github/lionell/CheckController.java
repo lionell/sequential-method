@@ -1,5 +1,7 @@
 package io.github.lionell;
 
+import io.github.lionell.exceptions.SystemException;
+import io.github.lionell.utils.NameGenerator;
 import io.github.lionell.utils.analysis.Parser;
 import io.github.lionell.utils.SequentialMethod;
 import io.github.lionell.utils.WrapBuilder;
@@ -20,11 +22,12 @@ public class CheckController {
     @RequestMapping("/check")
     public
     @ResponseBody
-    Wrap solve(@RequestParam(value = "expr", defaultValue = "true") String expression) {
+    Wrap solve(@RequestParam(value = "expr") String expression) {
         WrapBuilder wrapBuilder = new WrapBuilder();
-        Parser parser = new Parser(expression);
         try {
+            Parser parser = new Parser(expression);
             parser.run();
+            NameGenerator.setUsedVariableNames(parser.getFormula().getVariableNames());
             SequentialMethod sequentialMethod =
                     new SequentialMethod(parser.getFormula());
             sequentialMethod.run();
@@ -34,7 +37,7 @@ public class CheckController {
             if (!sequentialMethod.getVerity()) {
                 wrapBuilder.setExamples(sequentialMethod.getCounterExamples());
             }
-        } catch (Exception e) {
+        } catch (SystemException e) {
             wrapBuilder.setError(e.getMessage());
         }
         return wrapBuilder.getWrap();

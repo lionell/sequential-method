@@ -41,7 +41,7 @@ public class Token {
                 type = Type.OPEN_ROUND_BRACKET;
                 break;
             default:
-                throw new ParserException("Cannot create token from this lexeme type");
+                throw new ParserException("Can't create token from this lexeme type!");
         }
     }
 

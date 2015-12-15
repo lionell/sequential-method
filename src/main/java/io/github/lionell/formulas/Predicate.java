@@ -1,8 +1,9 @@
 package io.github.lionell.formulas;
 
-import io.github.lionell.containers.Triple;
-import io.github.lionell.miscellaneous.LogicalValue;
 import io.github.lionell.containers.Sequence;
+import io.github.lionell.containers.Triple;
+import io.github.lionell.exceptions.LogicalException;
+import io.github.lionell.miscellaneous.LogicalValue;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,14 +31,13 @@ public class Predicate extends Formula {
 
     @Override
     public Sequence[] expand(Sequence sigma) {
-        throw new IllegalStateException("PredicateToken can't be expanded!");
+        throw new LogicalException("Predicate can't be expanded!");
     }
 
     @Override
     public void rename(String from, String to) {
         if (args.contains(from)) {
-            int indexOfFrom = args.indexOf(from);
-            args.set(indexOfFrom, to);
+            args.set(args.indexOf(from), to);
         }
     }
 
@@ -47,14 +47,18 @@ public class Predicate extends Formula {
     }
 
     @Override
+    public Set<String> getVariableNames() {
+        return getFreeVariableNames();
+    }
+
+    @Override
     public boolean isAtomic() {
         return true;
     }
 
     @Override
     public Predicate clone() {
-        List<String> argsCopy = new ArrayList<>(args);
-        return new Predicate(name, argsCopy, value);
+        return new Predicate(name, new ArrayList<>(args), value);
     }
 
     @Override
@@ -85,6 +89,9 @@ public class Predicate extends Formula {
 
     @Override
     public String toString() {
+        if (args.isEmpty()) {
+            throw new LogicalException("Argument's can't be empty!");
+        }
         StringBuilder builder = new StringBuilder();
         builder.append(name);
         builder.append("[");
@@ -98,7 +105,9 @@ public class Predicate extends Formula {
     }
 
     public Triple<String, List<String>, Boolean> getCounterExample() {
-        checkValue();
+        if (!isEvaluated()) {
+            throw new LogicalException("Not evaluated predicate can't have counter example!");
+        }
         return new Triple<>(name, args, value.toBoolean());
     }
 }

@@ -1,7 +1,7 @@
 package io.github.lionell.formulas;
 
-import io.github.lionell.miscellaneous.LogicalValue;
 import io.github.lionell.containers.Sequence;
+import io.github.lionell.miscellaneous.LogicalValue;
 
 import java.util.Set;
 
@@ -21,6 +21,8 @@ public abstract class Formula {
 
     public abstract Set<String> getFreeVariableNames();
 
+    public abstract Set<String> getVariableNames();
+
     public abstract Formula clone();
 
     public LogicalValue getValue() {
@@ -33,11 +35,5 @@ public abstract class Formula {
 
     public boolean isEvaluated() {
         return value != LogicalValue.UNKNOWN;
-    }
-
-    protected void checkValue() {
-        if (!isEvaluated()) {
-            throw new IllegalStateException("FormulaWrap is not evaluated!");
-        }
     }
 }

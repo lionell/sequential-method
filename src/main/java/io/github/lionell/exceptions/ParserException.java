@@ -5,7 +5,7 @@ package io.github.lionell.exceptions;
  *
  * @author Ruslan Sakevych
  */
-public class ParserException extends RuntimeException {
+public class ParserException extends SystemException {
     public ParserException(String message) {
         super(message);
     }

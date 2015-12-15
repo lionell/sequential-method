@@ -5,13 +5,13 @@ package io.github.lionell.exceptions;
  *
  * @author Ruslan Sakevych
  */
-public class TokenizerException extends SystemException {
-    public TokenizerException(String message) {
+public class GeneratorException extends SystemException {
+    public GeneratorException(String message) {
         super(message);
     }
 
     @Override
     public String getMessage() {
-        return "[TE]: " + super.getMessage();
+        return "[GE]: " + super.getMessage();
     }
 }

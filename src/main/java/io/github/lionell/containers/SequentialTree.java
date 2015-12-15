@@ -22,11 +22,10 @@ public class SequentialTree implements Tree<Sequence> {
 
     public static class SequentialNode implements Node<Sequence> {
         private Sequence value;
-        private List<Node<Sequence>> children;
+        private List<Node<Sequence>> children = new ArrayList<>();
 
         public SequentialNode(Sequence value) {
             this.value = value;
-            children = new ArrayList<>();
         }
 
         @Override

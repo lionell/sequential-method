@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @author Ruslan Sakevych
  */
 public class SequentialMethod {
-    private static final int STEP_LIMIT = 30;
+    private static final int STEP_LIMIT = 15;
     private SequentialTree tree;
     private LogicalValue verity = LogicalValue.UNKNOWN;
     private Queue<Node<Sequence>> leavesQueue = new ArrayDeque<>();
@@ -35,7 +35,7 @@ public class SequentialMethod {
     }
 
     private LogicalValue transform() {
-        leavesQueue.add(tree.getRoot());
+        update(tree.getRoot());
         int stepsLeft = STEP_LIMIT;
         while (!leavesQueue.isEmpty()) {
             activateNode(leavesQueue.poll());
@@ -77,7 +77,7 @@ public class SequentialMethod {
 
     public List<Example> getCounterExamples() {
         if (verity == LogicalValue.TRUE) {
-            throw new IllegalStateException("Input sequence is deducible!");
+            throw new IllegalStateException("Can't get counter example from truthful expression!");
         }
         return unclosedLeaves.stream()
                 .map(Node::getValue)
