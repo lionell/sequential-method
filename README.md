@@ -162,7 +162,7 @@ Now let's look closer to response structure.
 ## Formal Language Specification
 
 ### Backus-Naur Form
-```HTML
+```HTML+PHP
 <expression>				::= <formula> "=" <formula>
 <formula>					::= [ "(" ] <predicate>
 										| <logical-operation>
