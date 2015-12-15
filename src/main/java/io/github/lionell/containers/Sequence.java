@@ -69,7 +69,15 @@ public class Sequence {
         Formula formula = getFirstExpandable();
         Sequence sigma = clone();
         sigma.formulas.remove(formula);
-        return formula.expand(sigma);
+        Sequence[] sequences = formula.expand(sigma);
+        for (Sequence sequence : sequences) {
+            sequence.simplify();
+        }
+        return sequences;
+    }
+
+    private void simplify() {
+        formulas = formulas.stream().distinct().collect(Collectors.toList());
     }
 
     public Set<String> getFreeVariableNames() {

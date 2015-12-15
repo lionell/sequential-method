@@ -34,7 +34,7 @@ public class CheckController {
             wrapBuilder
                     .setSequentialTree(sequentialMethod.getTree())
                     .setVerity(sequentialMethod.getVerity());
-            if (!sequentialMethod.getVerity()) {
+            if (sequentialMethod.getVerity() != Boolean.TRUE) {
                 wrapBuilder.setExamples(sequentialMethod.getCounterExamples());
             }
         } catch (SystemException e) {

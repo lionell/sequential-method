@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @author Ruslan Sakevych
  */
 public class SequentialMethod {
-    private static final int STEP_LIMIT = 15;
+    private static final int STEP_LIMIT = 30;
     private SequentialTree tree;
     private LogicalValue verity = LogicalValue.UNKNOWN;
     private Queue<Node<Sequence>> leavesQueue = new ArrayDeque<>();
