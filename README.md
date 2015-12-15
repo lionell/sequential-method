@@ -24,8 +24,7 @@ Let's look closer at examples.
 
 **Example 1.** First example, has only one branch. It shows how exactly
 sequences is expanding when implication and disjunction are in charge.
-
-```
+```C++
                                               P[x] = P[x] || Q[x]
                                                       |
                                                       v
@@ -44,7 +43,7 @@ This is very simple example. Let's look on something harder.
 
 **Example 2.** Here is more complicated example with quantifiers.
 It's also truthful, but now we have tow different closed branches.
-```
+```C++
                                            #xP[x] -> Q[x] = P[x] -> #xQ[x]
                                                           |
                                                           v
@@ -134,7 +133,7 @@ listed above.
 Now let's look closer to response structure.
 
 ### Response
-```
+```JSON
 "tree":         sequential tree
 "verity":       true,               if expression is truthful
                 false,              if expression is false
@@ -146,7 +145,7 @@ Now let's look closer to response structure.
 ```
 
 ### node
-```
+```JSON
 "formulas":     list of formulas
 "children":     list of children
 "closed":       true,               if sequence is closed
@@ -154,7 +153,7 @@ Now let's look closer to response structure.
 ```
 
 ### formula
-```
+```JSON
 "formula":      actual formula
 "value":        true,               if formula holds true
                 false,              otherwise
@@ -163,7 +162,7 @@ Now let's look closer to response structure.
 ## Formal Language Specification
 
 ### Backus-Naur Form
-```
+```Pascal
 <expression>				::= <formula> "=" <formula>
 <formula>					::= [ "(" ] <predicate>
 										| <logical-operation>
