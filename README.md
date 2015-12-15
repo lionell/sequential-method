@@ -3,12 +3,13 @@
 ## Table of contents
 
  * [Getting started](#getting-started)
- * [Examples](#examples)
+ * [Tree examples](#tree-examples)
  * [API](#api)
-    * [Example](#example)
+    * [Usage example](#usage-example)
     * [Response](#response)
     * [node](#node)
     * [formula](#formula)
+    * [examples](#examples)
  * [Formal Language Specification](#formal-language-specification)
     * [Backus-Naur Form](#backus-naur-form)
     * [Valid examples](#valid-examples)
@@ -18,8 +19,13 @@
  * [License](#license)
 
 ## Getting started
+![Avatar](https://github.com/lionell/sequential-method/blob/master/src/main/resources/static/images/avatar.png)
 
-## Examples
+It's a prover of logical formulas. Core of application is Sequential Method algorithm.
+Let's look closer on application architecture. Project is divided in several independent
+modules: Tokenizer, Infix-To-Prefix converter, AST generator, Sequential method and Wrapper.
+
+## Tree examples
 Let's look closer at examples.
 
 **Example 1.** First example, has only one branch. It shows how exactly
@@ -72,7 +78,7 @@ There are only one service available, named `check`. To use it your query
 should contains field named `expr` with expression you want to check.
 Both `get` and `post` methods are supported.
 
-### Example
+### Usage example
 Simple request `check?expr=#yP[x]->@xQ[y]=Q[x]` will give you response
 listed above.
 
@@ -159,6 +165,16 @@ Now let's look closer to response structure.
                 false,              otherwise
 ```
 
+### examples
+```JSON
+"name":         name of example
+"delta":        map with new
+                variables
+"example":      map of predicates
+                and their values
+                on new variables
+```
+
 ## Formal Language Specification
 
 ### Backus-Naur Form
@@ -182,8 +198,8 @@ Now let's look closer to response structure.
 <unary-operation>			::= "!" <formula>
 
 <quantifier>				::= <quantifier-keyword> <predicate-name> <formula>
-<quantifier-keyword>		::= "#" comment stands for "exists"
-								| "@" comment stands for "for all"
+<quantifier-keyword>		::= "#"       comment stands for "exists"
+								| "@"     comment stands for "for all"
 
 <letter>					::= "a"
 								| "b"
@@ -198,16 +214,14 @@ Now let's look closer to response structure.
 ### Valid examples
  * `P[x] = Q[x]`
  * `P[x] = P[x] || Q[x]`
- * `#x(P[x] -> Q[x]) = P[x] -> #xQ[x]`
- * `@x(P[x] || Q[x]) = @xP[x] || @xQ[x]`
- * `@x(P[x] && Q[x] -> R[y]) = #xP[x]`
  * `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
  * `#x@yP[x, y] = @y#xP[x, y]`
+ * `P[x] -> #xQ[x] = #xP[x] -> Q[x]`
 
 ## Installation
 
 ### Requirements
- * Java SE8(or higher)
+ * Java Runtime Environment with Java SE8 support
 
 ### Running
 To run the application you should follow the steps above
