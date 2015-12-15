@@ -19,7 +19,7 @@
  * [License](#license)
 
 ## Getting started
-![Avatar](https://github.com/lionell/sequential-method/blob/master/src/main/resources/static/images/logo.png)
+->![Avatar](https://github.com/lionell/sequential-method/blob/master/src/main/resources/static/images/logo.png)<-
 
 It's a prover of logical formulas. Core of application is Sequential Method algorithm.
 Let's look closer on application architecture. Project is divided in several independent
