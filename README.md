@@ -19,12 +19,12 @@
  * [License](#license)
 
 ## Getting started
-<div align="center">
-    <img src="https://github.com/lionell/sequential-method/blob/master/src/main/resources/static/images/logo.png" alt="Logo">
-</div>
 It's a prover of logical formulas. Core of application is Sequential Method algorithm.
 Let's look closer on application architecture. Project is divided in several independent
 modules: Tokenizer, Infix-To-Prefix converter, AST generator, Sequential method and Wrapper.
+<div align="center">
+    <img src="https://github.com/lionell/sequential-method/blob/master/src/main/resources/static/images/logo.png" alt="Logo">
+</div>
 
 ## Tree examples
 Let's look closer at examples.
