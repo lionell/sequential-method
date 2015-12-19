@@ -1,7 +1,33 @@
 # Sequential method
 
 ## Table of contents
-Lorem ipsum dolor sit amet
+  * [Getting started](#getting-started)
+  * [How it works](#how-it-works)
+    * [Algorithm](#algorithm)
+    * [Let's look at examples](#lets-look-at-examples)
+      * [Example 1](#example-1)
+      * [Example 2](#example-2)
+      * [Example 3](#example-3)
+        * [Left branch](#left-branch)
+        * [Right branch](#right-branch)
+        * [Summary](#summary)
+  * [Language Specification](#language-specification)
+    * [Valid expressions](#valid-expressions)
+  * [API](#api)
+    * [API Usage](#api-usage)
+    * [response](#response)
+    * [node](#node)
+    * [formula](#formula)
+    * [examples](#examples)
+  * [Installation](#installation)
+    * [Requirements](#requirements)
+    * [Building](#building)
+    * [Running](#running)
+  * [Used materials](#used-materials)
+  * [Contributions](#contributions)
+  * [License](#license)
+
+
 
 ## Getting started
 It's a prover of logical formulas. Core of application is Sequential Method algorithm.
@@ -13,33 +39,33 @@ modules: Tokenizer, Infix-To-Prefix converter, AST generator, Sequential method 
 
 ## How it works
 Application is divided in several independent modules:
- 1. [Parser][1-1] parse input string into AST.
-    1. [Tokenizer][1-1-1] split input expression into lexemes.
-    2. [Infix-to-Postfix converter][1-1-2] converts infix list of lexemes
+  1. [Parser][1-1] parse input string into AST.
+     1. [Tokenizer][1-1-1] split input expression into lexemes.
+     2. [Infix-to-Postfix converter][1-1-2] converts infix list of lexemes
         to RPN(Reverse Polish Notation).
-    3. [Abstract Syntax Tree generator][1-1-3] converts list of
+     3. [Abstract Syntax Tree generator][1-1-3] converts list of
         tokens(token = lexeme + additional information) to tree.
- 2. [Sequential method][1-2] logic of application.
- 3. [Wrapper][1-3] wrap results of Sequential method to unique data structure for
+  2. [Sequential method][1-2] logic of application.
+  3. [Wrapper][1-3] wrap results of Sequential method to unique data structure for
         mapping to JSON.
 
- [1-1]: /src/main/java/io/github/lionell/utils/analysis/Parser.java
- [1-1-1]: /src/main/java/io/github/lionell/utils/analysis/Tokenizer.java
- [1-1-2]: /src/main/java/io/github/lionell/utils/analysis/InfixToPostfixConverter.java
- [1-1-3]: /src/main/java/io/github/lionell/utils/analysis/FormulaGenerator.java
- [1-2]: /src/main/java/io/github/lionell/utils/SequentialMethod.java
- [1-3]: /src/main/java/io/github/lionell/utils/WrapBuilder.java
+[1-1]: /src/main/java/io/github/lionell/utils/analysis/Parser.java
+[1-1-1]: /src/main/java/io/github/lionell/utils/analysis/Tokenizer.java
+[1-1-2]: /src/main/java/io/github/lionell/utils/analysis/InfixToPostfixConverter.java
+[1-1-3]: /src/main/java/io/github/lionell/utils/analysis/FormulaGenerator.java
+[1-2]: /src/main/java/io/github/lionell/utils/SequentialMethod.java
+[1-3]: /src/main/java/io/github/lionell/utils/WrapBuilder.java
 
 Now let's move to the heart for application.
 
 ### Algorithm
 Here are description of one algorithm iteration.
- 1. If all leaves are closed, **finish with positive verdict**.
- 2. If all leaves are atomic, **finish with negative verdict**.
- 4. For each non-atomic, non-closed leaf.
+  1. If all leaves are closed, **finish with positive verdict**.
+  2. If all leaves are atomic, **finish with negative verdict**.
+  3. For each non-atomic, non-closed leaf.
     1. Expand leaf.
     2. Simplify result leaves.
- 5. Goto step 1
+  4. Goto step 1
 
 There is situation when algorithm will go to **INFINITE LOOP**.
 In this case we can use [König's infinity lemma][kenigs] to say
@@ -94,7 +120,6 @@ It's also truthful, but now we have two different closed branches.
                                     |                                         |
                                     v                                         v
                                     X                                         X
-
 ```
 As you can see all two branches closed at the same time. So expression is
 truthful and no counter examples exists.
@@ -127,11 +152,11 @@ counter example.
 
 ##### Left branch
 
- name |  delta  |    values
-:----:|:--------|:-------------
-      | x -> a, | P\[a\] := False,
-  A   | y -> b  | P\[b\] := True,
-      |         | Q\[a\] := False
+| name |  delta  |      values        |
+|:----:|:--------|:-------------------|
+|      | x -> a, | P\[a\] := *False,* |
+|  A   | y -> b  | P\[b\] := *True,*  |
+|      |         | Q\[a\] := *False*  |
 
 Let's try to build interpretation on this counter example. There are many
 different options, but we can stop on:
@@ -143,18 +168,17 @@ Q[x] := x != x                // always false
 
 ##### Right branch
 
- name |  delta  |    values
-:----:|:--------|:-------------
-      | x -> a, | Q\[a] := False,
-  B   | z -> b, | Q\[b] := True,
-      | w -> c  | P\[c] := True
+| name |  delta  |      values       |
+|:----:|:--------|:------------------|
+|      | x -> a, | Q\[a] := *False,* |
+|  B   | z -> b, | Q\[b] := *True,*  |
+|      | w -> c  | P\[c] := *True*   |
 
 In this case we can use next interpretation:
 ```
 x := integer
 P[x] := (x + x) % 2 == 0      // always true
 Q[x] := x % 2 == 1
-
 ```
 
 ##### Summary
@@ -166,7 +190,7 @@ interpretations.
 
 Let's stop at this example and move forward to syntax overview.
 
-## Formal Language Specification
+## Language specification
 This is language grammar in [Backus-Naur-Form][bnf].
 [bnf]: https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form
 ```HTML+PHP
@@ -205,20 +229,20 @@ This is language grammar in [Backus-Naur-Form][bnf].
 If your expression **does not fit** this grammar then application will rise an
 parser exception and inform you with `error` field of response.
 
-### Valid examples
+### Valid expressions
 Some valid examples of expressions:
- * `P[x] = Q[x]`
- * `P[x] = P[x] || Q[x]`
- * `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
- * `#x@yP[x, y] = @y#xP[x, y]`
- * `P[x] -> #xQ[x] = #xP[x] -> Q[x]`
+  * `P[x] = Q[x]`
+  * `P[x] = P[x] || Q[x]`
+  * `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
+  * `#x@yP[x, y] = @y#xP[x, y]`
+  * `P[x] -> #xQ[x] = #xP[x] -> Q[x]`
 
 ## API
 There are only one service available, named `check`. To use it your query
 should contains field named `expr` with expression you want to check.
 Both `get` and `post` methods are supported.
 
-### How to use API
+### API Usage
 Simple request `check?expr=P[x]=P[x]||Q[x]` will give you response
 listed below.
 
@@ -317,8 +341,8 @@ Now let's look closer to response structure.
 
 ## Installation
 ### Requirements
- * Java Runtime Environment with Java SE8 support
- * Maven 3 to build
+  * Java Runtime Environment with Java SE8 support
+  * Maven 3 to build
 
 ### Building
 You can build app using Maven with ease. Just type `mvn clean package`.
@@ -332,24 +356,12 @@ Or if you have pre-built JAR you can run it by typing:
 
 `java -jar target/sequential-method-1.0-SNAPSHOT.jar`
 
-
-### How to use
-Now that the service is up, visit [http://localhost:8080/](http://localhost:8080/),
-where you see main page.
-
-Write expression you want to check to marked textarea, and click
-submit button.
-
-Next page will show you result of sequential method applied to your expression.
-Here you can find picture of sequential tree, verdict, counter example(if exists)
-or error message.
-
 ## Used materials
 Here is a list of materials used in app:
- * [d3.js](http://d3js.org) visualizing sequential tree
- * [HTML5 UP](http://html5up.net) design of main page
- * [Spring](https://spring.io/) framework
- * [Maven](https://maven.apache.org/) app architecture
+  * [d3.js](http://d3js.org) visualizing sequential tree
+  * [HTML5 UP](http://html5up.net) design of main page
+  * [Spring](https://spring.io/) framework
+  * [Maven](https://maven.apache.org/) app architecture
 
 ## Contributions
 Here I want to say thanks to my friend [Fetiorin](http://vk.com/id234442497)
@@ -381,4 +393,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
