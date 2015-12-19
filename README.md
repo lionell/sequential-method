@@ -1,23 +1,5 @@
 # Sequence Method
 
-## Table of contents
-
- * [Getting started](#getting-started)
- * [Tree examples](#tree-examples)
- * [API](#api)
-    * [Usage example](#usage-example)
-    * [Response](#response)
-    * [node](#node)
-    * [formula](#formula)
-    * [examples](#examples)
- * [Formal Language Specification](#formal-language-specification)
-    * [Backus-Naur Form](#backus-naur-form)
-    * [Valid examples](#valid-examples)
- * [Installation](#installation)
-    * [Requirements](#requirements)
-    * [Running](#running)
- * [License](#license)
-
 ## Getting started
 It's a prover of logical formulas. Core of application is Sequential Method algorithm.
 Let's look closer on application architecture. Project is divided in several independent
@@ -49,7 +31,7 @@ sequences is expanding when implication and disjunction are in charge.
 This is very simple example. Let's look on something harder.
 
 **Example 2.** Here is more complicated example with quantifiers.
-It's also truthful, but now we have tow different closed branches.
+It's also truthful, but now we have two different closed branches.
 ```C
                                            #xP[x] -> Q[x] = P[x] -> #xQ[x]
                                                           |
@@ -74,14 +56,57 @@ It's also truthful, but now we have tow different closed branches.
 
 ```
 
+## Formal Language Specification
+
+                                    ### Backus-Naur Form
+                                    ```HTML+PHP
+                                    <expression>				::= <formula> "=" <formula>
+                                    <formula>					::= [ "(" ] <predicate>
+                                    										| <logical-operation>
+                                    										| <quantifier>
+                                    								[ ")" ]
+                                    <predicate> 				::= <predicate-name> "[" <variable-arguments> "]"
+                                    <predicate-name>			::= <capital-letter> { <letter> }
+                                    <predicate-arguments> 		::= <variable-name> { "," <variable-name> }
+                                    <variable-name> 			::= <letter> { <letter> }
+
+                                    <logical-operation>			::= <unary-operation>
+                                    								| <binary-operation>
+                                    <binary-operation>			::= <formula> <binary-operation-keyword> <formula>
+                                    <binary-operation-keyword>	::= "&&"
+                                    								| "||"
+                                    								| "->"
+                                    <unary-operation>			::= "!" <formula>
+
+                                    <quantifier>				::= <quantifier-keyword> <predicate-name> <formula>
+                                    <quantifier-keyword>		::= "#"       comment stands for "exists"
+                                    								| "@"     comment stands for "for all"
+
+                                    <letter>					::= "a"
+                                    								| "b"
+                                    								| ...
+                                    								| "z"
+                                    <capital-letter>			::= "A"
+                                    								| "B"
+                                    								| ...
+                                    								| "Z"
+                                    ```
+
+                                    ### Valid examples
+                                     * `P[x] = Q[x]`
+                                     * `P[x] = P[x] || Q[x]`
+                                     * `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
+                                     * `#x@yP[x, y] = @y#xP[x, y]`
+                                     * `P[x] -> #xQ[x] = #xP[x] -> Q[x]`
+
 ## API
 There are only one service available, named `check`. To use it your query
 should contains field named `expr` with expression you want to check.
 Both `get` and `post` methods are supported.
 
-### Usage example
-Simple request `check?expr=#yP[x]->@xQ[y]=Q[x]` will give you response
-listed above.
+### How to use API
+Simple request `check?expr=P[x]=P[x]||Q[x]` will give you response
+listed below.
 
 ```JSON
 {
@@ -176,64 +201,37 @@ Now let's look closer to response structure.
                 on new variables
 ```
 
-## Formal Language Specification
-
-### Backus-Naur Form
-```HTML+PHP
-<expression>				::= <formula> "=" <formula>
-<formula>					::= [ "(" ] <predicate>
-										| <logical-operation>
-										| <quantifier>
-								[ ")" ]
-<predicate> 				::= <predicate-name> "[" <variable-arguments> "]"
-<predicate-name>			::= <capital-letter> { <letter> }
-<predicate-arguments> 		::= <variable-name> { "," <variable-name> }
-<variable-name> 			::= <letter> { <letter> }
-
-<logical-operation>			::= <unary-operation>
-								| <binary-operation>
-<binary-operation>			::= <formula> <binary-operation-keyword> <formula>
-<binary-operation-keyword>	::= "&&"
-								| "||"
-								| "->"
-<unary-operation>			::= "!" <formula>
-
-<quantifier>				::= <quantifier-keyword> <predicate-name> <formula>
-<quantifier-keyword>		::= "#"       comment stands for "exists"
-								| "@"     comment stands for "for all"
-
-<letter>					::= "a"
-								| "b"
-								| ...
-								| "z"
-<capital-letter>			::= "A"
-								| "B"
-								| ...
-								| "Z"
-```
-
-### Valid examples
- * `P[x] = Q[x]`
- * `P[x] = P[x] || Q[x]`
- * `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
- * `#x@yP[x, y] = @y#xP[x, y]`
- * `P[x] -> #xQ[x] = #xP[x] -> Q[x]`
-
 ## Installation
+It's a Maven project, so you need Maven to be installed to build app.
 
 ### Requirements
  * Java Runtime Environment with Java SE8 support
+ * Maven 3 --- *TO BUILD*
+
+### Build
+You can build app using Maven with ease. Just type `mvn clean package`.
+Then get the JAR at `target/sequential-method-1.0-SNAPSHOT.jar`.
 
 ### Running
-To run the application you should follow the steps above
+If you are using Maven, you can run application without building using
+`mvn spring-boot:run`. Or if you have pre-built JAR you can run it by typing:
 
- * Start Tomcat server with application.
- * Go to `localhost:8080/index.html`
- * That's all (:
+`java -jar target/sequential-method-1.0-SNAPSHOT.jar`
 
-This will run a RESTful server with `check` service. Web-client uses this
-service to get a tree representation and verdict in `json` format. Then all
-data is processed with `d3.js` and a pretty nice graphic is generated.
+
+### How to use
+Now that the service is up, visit http://localhost:8080/, where you see
+main page.
+
+Write expression you want to check to marked textarea, and click
+submit button.
+
+Next page will show you result of sequential method applied to your expression.
+Here you can find picture of sequential tree, verdict, counter example(if exists)
+or error message.
+
+For visualizing tree [d3.js](http://d3js.org) is used.
+Design of main page from [HTML5 UP](http://html5up.net).
 
 ## Licence
 ```
