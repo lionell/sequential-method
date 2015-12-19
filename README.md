@@ -15,8 +15,8 @@ modules: Tokenizer, Infix-To-Prefix converter, AST generator, Sequential method 
 Application is divided in several independent modules:
  1. [Parser][1-1] parse input string into AST.
     1. [Tokenizer][1-1-1] split input expression into lexemes.
-    2. [Infix-to-Postfix converter][1-1-2] converts list of lexemes
-        into RPN(Reverse Polish Notation).
+    2. [Infix-to-Postfix converter][1-1-2] converts infix list of lexemes
+        to RPN(Reverse Polish Notation).
     3. [Abstract Syntax Tree generator][1-1-3] converts list of
         tokens(token = lexeme + additional information) to tree.
  2. [Sequential method][1-2] logic of application.
@@ -68,7 +68,7 @@ This is very simple example. Let's look on something harder.
 
 **Example 2.** Here is more complicated example with quantifiers.
 It's also truthful, but now we have two different closed branches.
-```C
+```
                                            #xP[x] -> Q[x] = P[x] -> #xQ[x]
                                                           |
                                                           v
@@ -92,9 +92,65 @@ It's also truthful, but now we have two different closed branches.
 
 ```
 As you can see all two branches closed at the same time. So expression is
-truthful and there are no counter example exists.
+truthful and no counter examples exists.
+
+**Example 3.** This example show you how to deal with unclosed sequences, and
+how to get a counter example.
+```
+                                            P[x] -> #xQ[x] = #xP[x] -> Q[x]
+                                                           |
+                                                           v
+                                          -{P[x] -> #xQ[x] -> #xP[x] -> Q[x]}
+                                                           |
+                                                           v
+                                          +{P[x] -> #xQ[x]}, -{#xP[x] -> Q[x]}
+                                         /                                   \
+                                        /                                     \
+                                       v                                       v
+                           -P[x], -{#xP[x] -> Q[x]}                 +#xQ[x], -{#xP[x] -> Q[x]}
+                                      |                                         |
+                                      v                                         v
+                            +#xP[x], -Q[x], -P[x]                    +Q[z], -{#xP[x] -> Q[x]}
+                                      |                                         |
+                                      v                                         v
+                             +P[y], -Q[x], -P[x]                      +#xP[x], -Q[x], +Q[z]
+                                                                                |
+                                                                                v
+                                                                       +P[w], -Q[x], +Q[z]
+```
+We have got two unclosed branches. Each one produces unique counter example:
+| name |  delta  |    values     |
+|      | x -> a, | P\[a]:=False, |
+|  A   | y -> b  | P\[b]:=True,  |
+|      |         | Q\[a]:=False  |
+|------|---------|---------------|
+|      | x -> a, | Q\[a]:=False, |
+|  B   | z -> b, | Q\[b]:=True,  |
+|      | w -> c  | P\[c]:=True   |
+|------|---------|---------------|
+
+```
+Counter example A
+delta:
+         x -> a,
+         y -> b
+values:
+         P[a]:=False
+         P[b]:=True
+         Q[a]:=False
+Counter example B
+delta:
+         x -> a,
+         z -> b,
+         w -> c
+values:
+         Q[a]:=False
+         Q[b]:=True
+         P[c]:=True
+```
 
 ## Formal Language Specification
+This is language grammar in Backus-Naur-Form.
 ```HTML+PHP
 <expression>				::= <formula> "=" <formula>
 <formula>					::= [ "(" ] <predicate>
@@ -129,6 +185,7 @@ truthful and there are no counter example exists.
 ```
 
 ### Valid examples
+Some valid examples of expressions:
  * `P[x] = Q[x]`
  * `P[x] = P[x] || Q[x]`
  * `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
