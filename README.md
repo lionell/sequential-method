@@ -97,6 +97,38 @@ about **finish with negative result**.
         <td><sub>+</sub>A, &Sigma;</td>
         <td><sub>+</sub>B, &Sigma;</td>
     </tr>
+    <tr>
+        <td><sub>-</sub>||</td>
+        <td><sub>-</sub>(A || B), &Sigma;</td>
+        <td colspan="2"><sub>-</sub>A, <sub>-</sub>B, &Sigma;</td>
+    </tr>
+    <tr>
+        <td><sub>+</sub>&&</td>
+        <td><sub>+</sub>(A && B), &Sigma;</td>
+        <td colspan="2"><sub>+</sub>A, <sub>+</sub>B, &Sigma;</td>
+    </tr>
+    <tr>
+        <td><sub>-</sub>&&</td>
+        <td><sub>-</sub>(A && B), &Sigma;</td>
+        <td><sub>-</sub>A, &Sigma;</td>
+        <td><sub>-</sub>B, &Sigma;</td>
+    </tr>
+    <tr>
+        <td><sub>+</sub>-></td>
+        <td><sub>+</sub>(A -> B), &Sigma;</td>
+        <td><sub>-</sub>A, &Sigma;</td>
+        <td><sub>+</sub>B, &Sigma;</td>
+    </tr>
+    <tr>
+        <td><sub>-</sub>&&</td>
+        <td><sub>-</sub>(A -> B), &Sigma;</td>
+        <td colspan="2"><sub>+</sub>A, <sub>-</sub>B, &Sigma;</td>
+    </tr>
+    <tr>
+        <td><sub>+</sub>&exist;</td>
+        <td><sub>+</sub>&exist;xA, &Sigma;</td>
+        <td colspan="2"><sub>+</sub>A<sub>x</sub>[y], &Sigma;</td>
+    </tr>
 </table>
 
 mark                    |notation                            |first branch                        | second branch
