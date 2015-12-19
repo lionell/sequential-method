@@ -42,10 +42,10 @@ Here are description of one algorithm iteration.
  5. Goto step 1
 
 There is situation when algorithm will go to **INFINITE LOOP**.
-In this case we can use [König's infinity lemma][2] to say
+In this case we can use [König's infinity lemma][kenigs] to say
 about **finish with negative result**.
 
-[2]: https://en.wikipedia.org/wiki/K%C3%B6nig%27s_lemma
+[kenigs]: https://en.wikipedia.org/wiki/K%C3%B6nig%27s_lemma
 
 ### Let's look at examples
 #### Example 1
@@ -167,7 +167,8 @@ interpretations.
 Let's stop at this example and move forward to syntax overview.
 
 ## Formal Language Specification
-This is language grammar in Backus-Naur-Form.
+This is language grammar in [Backus-Naur-Form][bnf].
+[bnf]: https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form
 ```HTML+PHP
 <expression>				::= <formula> "=" <formula>
 <formula>					::= [ "(" ] <predicate>
@@ -200,6 +201,7 @@ This is language grammar in Backus-Naur-Form.
                                 | ...
                                 | "Z"
 ```
+
 If your expression **does not fit** this grammar then application will rise an
 parser exception and inform you with `error` field of response.
 
@@ -342,7 +344,7 @@ Next page will show you result of sequential method applied to your expression.
 Here you can find picture of sequential tree, verdict, counter example(if exists)
 or error message.
 
-## Used technologies
+## Used materials
 Here is a list of materials used in app:
  * [d3.js](http://d3js.org) visualizing sequential tree
  * [HTML5 UP](http://html5up.net) design of main page
