@@ -395,46 +395,33 @@ Now let's look closer to response structure.
 
 name     | type         | description
 :--------|:-------------|:-----------
-tree     | {root: node} | sequential tree with root
+tree     | {root: node} | sequential tree with root node
 verity   | Boolean      | null, if infinite loop
 examples | \[example\]  | list of examples
 error    | string       | error message from server
 
-```JSON
-"tree":         sequential tree
-"verity":       true,               if expression is truthful
-                false,              if expression is false
-                null,               if infinite loop detected
-"examples":     null,               if expression is truthful
-                counter example,    otherwise
-"error":        error message,      if error occurred
-                null,               otherwise
-```
-
 ### node
-```JSON
-"formulas":     list of formulas
-"children":     list of children
-"closed":       true,               if sequence is closed
-                false,              otherwise
-```
+
+name      | type        | description
+:---------|:------------|:-----------
+formulas  | \[formula]\ | list of formulas
+children  | \[node\]    | list of child nodes
+closed    | boolean     | is sequence closed
 
 ### formula
-```JSON
-"formula":      actual formula
-"value":        true,               if formula holds true
-                false,              otherwise
-```
 
-### examples
-```JSON
-"name":         name of example
-"delta":        map with new
-                variables
-"example":      map of predicates
-                and their values
-                on new variables
-```
+name      | type        | description
+:---------|:------------|:-----------
+formula   | string      | actual formula
+value     | boolean     | logical value
+
+### example
+
+name      | type            | description
+:---------|:----------------|:-----------
+name      | string          | actual formula
+delta     | {x -> a}        | map of new variable names
+example   | {P\[x\] -> val} | map of predicates/variables/values
 
 ## Installation
 ### Requirements
