@@ -42,8 +42,10 @@ Here are description of one algorithm iteration.
  5. Goto step 1
 
 There is situation when algorithm will go to **INFINITE LOOP**.
-In this case we can use **König's infinity lemma** to say
+In this case we can use [König's infinity lemma][2] to say
 about **finish with negative result**.
+
+[2]: https://en.wikipedia.org/wiki/K%C3%B6nig%27s_lemma
 
 ### Let's look at examples
 **Example 1.** First example, has only one branch. It shows how exactly
