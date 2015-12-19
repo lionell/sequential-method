@@ -10,16 +10,16 @@ modules: Tokenizer, Infix-To-Prefix converter, AST generator, Sequential method 
 
 ## How it works
 Application is divided in several independent modules:
- 1. Parser -- parse input string into AST. See Parser class.
-    1. Tokenizer -- split input expression into lexemes. See Tokenizer class.
+ 1. Parser -- parse input string into AST. *See Parser class.*
+    1. Tokenizer -- split input expression into lexemes. *See Tokenizer class.*
     2. Infix-to-Postfix converter -- converts list of lexemes
-        into RPN(Reverse Polish Notation). See InfixToPostfixConverter class.
+        into RPN(Reverse Polish Notation). *See InfixToPostfixConverter class.*
     3. Abstract Syntax Tree generator -- converts list of
         tokens(token = lexeme + additional information) to tree.
-        See FormulaGenerator class.
- 2. Sequential method -- logic of application. See SequentialMethod class.
+        *See FormulaGenerator class.*
+ 2. Sequential method -- logic of application. *See SequentialMethod class.*
  3. Wrapper -- wrap results of Sequential method to unique data structure for
-        mapping to JSON. See WrapBuilder class.
+        mapping to JSON. *See WrapBuilder class.*
 
 Now let's move to the hurt for application.
 
