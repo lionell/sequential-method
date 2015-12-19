@@ -48,9 +48,10 @@ about **finish with negative result**.
 [2]: https://en.wikipedia.org/wiki/K%C3%B6nig%27s_lemma
 
 ### Let's look at examples
-**Example 1.** First example, has only one branch. It shows how exactly
-sequences is expanding when implication and disjunction are in charge.
-```C
+#### Example 1
+First example demonstrates how exactly sequences is expanding when implication
+and disjunction are in charge.
+```
                                               P[x] = P[x] || Q[x]
                                                       |
                                                       v
@@ -65,9 +66,12 @@ sequences is expanding when implication and disjunction are in charge.
                                                       v
                                                       X
 ```
-This is very simple example. Let's look on something harder.
+As you can see sequential tree has only one branch, and it's closed.
+According to algorithm above, expression is **truthful**.
+It's quite simple example, so let's move to something more interesting.
 
-**Example 2.** Here is more complicated example with quantifiers.
+#### Example 2
+Here is more complicated example with quantifiers.
 It's also truthful, but now we have two different closed branches.
 ```
                                            #xP[x] -> Q[x] = P[x] -> #xQ[x]
@@ -95,8 +99,9 @@ It's also truthful, but now we have two different closed branches.
 As you can see all two branches closed at the same time. So expression is
 truthful and no counter examples exists.
 
-**Example 3.** This example show you how to deal with unclosed sequences, and
-how to get a counter example.
+#### Example 3
+This example show you how to deal with unclosed sequences, and how to get a
+counter example.
 ```
                                             P[x] -> #xQ[x] = #xP[x] -> Q[x]
                                                            |
@@ -119,10 +124,8 @@ how to get a counter example.
                                                                                 v
                                                                        +P[w], -Q[x], +Q[z]
 ```
-We have got two unclosed branches. Each one produces unique counter example,
-as listed below:
 
-**Left branch**
+##### Left branch
 
  name |  delta  |    values
 :----:|:--------|:-------------
@@ -138,7 +141,7 @@ P[x] := x == 1
 Q[x] := x != x                // always false
 ```
 
-**Right branch**
+##### Right branch
 
  name |  delta  |    values
 :----:|:--------|:-------------
@@ -153,7 +156,13 @@ P[x] := (x + x) % 2 == 0      // always true
 Q[x] := x % 2 == 1
 
 ```
-You can manually check these interpretations, to ensure that expression is false.
+
+##### Summary
+We have got two unclosed branches. Each one produces unique counter example.
+Each counter example can give us many different interpretations. We have
+already built some of them. You can manually check these interpretations,
+to ensure that expression is false. Just evaluate input expression with these
+interpretations.
 
 Let's stop at this example and move forward to syntax overview.
 
