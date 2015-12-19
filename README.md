@@ -31,8 +31,7 @@
 
 ## Getting started
 It's a prover of logical formulas. Core of application is Sequential Method algorithm.
-Let's look closer on application architecture. Project is divided in several independent
-modules: Tokenizer, Infix-To-Prefix converter, AST generator, Sequential method and Wrapper.
+Let's look closer how it works!
 <div align="center">
     <img src="/src/main/resources/static/images/logo.png" alt="Logo">
 </div>
@@ -72,6 +71,14 @@ In this case we can use [König's infinity lemma][kenigs] to say
 about **finish with negative result**.
 
 [kenigs]: https://en.wikipedia.org/wiki/K%C3%B6nig%27s_lemma
+
+#### Sequential formulas
+
+|      mark     |        before      |       after      |
+|:-------------:|:-------------------|:-----------------|
+|  +!           | +!A, *             |   -A, *          |
+|  -!           | -!A, *             |   +A, *          |
+| +&#124;&#124; | +A&#124;&#124;B, * |+A, *        +B, *|
 
 ### Let's look at examples
 #### Example 1
