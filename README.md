@@ -159,8 +159,8 @@ In this case we can use [König's infinity lemma][kenigs] to
 </table>
 
 Where
-  * y denotes new unique name.
-  * z<sub>1</sub>, ..., z<sub>m</sub> denotes names used in current sequence.
+  * *y* denotes new unique name.
+  * *z<sub>1</sub>, ..., z<sub>m</sub>* denotes names used in current sequence.
 
 ### Let's look at examples
 #### Example 1
