@@ -78,7 +78,7 @@ about **finish with negative result**.
 |:---------------:|:---------------------|:-----------------------------------------|
 |  +!           | *+!A, E*             |   *-A, E*                                |
 |  -!           | *-!A, E*             |   *+A, E*                                |
-| +&#124;&#124; | *+A &#124;&#124; B, E* |*+A, E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+B, E*|
+| +&#124;&#124; | *+A &#124;&#124; B, E* |*+A, E&#9;+B, E*|
 
 ### Let's look at examples
 #### Example 1
