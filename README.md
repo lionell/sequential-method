@@ -85,7 +85,8 @@ mark                    |notation                            |first branch      
 <sub>-</sub>\&\&        |<sub>-</sub>(A\&\&B), &#931;        |<sub>-</sub>A, &#931;               |<sub>-</sub>B, &#931;
 <sub>+</sub>->          |<sub>+</sub>(A->B), &#931;          |<sub>-</sub>A, &#931;               |<sub>+</sub>B, &#931;
 <sub>-</sub>->          |<sub>-</sub>(A->B), &#931;          |<sub>+</sub>A, <sub>-</sub>B, &#931;|
-&exist;                 |                                    |                                    |
+<sub>+</sub>&exist;     |<sub>+</sub>&exist;xA, &#931;       |<sub>+</sub>A<sup>x</sup><sub>y</sub>, &#931;|
+<sub>-</sub>&exist;     |<sub>-</sub>&exist;xA, &#931;       |                                    |
 
 
 ### Let's look at examples
