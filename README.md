@@ -58,46 +58,46 @@ It's also truthful, but now we have two different closed branches.
 
 ## Formal Language Specification
 
-                                    ### Backus-Naur Form
-                                    ```HTML+PHP
-                                    <expression>				::= <formula> "=" <formula>
-                                    <formula>					::= [ "(" ] <predicate>
-                                    										| <logical-operation>
-                                    										| <quantifier>
-                                    								[ ")" ]
-                                    <predicate> 				::= <predicate-name> "[" <variable-arguments> "]"
-                                    <predicate-name>			::= <capital-letter> { <letter> }
-                                    <predicate-arguments> 		::= <variable-name> { "," <variable-name> }
-                                    <variable-name> 			::= <letter> { <letter> }
+### Backus-Naur Form
+```HTML+PHP
+<expression>				::= <formula> "=" <formula>
+<formula>					::= [ "(" ] <predicate>
+                                        | <logical-operation>
+                                        | <quantifier>
+                                [ ")" ]
+<predicate> 				::= <predicate-name> "[" <variable-arguments> "]"
+<predicate-name>			::= <capital-letter> { <letter> }
+<predicate-arguments> 		::= <variable-name> { "," <variable-name> }
+<variable-name> 			::= <letter> { <letter> }
 
-                                    <logical-operation>			::= <unary-operation>
-                                    								| <binary-operation>
-                                    <binary-operation>			::= <formula> <binary-operation-keyword> <formula>
-                                    <binary-operation-keyword>	::= "&&"
-                                    								| "||"
-                                    								| "->"
-                                    <unary-operation>			::= "!" <formula>
+<logical-operation>			::= <unary-operation>
+                                | <binary-operation>
+<binary-operation>			::= <formula> <binary-operation-keyword> <formula>
+<binary-operation-keyword>	::= "&&"
+                                | "||"
+                                | "->"
+<unary-operation>			::= "!" <formula>
 
-                                    <quantifier>				::= <quantifier-keyword> <predicate-name> <formula>
-                                    <quantifier-keyword>		::= "#"       comment stands for "exists"
-                                    								| "@"     comment stands for "for all"
+<quantifier>				::= <quantifier-keyword> <predicate-name> <formula>
+<quantifier-keyword>		::= "#"       comment stands for "exists"
+                                | "@"     comment stands for "for all"
 
-                                    <letter>					::= "a"
-                                    								| "b"
-                                    								| ...
-                                    								| "z"
-                                    <capital-letter>			::= "A"
-                                    								| "B"
-                                    								| ...
-                                    								| "Z"
-                                    ```
+<letter>					::= "a"
+                                | "b"
+                                | ...
+                                | "z"
+<capital-letter>			::= "A"
+                                | "B"
+                                | ...
+                                | "Z"
+```
 
-                                    ### Valid examples
-                                     * `P[x] = Q[x]`
-                                     * `P[x] = P[x] || Q[x]`
-                                     * `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
-                                     * `#x@yP[x, y] = @y#xP[x, y]`
-                                     * `P[x] -> #xQ[x] = #xP[x] -> Q[x]`
+### Valid examples
+ * `P[x] = Q[x]`
+ * `P[x] = P[x] || Q[x]`
+ * `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
+ * `#x@yP[x, y] = @y#xP[x, y]`
+ * `P[x] -> #xQ[x] = #xP[x] -> Q[x]`
 
 ## API
 There are only one service available, named `check`. To use it your query
@@ -210,18 +210,20 @@ It's a Maven project, so you need Maven to be installed to build app.
 
 ### Build
 You can build app using Maven with ease. Just type `mvn clean package`.
-Then get the JAR at `target/sequential-method-1.0-SNAPSHOT.jar`.
+This will generate JAR file `target/sequential-method-1.0-SNAPSHOT.jar`.
 
 ### Running
 If you are using Maven, you can run application without building using
-`mvn spring-boot:run`. Or if you have pre-built JAR you can run it by typing:
+`mvn spring-boot:run`.
+
+Or if you have pre-built JAR you can run it by typing:
 
 `java -jar target/sequential-method-1.0-SNAPSHOT.jar`
 
 
 ### How to use
-Now that the service is up, visit http://localhost:8080/, where you see
-main page.
+Now that the service is up, visit [http://localhost:8080/](http://localhost:8080/),
+where you see main page.
 
 Write expression you want to check to marked textarea, and click
 submit button.
@@ -230,8 +232,16 @@ Next page will show you result of sequential method applied to your expression.
 Here you can find picture of sequential tree, verdict, counter example(if exists)
 or error message.
 
-For visualizing tree [d3.js](http://d3js.org) is used.
-Design of main page from [HTML5 UP](http://html5up.net).
+## Used technologies
+Here is a list of materials used in app:
+ * [d3.js](http://d3js.org) visualizing sequential tree
+ * [HTML5 UP](http://html5up.net) design of main page
+ * [Spring](https://spring.io/) framework
+ * [Maven](https://maven.apache.org/) app architecture
+
+## Contributions
+Here I want to say thanks to my friend @Fetiorin who helped me with this app.
+He did a great job on client-side. Thank you very much.
 
 ## Licence
 ```
