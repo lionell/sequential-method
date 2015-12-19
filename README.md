@@ -74,7 +74,7 @@ about **finish with negative result**.
 
 #### Sequential formulas
 
-mark         |before                   |first branch  | second branch
+mark         |notation                 |first branch  | second branch
 :-----------:|:------------------------|:-------------|--------------
 +!           |+!A, &#931;              |-A, &#931;    |
 -!           |-!A, &#931;              |+A, &#931;    |
