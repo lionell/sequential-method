@@ -10,27 +10,27 @@ modules: Tokenizer, Infix-To-Prefix converter, AST generator, Sequential method 
 
 ## How it works
 Application is divided in several independent modules:
- 1) Parser -- parse input string into AST. See Parser class.
-    a) Tokenizer -- split input expression into lexemes. See Tokenizer class.
-    b) Infix-to-Postfix converter -- converts list of lexemes
+ 1. Parser -- parse input string into AST. See Parser class.
+    1. Tokenizer -- split input expression into lexemes. See Tokenizer class.
+    2. Infix-to-Postfix converter -- converts list of lexemes
         into RPN(Reverse Polish Notation). See InfixToPostfixConverter class.
-    c) Abstract Syntax Tree generator -- converts list of
+    3. Abstract Syntax Tree generator -- converts list of
         tokens(token = lexeme + additional information) to tree.
         See FormulaGenerator class.
- 2) Sequential method -- logic of application. See SequentialMethod class.
- 3) Wrapper -- wrap results of Sequential method to unique data structure for
+ 2. Sequential method -- logic of application. See SequentialMethod class.
+ 3. Wrapper -- wrap results of Sequential method to unique data structure for
         mapping to JSON. See WrapBuilder class.
 
 Now let's move to the hurt for application.
 
 ### Algorithm
 Here are description of one algorithm iteration.
- 1) If all leaves are closed, **finish with positive verdict**.
- 2) If all leaves are atomic, **finish with negative verdict**.
- 4) For each non-atomic & non-closed leaf => *leaf*
-    a) Expand *leaf* leaf.
-    b) Simplify result leaves.
- 5) Goto step 1
+ 1. If all leaves are closed, **finish with positive verdict**.
+ 2. If all leaves are atomic, **finish with negative verdict**.
+ 4. For each non-atomic & non-closed leaf => *leaf*
+    1. Expand *leaf* leaf.
+    2. Simplify result leaves.
+ 5. Goto step 1
 
 There is situation when algorithm will be in **INFINITE LOOP**.
 In this case we can use Kenig's lemma to say
