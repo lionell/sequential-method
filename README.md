@@ -118,9 +118,10 @@ how to get a counter example.
                                                                                 v
                                                                        +P[w], -Q[x], +Q[z]
 ```
-We have got two unclosed branches. Each one produces unique counter example:
+We have got two unclosed branches. Each one produces unique counter example,
+as listed below:
 
-Left branch
+**Left branch**
 
  name |  delta  |    values
 ------|---------|---------------
@@ -128,7 +129,7 @@ Left branch
   A   | y -> b  | P\[b]:=True,
       |         | Q\[a]:=False
 
-Right branch
+**Right branch**
 
  name |  delta  |    values
 ------|---------|---------------
