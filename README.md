@@ -119,6 +119,7 @@ how to get a counter example.
                                                                        +P[w], -Q[x], +Q[z]
 ```
 We have got two unclosed branches. Each one produces unique counter example:
+|------|---------|---------------|
 | name |  delta  |    values     |
 |      | x -> a, | P\[a]:=False, |
 |  A   | y -> b  | P\[b]:=True,  |
