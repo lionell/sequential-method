@@ -404,7 +404,7 @@ error    | string       | error message from server
 
 name      | type        | description
 :---------|:------------|:-----------
-formulas  | \[formula]\ | list of formulas
+formulas  | \[formula\] | list of formulas
 children  | \[node\]    | list of child nodes
 closed    | boolean     | is sequence closed
 
