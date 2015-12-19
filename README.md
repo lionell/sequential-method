@@ -120,7 +120,7 @@ about **finish with negative result**.
         <td><sub>+</sub>B, &Sigma;</td>
     </tr>
     <tr>
-        <td><sub>-</sub>&&</td>
+        <td><sub>-</sub>-></td>
         <td><sub>-</sub>(A -> B), &Sigma;</td>
         <td colspan="2"><sub>+</sub>A, <sub>-</sub>B, &Sigma;</td>
     </tr>
