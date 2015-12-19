@@ -120,16 +120,17 @@ how to get a counter example.
 ```
 We have got two unclosed branches. Each one produces unique counter example:
 
-|------|---------|---------------|
-| name |  delta  |    values     |
-|      | x -> a, | P\[a]:=False, |
-|  A   | y -> b  | P\[b]:=True,  |
-|      |         | Q\[a]:=False  |
-|------|---------|---------------|
-|      | x -> a, | Q\[a]:=False, |
-|  B   | z -> b, | Q\[b]:=True,  |
-|      | w -> c  | P\[c]:=True   |
-|------|---------|---------------|
+------|---------|---------------
+ name |  delta  |    values
+------|---------|---------------
+      | x -> a, | P\[a]:=False,
+  A   | y -> b  | P\[b]:=True,
+      |         | Q\[a]:=False
+------|---------|---------------
+      | x -> a, | Q\[a]:=False,
+  B   | z -> b, | Q\[b]:=True,
+      | w -> c  | P\[c]:=True
+------|---------|---------------
 
 ```
 Counter example A
