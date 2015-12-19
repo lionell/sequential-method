@@ -129,6 +129,11 @@ about **finish with negative result**.
         <td><sub>+</sub>&exist;xA, &Sigma;</td>
         <td colspan="2"><sub>+</sub>A<sub>x</sub>[y], &Sigma;</td>
     </tr>
+    <tr>
+        <td><sub>-</sub>&exist;</td>
+        <td><sub>-</sub>&exist;xA, &Sigma;</td>
+        <td colspan="2"><sub>+</sub>A<sub>x</sub>[z<sup>1</sup>], ..., <sub>+</sub>A<sub>x</sub>[z<sup>m</sup>], &Sigma;</td>
+    </tr>
 </table>
 
 mark                    |notation                            |first branch                        | second branch
