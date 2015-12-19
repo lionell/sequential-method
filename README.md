@@ -132,12 +132,24 @@ about **finish with negative result**.
     <tr>
         <td><sub>-</sub>&exist;</td>
         <td><sub>-</sub>&exist;xA, &Sigma;</td>
-        <td colspan="2"><sub>-</sub>A<sub>x</sub>[z<sub>1</sub>], ..., <sub>-</sub>A<sub>x</sub>[z<sub>m</sub>], &Sigma;, <sub>-</sub>&exist;xA</td>
+        <td colspan="2">
+            <sub>-</sub>A<sub>x</sub>[z<sub>1</sub>],
+            ...,
+            <sub>-</sub>A<sub>x</sub>[z<sub>m</sub>],
+            &Sigma;,
+            <sub>-</sub>&exist;xA
+        </td>
     </tr>
     <tr>
         <td><sub>+</sub>&forall;</td>
         <td><sub>+</sub>&forall;xA, &Sigma;</td>
-        <td colspan="2"><sub>+</sub>A<sub>x</sub>[z<sub>1</sub>], ..., <sub>+</sub>A<sub>x</sub>[z<sub>m</sub>], &Sigma;, <sub>+</sub>&forall;xA</td>
+        <td colspan="2">
+            <sub>+</sub>A<sub>x</sub>[z<sub>1</sub>],
+            ...,
+            <sub>+</sub>A<sub>x</sub>[z<sub>m</sub>],
+            &Sigma;,
+            <sub>+</sub>&forall;xA
+        </td>
     </tr>
     <tr>
         <td><sub>-</sub>&forall;</td>
@@ -145,20 +157,6 @@ about **finish with negative result**.
         <td colspan="2"><sub>-</sub>A<sub>x</sub>[y], &Sigma;</td>
     </tr>
 </table>
-
-mark                    |notation                            |first branch                        | second branch
-:----------------------:|:-----------------------------------|:-----------------------------------|---------------------
-<sub>+</sub>!           |<sub>+</sub>!A, &#931;              |<sub>-</sub>A, &#931;               |
-<sub>-</sub>!           |<sub>-</sub>!A, &#931;              |<sub>+</sub>A, &#931;               |
-<sub>+</sub>&#124;&#124;|<sub>+</sub>(A&#124;&#124;B), &#931;|<sub>+</sub>A, &#931;               |<sub>+</sub>B, &#931;
-<sub>-</sub>&#124;&#124;|<sub>-</sub>(A&#124;&#124;B), &#931;|<sub>-</sub>A, <sub>-</sub>B, &#931;|
-<sub>+</sub>\&\&        |<sub>+</sub>(A\&\&B), &#931;        |<sub>+</sub>A, <sub>+</sub>B, &#931;|
-<sub>-</sub>\&\&        |<sub>-</sub>(A\&\&B), &#931;        |<sub>-</sub>A, &#931;               |<sub>-</sub>B, &#931;
-<sub>+</sub>->          |<sub>+</sub>(A->B), &#931;          |<sub>-</sub>A, &#931;               |<sub>+</sub>B, &#931;
-<sub>-</sub>->          |<sub>-</sub>(A->B), &#931;          |<sub>+</sub>A, <sub>-</sub>B, &#931;|
-<sub>+</sub>&exist;     |<sub>+</sub>&exist;xA, &#931;       |<sub>+</sub>A<sup>x</sup>\[y\], &#931;|
-<sub>-</sub>&exist;     |<sub>-</sub>&exist;xA, &#931;       |<sub>+</sub>A<sup>x</sup>\[z<sub>1</sub>\],..., <sub>+</sub>A<sup>x</sup>\[z<sub>m</sub>\], &#931;, <sub>-</sub>&exist;xA, &#931;                                   |
-
 
 ### Let's look at examples
 #### Example 1
