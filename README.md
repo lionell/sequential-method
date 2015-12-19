@@ -77,16 +77,19 @@ about **finish with negative result**.
 
 <table>
     <tr>
+        <th>mark</th>
+        <th>notation</th>
+        <th>branches</th>
+    </tr>
+    <tr>
         <td><sub>+</sub>!</td>
         <td><sub>+</sub>!A, &Sigma;</td>
-        <td><sub>-</sub>A, &Sigma;</td>
-        <td></td>
+        <td colspan="2"><sub>-</sub>A, &Sigma;</td>
     </tr>
     <tr>
         <td><sub>-</sub>!</td>
         <td><sub>-</sub>!A, &Sigma;</td>
-        <td><sub>+</sub>A, &Sigma;</td>
-        <td></td>
+        <td colspan="2"><sub>+</sub>A, &Sigma;</td>
     </tr>
     <tr>
         <td><sub>+</sub>||</td>
