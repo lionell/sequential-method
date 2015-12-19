@@ -124,18 +124,35 @@ as listed below:
 **Left branch**
 
  name |  delta  |    values
-:----:|:-------:|:-------------:
-      | x -> a, | P\[a]:=False,
-  A   | y -> b  | P\[b]:=True,
-      |         | Q\[a]:=False
+:----:|:--------|:-------------
+      | x -> a, | P\[a\] := False,
+  A   | y -> b  | P\[b\] := True,
+      |         | Q\[a\] := False
+
+Let's try to build interpretation on this counter example. There are many
+different options, but we can stop on:
+ * x := integer
+ * P\[x\] := x == 1
+ * Q\[x\] := x != x *(always false)*
 
 **Right branch**
 
  name |  delta  |    values
-:----:|:-------:|:-------------:
-      | x -> a, | Q\[a]:=False,
-  B   | z -> b, | Q\[b]:=True,
-      | w -> c  | P\[c]:=True
+:----:|:--------|:-------------
+      | x -> a, | Q\[a] := False,
+  B   | z -> b, | Q\[b] := True,
+      | w -> c  | P\[c] := True
+
+In this case we can use next interpretation:
+ * x := integer
+ * P\[x\] := (x + x) % 2 == 0
+ * Q\[x\] := x % 2 == 1
+
+You can manually check these interpretations, to ensure that expression is false.
+```
+P[x]:=x == 1
+Q[x]:=x % 2 == 0
+```
 
 ## Formal Language Specification
 This is language grammar in Backus-Naur-Form.
