@@ -120,12 +120,14 @@ how to get a counter example.
 ```
 We have got two unclosed branches. Each one produces unique counter example:
 
+Left branch
  name |  delta  |    values
 ------|---------|---------------
       | x -> a, | P\[a]:=False,
   A   | y -> b  | P\[b]:=True,
       |         | Q\[a]:=False
 
+Right branch
  name |  delta  |    values
 ------|---------|---------------
       | x -> a, | Q\[a]:=False,
