@@ -21,19 +21,19 @@ Application is divided in several independent modules:
  3. Wrapper -- wrap results of Sequential method to unique data structure for
         mapping to JSON. *See WrapBuilder class.*
 
-Now let's move to the hurt for application.
+Now let's move to the heart for application.
 
 ### Algorithm
 Here are description of one algorithm iteration.
  1. If all leaves are closed, **finish with positive verdict**.
  2. If all leaves are atomic, **finish with negative verdict**.
- 4. For each non-atomic & non-closed leaf => *leaf*
-    1. Expand *leaf* leaf.
+ 4. For each non-atomic, non-closed leaf.
+    1. Expand leaf.
     2. Simplify result leaves.
  5. Goto step 1
 
-There is situation when algorithm will be in **INFINITE LOOP**.
-In this case we can use Kenig's lemma to say
+There is situation when algorithm will go to **INFINITE LOOP**.
+In this case we can use **Kenig's lemma** to say
 about **finish with negative result**.
 
 Now let's look closer at examples.
