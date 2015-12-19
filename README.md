@@ -217,26 +217,26 @@ truthful and no counter examples exists.
 This example show you how to deal with unclosed sequences, and how to get a
 counter example.
 ```
-                                            P[x] -> #xQ[x] = #xP[x] -> Q[x]
-                                                           |
-                                                           v
-                                          -(P[x] -> #xQ[x] -> #xP[x] -> Q[x])
-                                                           |
-                                                           v
-                                          +(P[x] -> #xQ[x]), -(#xP[x] -> Q[x])
-                                         /                                   \
-                                        /                                     \
-                                       v                                       v
-                           -P[x], -(#xP[x] -> Q[x])                 +#xQ[x], -(#xP[x] -> Q[x])
-                                      |                                         |
-                                      v                                         v
-                            +#xP[x], -Q[x], -P[x]                    +Q[z], -(#xP[x] -> Q[x])
-                                      |                                         |
-                                      v                                         v
-                             +P[y], -Q[x], -P[x]                      +#xP[x], -Q[x], +Q[z]
-                                                                                |
-                                                                                v
-                                                                       +P[w], -Q[x], +Q[z]
+                                        P[x] -> #xQ[x] = #xP[x] -> Q[x]
+                                                       |
+                                                       v
+                                      -(P[x] -> #xQ[x] -> #xP[x] -> Q[x])
+                                                       |
+                                                       v
+                                      +(P[x] -> #xQ[x]), -(#xP[x] -> Q[x])
+                                     /                                   \
+                                    /                                     \
+                                   v                                       v
+                       -P[x], -(#xP[x] -> Q[x])                 +#xQ[x], -(#xP[x] -> Q[x])
+                                  |                                         |
+                                  v                                         v
+                        +#xP[x], -Q[x], -P[x]                    +Q[z], -(#xP[x] -> Q[x])
+                                  |                                         |
+                                  v                                         v
+                         +P[y], -Q[x], -P[x]                      +#xP[x], -Q[x], +Q[z]
+                                                                            |
+                                                                            v
+                                                                   +P[w], -Q[x], +Q[z]
 ```
 
 ##### Left branch
@@ -392,6 +392,14 @@ listed below.
 Now let's look closer to response structure.
 
 ### response
+
+name     | type         | description
+:--------|:-------------|:-----------
+tree     | {root: node} | sequential tree with root
+verity   | Boolean      | null, if infinite loop
+examples | \[example\]  | list of examples
+error    | string       | error message from server
+
 ```JSON
 "tree":         sequential tree
 "verity":       true,               if expression is truthful
