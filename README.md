@@ -74,11 +74,11 @@ about **finish with negative result**.
 
 #### Sequential formulas
 
-|      mark     |        before      |              after               |
-|:-------------:|:-------------------|:---------------------------------|
-|  +!           | +!A, *             |   -A, *                          |
-|  -!           | -!A, *             |   +A, *                          |
-| +&#124;&#124; | +A&#124;&#124;B, * |+A, *&nbsp;&nbsp;&nbsp;&nbsp;+B, *|
+|      mark       |        before        |              after                       |
+|:---------------:|:---------------------|:-----------------------------------------|
+|  *+!*           | *+!A, E*             |   *-A, E*                                |
+|  *-!*           | *-!A, E*             |   *+A, E*                                |
+| *+&#124;&#124;* | *+A&#124;&#124;B, E* |*+A, E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+B, E*|
 
 ### Let's look at examples
 #### Example 1
