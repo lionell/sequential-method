@@ -241,11 +241,11 @@ counter example.
 
 ##### Left branch
 
-| name |  delta  |      values        |
-|:----:|:--------|:-------------------|
-|      | x -> a, | P\[a\] := *False,* |
-|  A   | y -> b  | P\[b\] := *True,*  |
-|      |         | Q\[a\] := *False*  |
+| name |  delta  |      values          |
+|:----:|:--------|:---------------------|
+|      | x -> a, | P\[a\] := **False,** |
+|  A   | y -> b  | P\[b\] := **True,**  |
+|      |         | Q\[a\] := **False**  |
 
 Let's try to build interpretation on this counter example. There are many
 different options, but we can stop on:
@@ -257,11 +257,11 @@ Q[x] := x != x                // always false
 
 ##### Right branch
 
-| name |  delta  |      values       |
-|:----:|:--------|:------------------|
-|      | x -> a, | Q\[a] := *False,* |
-|  B   | z -> b, | Q\[b] := *True,*  |
-|      | w -> c  | P\[c] := *True*   |
+| name |  delta  |      values         |
+|:----:|:--------|:--------------------|
+|      | x -> a, | Q\[a] := **False,** |
+|  B   | z -> b, | Q\[b] := **True,**  |
+|      | w -> c  | P\[c] := **True**   |
 
 In this case we can use next interpretation:
 ```
