@@ -42,11 +42,10 @@ Here are description of one algorithm iteration.
  5. Goto step 1
 
 There is situation when algorithm will go to **INFINITE LOOP**.
-In this case we can use **Kenig's lemma** to say
+In this case we can use **König's infinity lemma** to say
 about **finish with negative result**.
 
-Now let's look closer at examples.
-
+### Let's look at examples
 **Example 1.** First example, has only one branch. It shows how exactly
 sequences is expanding when implication and disjunction are in charge.
 ```C
@@ -131,9 +130,11 @@ as listed below:
 
 Let's try to build interpretation on this counter example. There are many
 different options, but we can stop on:
- * x := integer
- * P\[x\] := x == 1
- * Q\[x\] := x != x *(always false)*
+```
+x := integer
+P[x] := x == 1
+Q[x] := x != x                // always false
+```
 
 **Right branch**
 
@@ -144,15 +145,15 @@ different options, but we can stop on:
       | w -> c  | P\[c] := True
 
 In this case we can use next interpretation:
- * x := integer
- * P\[x\] := (x + x) % 2 == 0
- * Q\[x\] := x % 2 == 1
+```
+x := integer
+P[x] := (x + x) % 2 == 0      // always true
+Q[x] := x % 2 == 1
 
+```
 You can manually check these interpretations, to ensure that expression is false.
-```
-P[x]:=x == 1
-Q[x]:=x % 2 == 0
-```
+
+Let's stop at this example and move forward to syntax overview.
 
 ## Formal Language Specification
 This is language grammar in Backus-Naur-Form.
@@ -188,6 +189,8 @@ This is language grammar in Backus-Naur-Form.
                                 | ...
                                 | "Z"
 ```
+If your expression **does not fit** this grammar then application will rise an
+parser exception and inform you with `error` field of response.
 
 ### Valid examples
 Some valid examples of expressions:
