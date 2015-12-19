@@ -68,8 +68,8 @@ Here are description of one algorithm iteration.
   4. Goto step 1
 
 There is situation when algorithm will go to **INFINITE LOOP**.
-In this case we can use [König's infinity lemma][kenigs] to say
-about **finish with negative result**.
+In this case we can use [König's infinity lemma][kenigs] to
+**finish with negative result**.
 
 [kenigs]: https://en.wikipedia.org/wiki/K%C3%B6nig%27s_lemma
 
@@ -157,6 +157,10 @@ about **finish with negative result**.
         <td colspan="2"><sub>-</sub>A<sub>x</sub>[y], &Sigma;</td>
     </tr>
 </table>
+
+Where
+  * y denotes new unique name.
+  * z<sub>1</sub>, ..., z<sub>m</sub> denotes names used in current sequence.
 
 ### Let's look at examples
 #### Example 1
@@ -443,7 +447,7 @@ Or if you have pre-built JAR you can run it by typing:
 
 ## Used materials
 Here is a list of materials used in app:
-  * [d3.js](http://d3js.org) visualizing sequential tree
+  * [D3.js](http://d3js.org) visualizing sequential tree
   * [HTML5 UP](http://html5up.net) design of main page
   * [Spring](https://spring.io/) framework
   * [Maven](https://maven.apache.org/) app architecture
