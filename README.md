@@ -77,8 +77,22 @@ about **finish with negative result**.
 
 <table>
     <tr>
-        <td>adasdasd</td>
-        <td>asdasdasd</td>
+        <td><sub>+</sub>!</td>
+        <td><sub>+</sub>!A, &Sigma;</td>
+        <td><sub>-</sub>A, &Sigma;</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><sub>-</sub>!</td>
+        <td><sub>-</sub>!A, &Sigma;</td>
+        <td><sub>+</sub>A, &Sigma;</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><sub>+</sub>||</td>
+        <td><sub>+</sub>(A || B), &Sigma;</td>
+        <td><sub>+</sub>A, &Sigma;</td>
+        <td><sub>+</sub>B, &Sigma;</td>
     </tr>
 </table>
 
