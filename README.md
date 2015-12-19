@@ -75,6 +75,13 @@ about **finish with negative result**.
 
 #### Sequential formulas
 
+<table>
+    <tr>
+        <td>adasdasd</td>
+        <td>asdasdasd</td>
+    </tr>
+</table>
+
 mark                    |notation                            |first branch                        | second branch
 :----------------------:|:-----------------------------------|:-----------------------------------|---------------------
 <sub>+</sub>!           |<sub>+</sub>!A, &#931;              |<sub>-</sub>A, &#931;               |
@@ -86,7 +93,7 @@ mark                    |notation                            |first branch      
 <sub>+</sub>->          |<sub>+</sub>(A->B), &#931;          |<sub>-</sub>A, &#931;               |<sub>+</sub>B, &#931;
 <sub>-</sub>->          |<sub>-</sub>(A->B), &#931;          |<sub>+</sub>A, <sub>-</sub>B, &#931;|
 <sub>+</sub>&exist;     |<sub>+</sub>&exist;xA, &#931;       |<sub>+</sub>A<sup>x</sup>\[y\], &#931;|
-<sub>-</sub>&exist;     |<sub>-</sub>&exist;xA, &#931;       |<sub>+</sub>A<sup>x</sup>\[z<sub>1</sup>\],..., <sub>+</sub>A<sup>x</sup>\[z<sub>m</sup>\], &#931;, <sub>-</sub>&exist;xA, &#931;                                   |
+<sub>-</sub>&exist;     |<sub>-</sub>&exist;xA, &#931;       |<sub>+</sub>A<sup>x</sup>\[z<sub>1</sub>\],..., <sub>+</sub>A<sup>x</sup>\[z<sub>m</sub>\], &#931;, <sub>-</sub>&exist;xA, &#931;                                   |
 
 
 ### Let's look at examples
