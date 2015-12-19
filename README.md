@@ -124,7 +124,7 @@ as listed below:
 **Left branch**
 
  name |  delta  |    values
-------|---------|---------------
+:----:|:-------:|:-------------:
       | x -> a, | P\[a]:=False,
   A   | y -> b  | P\[b]:=True,
       |         | Q\[a]:=False
@@ -132,7 +132,7 @@ as listed below:
 **Right branch**
 
  name |  delta  |    values
-------|---------|---------------
+:----:|:-------:|:-------------:
       | x -> a, | Q\[a]:=False,
   B   | z -> b, | Q\[b]:=True,
       | w -> c  | P\[c]:=True
