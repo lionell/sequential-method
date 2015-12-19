@@ -23,7 +23,7 @@ public class SequentialMethod {
     private static final int STEP_LIMIT = 30;
     private SequentialTree tree;
     private LogicalValue verity = LogicalValue.UNKNOWN;
-    private Queue<Node<Sequence>> leavesQueue = new ArrayDeque<>();
+    private Queue<Node<Sequence>> leaves = new ArrayDeque<>();
     private List<Node<Sequence>> unclosedLeaves = new ArrayList<>();
 
     public SequentialMethod(Formula formula) {
@@ -37,8 +37,8 @@ public class SequentialMethod {
     private LogicalValue transform() {
         update(tree.getRoot());
         int stepsLeft = STEP_LIMIT;
-        while (!leavesQueue.isEmpty()) {
-            activateNode(leavesQueue.poll());
+        while (!leaves.isEmpty()) {
+            activateNode(leaves.poll());
             stepsLeft--;
             if (stepsLeft == 0) {
                 return LogicalValue.UNKNOWN;
@@ -70,7 +70,7 @@ public class SequentialMethod {
             if (node.getValue().isAtomic()) {
                 unclosedLeaves.add(node);
             } else {
-                leavesQueue.add(node);
+                leaves.add(node);
             }
         }
     }

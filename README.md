@@ -1,4 +1,4 @@
-# Sequence Method
+# Sequential method
 
 ## Getting started
 It's a prover of logical formulas. Core of application is Sequential Method algorithm.
@@ -8,8 +8,35 @@ modules: Tokenizer, Infix-To-Prefix converter, AST generator, Sequential method 
     <img src="https://github.com/lionell/sequential-method/blob/master/src/main/resources/static/images/logo.png" alt="Logo">
 </div>
 
-## Tree examples
-Let's look closer at examples.
+## How it works
+Application is divided in several independent modules:
+ 1) Parser -- parse input string into AST. See Parser class.
+    a) Tokenizer -- split input expression into lexemes. See Tokenizer class.
+    b) Infix-to-Postfix converter -- converts list of lexemes
+        into RPN(Reverse Polish Notation). See InfixToPostfixConverter class.
+    c) Abstract Syntax Tree generator -- converts list of
+        tokens(token = lexeme + additional information) to tree.
+        See FormulaGenerator class.
+ 2) Sequential method -- logic of application. See SequentialMethod class.
+ 3) Wrapper -- wrap results of Sequential method to unique data structure for
+        mapping to JSON. See WrapBuilder class.
+
+Now let's move to the hurt for application.
+
+### Algorithm
+Here are description of one algorithm iteration.
+ 1) If all leaves are closed, **finish with positive verdict**.
+ 2) If all leaves are atomic, **finish with negative verdict**.
+ 4) For each non-atomic & non-closed leaf => *leaf*
+    a) Expand *leaf* leaf.
+    b) Simplify result leaves.
+ 5) Goto step 1
+
+There is situation when algorithm will be in **INFINITE LOOP**.
+In this case we can use Kenig's lemma to say
+about **finish with negative result**.
+
+Now let's look closer at examples.
 
 **Example 1.** First example, has only one branch. It shows how exactly
 sequences is expanding when implication and disjunction are in charge.
@@ -55,9 +82,10 @@ It's also truthful, but now we have two different closed branches.
                                     X                                         X
 
 ```
+As you can see all two branches closed at the same time. So expression is
+truthful and there are no counter example exists.
 
 ## Formal Language Specification
-
 ### Backus-Naur Form
 ```HTML+PHP
 <expression>				::= <formula> "=" <formula>
@@ -164,7 +192,7 @@ listed below.
 
 Now let's look closer to response structure.
 
-### Response
+### response
 ```JSON
 "tree":         sequential tree
 "verity":       true,               if expression is truthful
@@ -202,13 +230,11 @@ Now let's look closer to response structure.
 ```
 
 ## Installation
-It's a Maven project, so you need Maven to be installed to build app.
-
 ### Requirements
  * Java Runtime Environment with Java SE8 support
- * Maven 3 --- *TO BUILD*
+ * Maven 3 to build
 
-### Build
+### Building
 You can build app using Maven with ease. Just type `mvn clean package`.
 This will generate JAR file `target/sequential-method-1.0-SNAPSHOT.jar`.
 
@@ -240,8 +266,10 @@ Here is a list of materials used in app:
  * [Maven](https://maven.apache.org/) app architecture
 
 ## Contributions
-Here I want to say thanks to my friend @Fetiorin who helped me with this app.
-He did a great job on client-side. Thank you very much.
+Here I want to say thanks to my friend [Fetiorin](http://vk.com/id234442497)
+who helped me with this app.
+
+You did a great job on client-side. Thank you very much.
 
 ## Licence
 ```
