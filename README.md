@@ -1,5 +1,8 @@
 # Sequential method
 
+## Table of contents
+Lorem ipsum dolor sit amet
+
 ## Getting started
 It's a prover of logical formulas. Core of application is Sequential Method algorithm.
 Let's look closer on application architecture. Project is divided in several independent
@@ -10,16 +13,22 @@ modules: Tokenizer, Infix-To-Prefix converter, AST generator, Sequential method 
 
 ## How it works
 Application is divided in several independent modules:
- 1. Parser -- parse input string into AST. *See Parser class.*
-    1. Tokenizer -- split input expression into lexemes. *See Tokenizer class.*
-    2. Infix-to-Postfix converter -- converts list of lexemes
-        into RPN(Reverse Polish Notation). *See InfixToPostfixConverter class.*
-    3. Abstract Syntax Tree generator -- converts list of
+ 1. [Parser][1] parse input string into AST.
+    1. [Tokenizer][2] split input expression into lexemes.
+    2. [Infix-to-Postfix converter][3] converts list of lexemes
+        into RPN(Reverse Polish Notation).
+    3. [Abstract Syntax Tree generator][4] converts list of
         tokens(token = lexeme + additional information) to tree.
-        *See FormulaGenerator class.*
- 2. Sequential method -- logic of application. *See SequentialMethod class.*
- 3. Wrapper -- wrap results of Sequential method to unique data structure for
-        mapping to JSON. *See WrapBuilder class.*
+ 2. [Sequential method][5] logic of application.
+ 3. [Wrapper][6] wrap results of Sequential method to unique data structure for
+        mapping to JSON.
+
+ [1]: /blob/master/src/main/java/io/github/lionell/utils/analysis/Parser.java
+ [2]: #
+ [3]: #
+ [4]: #
+ [5]: #
+ [6]: #
 
 Now let's move to the heart for application.
 
@@ -86,7 +95,6 @@ As you can see all two branches closed at the same time. So expression is
 truthful and there are no counter example exists.
 
 ## Formal Language Specification
-### Backus-Naur Form
 ```HTML+PHP
 <expression>				::= <formula> "=" <formula>
 <formula>					::= [ "(" ] <predicate>
