@@ -82,8 +82,8 @@ mark         |before                   |after
 -&#124;&#124;|-{A&#124;&#124;B}, &#931;|-A, -B, &#931;
 +\&\&        |+{A\&\&B}, &#931;        |+A, +B, &#931;
 -\&\&        |-{A\&\&B}, &#931;        |-A, &#931;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -B, &#931;
-+&#8594;     |+{A&#8594;B}, &#931;     |-A, &#931;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +B, &#931;
--&#8594;     |-{A&#8594;B}, &#931;     |+A, -B, &#931;
++->          |+{A&#8594;B}, &#931;     |-A, &#931;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +B, &#931;
+-->          |-{A&#8594;B}, &#931;     |+A, -B, &#931;
 
 ### Let's look at examples
 #### Example 1
