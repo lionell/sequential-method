@@ -120,37 +120,17 @@ how to get a counter example.
 ```
 We have got two unclosed branches. Each one produces unique counter example:
 
-------|---------|---------------
  name |  delta  |    values
 ------|---------|---------------
       | x -> a, | P\[a]:=False,
   A   | y -> b  | P\[b]:=True,
       |         | Q\[a]:=False
+
+ name |  delta  |    values
 ------|---------|---------------
       | x -> a, | Q\[a]:=False,
   B   | z -> b, | Q\[b]:=True,
       | w -> c  | P\[c]:=True
-------|---------|---------------
-
-```
-Counter example A
-delta:
-         x -> a,
-         y -> b
-values:
-         P[a]:=False
-         P[b]:=True
-         Q[a]:=False
-Counter example B
-delta:
-         x -> a,
-         z -> b,
-         w -> c
-values:
-         Q[a]:=False
-         Q[b]:=True
-         P[c]:=True
-```
 
 ## Formal Language Specification
 This is language grammar in Backus-Naur-Form.
