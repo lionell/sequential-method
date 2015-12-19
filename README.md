@@ -4,6 +4,7 @@
   * [Getting started](#getting-started)
   * [How it works](#how-it-works)
     * [Algorithm](#algorithm)
+    * [Sequential formulas](#sequential-formulas)
     * [Let's look at examples](#lets-look-at-examples)
       * [Example 1](#example-1)
       * [Example 2](#example-2)
