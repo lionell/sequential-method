@@ -8,27 +8,27 @@ It's a prover of logical formulas. Core of application is Sequential Method algo
 Let's look closer on application architecture. Project is divided in several independent
 modules: Tokenizer, Infix-To-Prefix converter, AST generator, Sequential method and Wrapper.
 <div align="center">
-    <img src="https://github.com/lionell/sequential-method/blob/master/src/main/resources/static/images/logo.png" alt="Logo">
+    <img src="/src/main/resources/static/images/logo.png" alt="Logo">
 </div>
 
 ## How it works
 Application is divided in several independent modules:
- 1. [Parser][1] parse input string into AST.
-    1. [Tokenizer][2] split input expression into lexemes.
-    2. [Infix-to-Postfix converter][3] converts list of lexemes
+ 1. [Parser][1-1] parse input string into AST.
+    1. [Tokenizer][1-1-1] split input expression into lexemes.
+    2. [Infix-to-Postfix converter][1-1-2] converts list of lexemes
         into RPN(Reverse Polish Notation).
-    3. [Abstract Syntax Tree generator][4] converts list of
+    3. [Abstract Syntax Tree generator][1-1-3] converts list of
         tokens(token = lexeme + additional information) to tree.
- 2. [Sequential method][5] logic of application.
- 3. [Wrapper][6] wrap results of Sequential method to unique data structure for
+ 2. [Sequential method][1-2] logic of application.
+ 3. [Wrapper][1-3] wrap results of Sequential method to unique data structure for
         mapping to JSON.
 
- [1]: /blob/master/src/main/java/io/github/lionell/utils/analysis/Parser.java
- [2]: #
- [3]: #
- [4]: #
- [5]: #
- [6]: #
+ [1-1]: /src/main/java/io/github/lionell/utils/analysis/Parser.java
+ [1-1-1]: /src/main/java/io/github/lionell/utils/analysis/Tokenizer.java
+ [1-1-2]: /src/main/java/io/github/lionell/utils/analysis/InfixToPostfixConverter.java
+ [1-1-3]: /src/main/java/io/github/lionell/utils/analysis/FormulaGenerator.java
+ [1-2]: /src/main/java/io/github/lionell/utils/SequentialMethod.java
+ [1-3]: /src/main/java/io/github/lionell/utils/WrapBuilder.java
 
 Now let's move to the heart for application.
 
