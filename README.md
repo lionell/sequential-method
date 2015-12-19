@@ -79,7 +79,7 @@ about **finish with negative result**.
     <tr>
         <th>mark</th>
         <th>notation</th>
-        <th>branches</th>
+        <th colspan="2">branches</th>
     </tr>
     <tr>
         <td><sub>+</sub>!</td>
