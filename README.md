@@ -159,8 +159,8 @@ In this case we can use [König's infinity lemma][kenigs] to
 </table>
 
 Where
-  * *y* denotes new unique name.
-  * *z<sub>1</sub>, ..., z<sub>m</sub>* denotes names used in current sequence.
+  * y denotes **new unique** name.
+  * z<sub>1</sub>, ..., z<sub>m</sub> denotes names **used in current sequence**.
 
 ### Let's look at examples
 #### Example 1
@@ -170,10 +170,10 @@ and disjunction are in charge.
                                               P[x] = P[x] || Q[x]
                                                       |
                                                       v
-                                            -{P[x] -> P[x] || Q[x]}
+                                            -(P[x] -> P[x] || Q[x])
                                                       |
                                                       v
-                                            +P[x], -{P[x] || Q[x]}
+                                            +P[x], -(P[x] || Q[x])
                                                       |
                                                       v
                                              -P[x], -Q[x], +P[x]
@@ -192,17 +192,17 @@ It's also truthful, but now we have two different closed branches.
                                            #xP[x] -> Q[x] = P[x] -> #xQ[x]
                                                           |
                                                           v
-                                        -{(#xP[x] -> Q[x]) -> P[x] -> #xQ[x]}
+                                        -((#xP[x] -> Q[x]) -> P[x] -> #xQ[x])
                                                           |
                                                           v
-                                        +{#xP[x] -> Q[x]}, -{P[x] -> #xQ[x]}
+                                        +(#xP[x] -> Q[x]}, -{P[x] -> #xQ[x])
                                        /                                   \
                                       /                                     \
                                      v                                       v
-                        -#xP[x], -{P[x] -> #xQ[x]}                 +Q[x], -{P[x] -> #xQ[x]}
+                        -#xP[x], -(P[x] -> #xQ[x])                 +Q[x], -(P[x] -> #xQ[x])
                                     |                                         |
                                     v                                         v
-                    -P[x], -{P[x] -> #xQ[x]}, -#xP[x]                +P[x], -#xQ[x], +Q[x]
+                    -P[x], -(P[x] -> #xQ[x]), -#xP[x]                +P[x], -#xQ[x], +Q[x]
                                     |                                         |
                                     v                                         v
                      +P[x], -#xQ[x], -P[x], -#xP[x]               -Q[x], +P[x], +Q[x], -#xQ[x]
@@ -220,17 +220,17 @@ counter example.
                                             P[x] -> #xQ[x] = #xP[x] -> Q[x]
                                                            |
                                                            v
-                                          -{P[x] -> #xQ[x] -> #xP[x] -> Q[x]}
+                                          -(P[x] -> #xQ[x] -> #xP[x] -> Q[x])
                                                            |
                                                            v
-                                          +{P[x] -> #xQ[x]}, -{#xP[x] -> Q[x]}
+                                          +(P[x] -> #xQ[x]), -(#xP[x] -> Q[x])
                                          /                                   \
                                         /                                     \
                                        v                                       v
-                           -P[x], -{#xP[x] -> Q[x]}                 +#xQ[x], -{#xP[x] -> Q[x]}
+                           -P[x], -(#xP[x] -> Q[x])                 +#xQ[x], -(#xP[x] -> Q[x])
                                       |                                         |
                                       v                                         v
-                            +#xP[x], -Q[x], -P[x]                    +Q[z], -{#xP[x] -> Q[x]}
+                            +#xP[x], -Q[x], -P[x]                    +Q[z], -(#xP[x] -> Q[x])
                                       |                                         |
                                       v                                         v
                              +P[y], -Q[x], -P[x]                      +#xP[x], -Q[x], +Q[z]
