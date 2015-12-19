@@ -78,12 +78,12 @@ mark         |notation                 |first branch  | second branch
 :-----------:|:------------------------|:-------------|--------------
 <sub>+</sub>!           |<sub>+</sub>!A, &#931;              |<sub>-</sub>A, &#931;               |
 <sub>-</sub>!           |<sub>-</sub>!A, &#931;              |<sub>+</sub>A, &#931;               |
-<sub>+</sub>&#124;&#124;|<sub>+</sub>{A&#124;&#124;B}, &#931;|<sub>+</sub>A, &#931;               |<sub>+</sub>B, &#931;
-<sub>-</sub>&#124;&#124;|<sub>-</sub>{A&#124;&#124;B}, &#931;|<sub>-</sub>A, <sub>-</sub>B, &#931;|
-<sub>+</sub>\&\&        |<sub>+</sub>{A\&\&B}, &#931;        |<sub>+</sub>A, <sub>+</sub>B, &#931;|
-<sub>-</sub>\&\&        |<sub>-</sub>{A\&\&B}, &#931;        |<sub>-</sub>A, &#931;               |<sub>-</sub>B, &#931;
-<sub>+</sub>->          |<sub>+</sub>{A->B}, &#931;          |<sub>-</sub>A, &#931;               |<sub>+</sub>B, &#931;
-<sub>-</sub>->          |<sub>-</sub>{A->B}, &#931;          |<sub>+</sub>A, <sub>-</sub>B, &#931;|
+<sub>+</sub>&#124;&#124;|<sub>+</sub>(A&#124;&#124;B), &#931;|<sub>+</sub>A, &#931;               |<sub>+</sub>B, &#931;
+<sub>-</sub>&#124;&#124;|<sub>-</sub>(A&#124;&#124;B), &#931;|<sub>-</sub>A, <sub>-</sub>B, &#931;|
+<sub>+</sub>\&\&        |<sub>+</sub>(A\&\&B), &#931;        |<sub>+</sub>A, <sub>+</sub>B, &#931;|
+<sub>-</sub>\&\&        |<sub>-</sub>(A\&\&B), &#931;        |<sub>-</sub>A, &#931;               |<sub>-</sub>B, &#931;
+<sub>+</sub>->          |<sub>+</sub>(A->B), &#931;          |<sub>-</sub>A, &#931;               |<sub>+</sub>B, &#931;
+<sub>-</sub>->          |<sub>-</sub>(A->B), &#931;          |<sub>+</sub>A, <sub>-</sub>B, &#931;|
 
 ### Let's look at examples
 #### Example 1
