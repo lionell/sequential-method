@@ -28,8 +28,6 @@
   * [Contributions](#contributions)
   * [License](#license)
 
-
-
 ## Getting started
 It's a prover of logical formulas. Core of application is Sequential Method algorithm.
 Let's look closer how it works!
@@ -196,7 +194,7 @@ It's also truthful, but now we have two different closed branches.
                                         -((#xP[x] -> Q[x]) -> P[x] -> #xQ[x])
                                                           |
                                                           v
-                                        +(#xP[x] -> Q[x]}, -{P[x] -> #xQ[x])
+                                        +(#xP[x] -> Q[x]), -(P[x] -> #xQ[x])
                                        /                                   \
                                       /                                     \
                                      v                                       v
