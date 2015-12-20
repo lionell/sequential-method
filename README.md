@@ -19,7 +19,7 @@
     * [response](#response)
     * [node](#node)
     * [formula](#formula)
-    * [examples](#examples)
+    * [example](#example)
   * [Installation](#installation)
     * [Requirements](#requirements)
     * [Building](#building)
