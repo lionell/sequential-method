@@ -56,7 +56,7 @@ Application is divided in several independent modules:
 [1-2]: /src/main/java/io/github/lionell/utils/SequentialMethod.java
 [1-3]: /src/main/java/io/github/lionell/utils/WrapBuilder.java
 
-Now let's move to the heart for application.
+Now let's move to the **heart** of application.
 
 ### Algorithm
 Here are description of one algorithm iteration.
@@ -161,6 +161,7 @@ In this case we can use [König's infinity lemma][kenigs] to
 Where
   * y denotes **new unique** name.
   * z<sub>1</sub>, ..., z<sub>m</sub> denotes names **used in current sequence**.
+  * A<sub>x</sub>[y] denotes **renomination** of predicate from x to y.
 
 ### Let's look at examples
 #### Example 1
