@@ -6,6 +6,7 @@ import io.github.lionell.formulas.Formula;
 import io.github.lionell.formulas.Quantifier;
 import io.github.lionell.miscellaneous.LogicalValue;
 import io.github.lionell.utils.NameGenerator;
+import io.github.lionell.utils.StringUtils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -59,6 +60,6 @@ public class ForAll extends Quantifier {
 
     @Override
     public String toString() {
-        return "@" + variableName + "(" + formula + ")";
+        return "@" + variableName + StringUtils.formatFormula(formula);
     }
 }

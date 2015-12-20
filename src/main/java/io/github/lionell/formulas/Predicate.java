@@ -4,6 +4,7 @@ import io.github.lionell.containers.Sequence;
 import io.github.lionell.containers.Triple;
 import io.github.lionell.exceptions.LogicalException;
 import io.github.lionell.miscellaneous.LogicalValue;
+import io.github.lionell.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -57,6 +58,11 @@ public class Predicate extends Formula {
     }
 
     @Override
+    public boolean isSimple() {
+        return true;
+    }
+
+    @Override
     public Predicate clone() {
         return new Predicate(name, new ArrayList<>(args), value);
     }
@@ -89,19 +95,7 @@ public class Predicate extends Formula {
 
     @Override
     public String toString() {
-        if (args.isEmpty()) {
-            throw new LogicalException("Argument's can't be empty!");
-        }
-        StringBuilder builder = new StringBuilder();
-        builder.append(name);
-        builder.append("[");
-        builder.append(args.get(0));
-        for (int i = 1; i < args.size(); i++) {
-            builder.append(",");
-            builder.append(args.get(i));
-        }
-        builder.append("]");
-        return builder.toString();
+        return name + "[" + StringUtils.formatArgs(args) + "]";
     }
 
     public Triple<String, List<String>, Boolean> getCounterExample() {

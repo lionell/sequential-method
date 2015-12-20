@@ -38,4 +38,9 @@ public abstract class Quantifier extends Formula {
     public boolean isAtomic() {
         return false;
     }
+
+    @Override
+    public boolean isSimple() {
+        return true;
+    }
 }

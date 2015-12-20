@@ -5,6 +5,7 @@ import io.github.lionell.exceptions.LogicalException;
 import io.github.lionell.formulas.Formula;
 import io.github.lionell.formulas.operations.UnaryOperation;
 import io.github.lionell.miscellaneous.LogicalValue;
+import io.github.lionell.utils.StringUtils;
 
 /**
  * Created by lionell on 08.12.2015.
@@ -40,6 +41,6 @@ public class Denial extends UnaryOperation {
 
     @Override
     public String toString() {
-        return "!(" + formula + ")";
+        return "!" + StringUtils.formatFormula(formula);
     }
 }

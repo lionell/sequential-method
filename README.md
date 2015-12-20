@@ -92,24 +92,24 @@ In this case we can use [König's infinity lemma][kenigs] to
         <td colspan="2"><sub>+</sub>A, &Sigma;</td>
     </tr>
     <tr>
-        <td><sub>+</sub>||</td>
-        <td><sub>+</sub>(A || B), &Sigma;</td>
+        <td><sub>+</sub>v</td>
+        <td><sub>+</sub>(A v B), &Sigma;</td>
         <td><sub>+</sub>A, &Sigma;</td>
         <td><sub>+</sub>B, &Sigma;</td>
     </tr>
     <tr>
-        <td><sub>-</sub>||</td>
-        <td><sub>-</sub>(A || B), &Sigma;</td>
+        <td><sub>-</sub>v</td>
+        <td><sub>-</sub>(A v B), &Sigma;</td>
         <td colspan="2"><sub>-</sub>A, <sub>-</sub>B, &Sigma;</td>
     </tr>
     <tr>
-        <td><sub>+</sub>&&</td>
-        <td><sub>+</sub>(A && B), &Sigma;</td>
+        <td><sub>+</sub>&</td>
+        <td><sub>+</sub>(A & B), &Sigma;</td>
         <td colspan="2"><sub>+</sub>A, <sub>+</sub>B, &Sigma;</td>
     </tr>
     <tr>
-        <td><sub>-</sub>&&</td>
-        <td><sub>-</sub>(A && B), &Sigma;</td>
+        <td><sub>-</sub>&</td>
+        <td><sub>-</sub>(A & B), &Sigma;</td>
         <td><sub>-</sub>A, &Sigma;</td>
         <td><sub>-</sub>B, &Sigma;</td>
     </tr>
@@ -168,13 +168,13 @@ Where
 First example demonstrates how exactly sequences is expanding when implication
 and disjunction are in charge.
 ```
-                                              P[x] = P[x] || Q[x]
+                                              P[x] = P[x] | Q[x]
                                                       |
                                                       v
-                                            -(P[x] -> P[x] || Q[x])
+                                            -(P[x] -> P[x] | Q[x])
                                                       |
                                                       v
-                                            +P[x], -(P[x] || Q[x])
+                                            +P[x], -(P[x] | Q[x])
                                                       |
                                                       v
                                              -P[x], -Q[x], +P[x]
@@ -297,8 +297,8 @@ This is language grammar in [Backus-Naur-Form][bnf].
 <logical-operation>			::= <unary-operation>
                                 | <binary-operation>
 <binary-operation>			::= <formula> <binary-operation-keyword> <formula>
-<binary-operation-keyword>	::= "&&"
-                                | "||"
+<binary-operation-keyword>	::= "&"
+                                | "|"
                                 | "->"
 <unary-operation>			::= "!" <formula>
 
@@ -322,7 +322,7 @@ parser exception and inform you with `error` field of response.
 ### Valid expressions
 Some valid examples of expressions:
   * `P[x] = Q[x]`
-  * `P[x] = P[x] || Q[x]`
+  * `P[x] = P[x] | Q[x]`
   * `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
   * `#x@yP[x, y] = @y#xP[x, y]`
   * `P[x] -> #xQ[x] = #xP[x] -> Q[x]`
@@ -333,7 +333,7 @@ should contains field named `expr` with expression you want to check.
 Both `get` and `post` methods are supported.
 
 ### API Usage
-Simple request `check?expr=P[x]=P[x]||Q[x]` will give you response
+Simple request `check?expr=P[x]=P[x]|Q[x]` will give you response
 listed below.
 
 ```JSON
@@ -342,7 +342,7 @@ listed below.
       "root":{
          "formulas":[
             {
-               "formula":"(P[x]) -> ((P[x]) || (Q[x]))",
+               "formula":"P[x] -> (Q[x] | P[x])",
                "value":false
             }
          ],
@@ -354,7 +354,7 @@ listed below.
                      "value":true
                   },
                   {
-                     "formula":"(P[x]) || (Q[x])",
+                     "formula":"Q[x] | P[x]",
                      "value":false
                   }
                ],
@@ -362,11 +362,11 @@ listed below.
                   {
                      "formulas":[
                         {
-                           "formula":"Q[x]",
+                           "formula":"P[x]",
                            "value":false
                         },
                         {
-                           "formula":"P[x]",
+                           "formula":"Q[x]",
                            "value":false
                         },
                         {

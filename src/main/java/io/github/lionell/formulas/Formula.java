@@ -15,6 +15,8 @@ public abstract class Formula {
 
     public abstract boolean isAtomic();
 
+    public abstract boolean isSimple();
+
     public abstract Sequence[] expand(Sequence sigma);
 
     public abstract void rename(String from, String to);

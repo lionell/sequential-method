@@ -10,4 +10,9 @@ public abstract class Operation extends Formula {
     public boolean isAtomic() {
         return false;
     }
+
+    @Override
+    public boolean isSimple() {
+        return false;
+    }
 }

@@ -5,6 +5,7 @@ import io.github.lionell.exceptions.LogicalException;
 import io.github.lionell.formulas.Formula;
 import io.github.lionell.formulas.operations.BinaryOperation;
 import io.github.lionell.miscellaneous.LogicalValue;
+import io.github.lionell.utils.StringUtils;
 
 /**
  * Created by lionell on 08.12.2015.
@@ -56,6 +57,7 @@ public class Implication extends BinaryOperation {
 
     @Override
     public String toString() {
-        return "(" + left + ") -> (" + right + ")";
+        return StringUtils.formatFormula(left) + " -> " +
+                StringUtils.formatFormula(right);
     }
 }

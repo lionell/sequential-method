@@ -47,11 +47,11 @@ public class Tokenizer {
                     break;
                 case '&':
                     lexeme.setType(Lexeme.Type.AND);
-                    lexeme.setValue("&&");
+                    lexeme.setValue("&");
                     break;
                 case '|':
                     lexeme.setType(Lexeme.Type.OR);
-                    lexeme.setValue("||");
+                    lexeme.setValue("|");
                     break;
                 case '=':
                     lexeme.setType(Lexeme.Type.ASSUME);
