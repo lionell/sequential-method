@@ -393,20 +393,20 @@ Now let's look closer to response structure.
 
 ### response
 
-name     | type         | description
-:--------|:-------------|:-----------
-tree     | {root: node} | sequential tree with root node
-verity   | Boolean      | null, if infinite loop
-examples | \[example\]  | list of examples
-error    | string       | error message from server
+name     | type                    | description
+:--------|:------------------------|:-----------
+tree     | {root: [node](#node)}   | sequential tree with root node
+verity   | Boolean                 | null, if infinite loop
+examples | \[[example](#example)\] | list of examples
+error    | string                  | error message from server
 
 ### node
 
-name      | type        | description
-:---------|:------------|:-----------
-formulas  | \[formula\] | list of formulas
-children  | \[node\]    | list of child nodes
-closed    | boolean     | is sequence closed
+name      | type                    | description
+:---------|:------------------------|:-----------
+formulas  | \[[formula](#formula)\] | list of formulas
+children  | \[[node](#node)\]       | list of child nodes
+closed    | boolean                 | is sequence closed
 
 ### formula
 
