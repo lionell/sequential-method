@@ -16,6 +16,7 @@
     * [Valid expressions](#valid-expressions)
   * [API](#api)
     * [API Usage](#api-usage)
+    * [Response structure](#response-structure)
   * [Installation](#installation)
     * [Requirements](#requirements)
     * [Building](#building)
@@ -386,6 +387,7 @@ listed below.
 
 Now let's look closer to response structure.
 
+### Response structure
 <table>
     <tr>
         <td>&nbsp;</td>
