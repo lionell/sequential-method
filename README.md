@@ -16,10 +16,6 @@
     * [Valid expressions](#valid-expressions)
   * [API](#api)
     * [API Usage](#api-usage)
-    * [response](#response)
-    * [node](#node)
-    * [formula](#formula)
-    * [example](#example)
   * [Installation](#installation)
     * [Requirements](#requirements)
     * [Building](#building)
@@ -398,9 +394,9 @@ Now let's look closer to response structure.
         <th>description</th>
     </tr>
     <tr>
-        <td rowspan="4"><b>response</b></td>
+        <th rowspan="4">response</th>
         <td>tree</td>
-        <td>{root: <a href="#node">node</a>}</td>
+        <td>{root: node}</td>
         <td>sequential tree with root node</td>
     </tr>
     <tr>
@@ -410,7 +406,7 @@ Now let's look closer to response structure.
     </tr>
     <tr>
         <td>examples</td>
-        <td>[<a href="#example">example</a>]</td>
+        <td>[example]</td>
         <td>list of examples</td>
     </tr>
     <tr>
@@ -420,14 +416,14 @@ Now let's look closer to response structure.
     </tr>
     <!---->
     <tr>
-        <td rowspan="3"><b>node</b></td>
+        <th rowspan="3">node</th>
         <td>formulas</td>
-        <td>[<a href="#formula">formula</a>]</td>
+        <td>[formula]</td>
         <td>list of formulas</td>
     </tr>
     <tr>
         <td>children</td>
-        <td>[<a href="node">node</a>]</td>
+        <td>[node]</td>
         <td>list of child nodes</td>
     </tr>
     <tr>
@@ -437,7 +433,7 @@ Now let's look closer to response structure.
     </tr>
     <!---->
     <tr>
-        <td rowspan="2"><b>formula</b></td>
+        <th rowspan="2">formula</th>
         <td>formula</td>
         <td>string</td>
         <td>actual formula</td>
@@ -449,7 +445,7 @@ Now let's look closer to response structure.
     </tr>
     <!---->
     <tr>
-        <td rowspan="3"><b>example</b></td>
+        <th rowspan="3">example</th>
         <td>name</td>
         <td>string</td>
         <td>name of example</td>
