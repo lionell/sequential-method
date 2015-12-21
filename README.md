@@ -392,13 +392,13 @@ Now let's look closer to response structure.
 
 <table>
     <tr>
-        <th>&nbsp;</th>
+        <td>&nbsp;</td>
         <th>name</th>
         <th>type</th>
         <th>description</th>
     </tr>
     <tr>
-        <th rowspan="4"><div class="vertical">response</div></td>
+        <td rowspan="4">**response**</td>
         <td>tree</td>
         <td>{root: [node](#node)}</td>
         <td>sequential tree with root node</td>
@@ -420,7 +420,7 @@ Now let's look closer to response structure.
     </tr>
     <!---->
     <tr>
-        <th rowspan="3"><div class="vertical">node</div></td>
+        <td rowspan="3">**node**</td>
         <td>formulas</td>
         <td>\[[formula](#formula)\]</td>
         <td>list of formulas</td>
@@ -437,7 +437,7 @@ Now let's look closer to response structure.
     </tr>
     <!---->
     <tr>
-        <th rowspan="2"><div class="vertical">formula</div></td>
+        <td rowspan="2">**formula**</td>
         <td>formula</td>
         <td>string</td>
         <td>actual formula</td>
@@ -449,7 +449,7 @@ Now let's look closer to response structure.
     </tr>
     <!---->
     <tr>
-        <th rowspan="3"><div class="vertical">example</div></td>
+        <td rowspan="3">**example**</td>
         <td>name</td>
         <td>string</td>
         <td>name of example</td>
