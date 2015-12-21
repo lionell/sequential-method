@@ -462,38 +462,6 @@ Now let's look closer to response structure.
     </tr>
 </table>
 
-### response
-
-name     | type                    | description
-:--------|:------------------------|:-----------
-tree     | {root: [node](#node)}   | sequential tree with root node
-verity   | Boolean                 | null, if infinite loop
-examples | \[[example](#example)\] | list of examples
-error    | string                  | error message from server
-
-### node
-
-name      | type                    | description
-:---------|:------------------------|:-----------
-formulas  | \[[formula](#formula)\] | list of formulas
-children  | \[[node](#node)\]       | list of child nodes
-closed    | boolean                 | is sequence closed
-
-### formula
-
-name      | type        | description
-:---------|:------------|:-----------
-formula   | string      | actual formula
-value     | boolean     | logical value
-
-### example
-
-name      | type            | description
-:---------|:----------------|:-----------
-name      | string          | actual formula
-delta     | {x -> a}        | map of new variable names
-example   | {P\[x\] -> val} | map of predicates/variables/values
-
 ## Installation
 ### Requirements
   * Java Runtime Environment with Java SE8 support
