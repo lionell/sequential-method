@@ -390,6 +390,82 @@ listed below.
 
 Now let's look closer to response structure.
 
+<table>
+    <tr>
+        <th>&nbsp;</th>
+        <th>name</th>
+        <th>type</th>
+        <th>description</th>
+    </tr>
+    <tr>
+        <th rowspan="4"><div class="vertical">response</div></td>
+        <td>tree</td>
+        <td>{root: [node](#node)}</td>
+        <td>sequential tree with root node</td>
+    </tr>
+    <tr>
+        <td>verity</td>
+        <td>Boolean</td>
+        <td>null, if infinite loop</td>
+    </tr>
+    <tr>
+        <td>examples</td>
+        <td>\[[example](#example)\]</td>
+        <td>list of examples</td>
+    </tr>
+    <tr>
+        <td>error</td>
+        <td>string</td>
+        <td>error message from server</td>
+    </tr>
+    <!---->
+    <tr>
+        <th rowspan="3"><div class="vertical">node</div></td>
+        <td>formulas</td>
+        <td>\[[formula](#formula)\]</td>
+        <td>list of formulas</td>
+    </tr>
+    <tr>
+        <td>children</td>
+        <td>\[[node](#node)\]</td>
+        <td>list of child nodes</td>
+    </tr>
+    <tr>
+        <td>closed</td>
+        <td>boolean</td>
+        <td>is sequence closed</td>
+    </tr>
+    <!---->
+    <tr>
+        <th rowspan="2"><div class="vertical">formula</div></td>
+        <td>formula</td>
+        <td>string</td>
+        <td>actual formula</td>
+    </tr>
+    <tr>
+        <td>value</td>
+        <td>boolean</td>
+        <td>logical value</td>
+    </tr>
+    <!---->
+    <tr>
+        <th rowspan="3"><div class="vertical">example</div></td>
+        <td>name</td>
+        <td>string</td>
+        <td>name of example</td>
+    </tr>
+    <tr>
+        <td>delta</td>
+        <td>{x -> a}</td>
+        <td>map of new variable names</td>
+    </tr>
+    <tr>
+        <td>example</td>
+        <td>{P\[x\] -> val}</td>
+        <td>map of predicates/variables/values</td>
+    </tr>
+</table>
+
 ### response
 
 name     | type                    | description
