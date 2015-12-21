@@ -337,7 +337,7 @@ listed below.
       "root":{
          "formulas":[
             {
-               "formula":"P[x] -> (Q[x] | P[x])",
+               "formula":"P[x] -> Q[x]",
                "value":false
             }
          ],
@@ -349,38 +349,34 @@ listed below.
                      "value":true
                   },
                   {
-                     "formula":"Q[x] | P[x]",
+                     "formula":"Q[x]",
                      "value":false
                   }
                ],
-               "children":[
-                  {
-                     "formulas":[
-                        {
-                           "formula":"P[x]",
-                           "value":false
-                        },
-                        {
-                           "formula":"Q[x]",
-                           "value":false
-                        },
-                        {
-                           "formula":"P[x]",
-                           "value":true
-                        }
-                     ],
-                     "children":[],
-                     "closed":true
-                  }
-               ],
+               "children":[],
                "closed":false
             }
          ],
          "closed":false
       }
    },
-   "verity":true,
-   "examples":null,
+   "verity":false,
+   "examples":[
+      {
+         "name":"E",
+         "delta":{
+            "x":"m"
+         },
+         "example":{
+            "P":{
+               "[m]":true
+            },
+            "Q":{
+               "[m]":false
+            }
+         }
+      }
+   ],
    "error":null
 }
 ```
