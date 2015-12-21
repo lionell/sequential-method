@@ -427,7 +427,7 @@ Now let's look closer to response structure.
     </tr>
     <tr>
         <td>children</td>
-        <td>[<a href="node"></node>]</td>
+        <td>[<a href="node">node</a>]</td>
         <td>list of child nodes</td>
     </tr>
     <tr>
