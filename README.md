@@ -398,9 +398,9 @@ Now let's look closer to response structure.
         <th>description</th>
     </tr>
     <tr>
-        <td rowspan="4">**response**</td>
+        <td rowspan="4"><b>response</b></td>
         <td>tree</td>
-        <td>{root: [node](#node)}</td>
+        <td>{root: <a href="#node">node</a>}</td>
         <td>sequential tree with root node</td>
     </tr>
     <tr>
@@ -410,7 +410,7 @@ Now let's look closer to response structure.
     </tr>
     <tr>
         <td>examples</td>
-        <td>\[[example](#example)\]</td>
+        <td>[<a href="#example">example</a>]</td>
         <td>list of examples</td>
     </tr>
     <tr>
@@ -420,14 +420,14 @@ Now let's look closer to response structure.
     </tr>
     <!---->
     <tr>
-        <td rowspan="3">**node**</td>
+        <td rowspan="3"><b>node</b></td>
         <td>formulas</td>
-        <td>\[[formula](#formula)\]</td>
+        <td>[<a href="#formula">formula</a>]</td>
         <td>list of formulas</td>
     </tr>
     <tr>
         <td>children</td>
-        <td>\[[node](#node)\]</td>
+        <td>[<a href="node"></node>]</td>
         <td>list of child nodes</td>
     </tr>
     <tr>
@@ -437,7 +437,7 @@ Now let's look closer to response structure.
     </tr>
     <!---->
     <tr>
-        <td rowspan="2">**formula**</td>
+        <td rowspan="2"><b>formula</b></td>
         <td>formula</td>
         <td>string</td>
         <td>actual formula</td>
@@ -449,7 +449,7 @@ Now let's look closer to response structure.
     </tr>
     <!---->
     <tr>
-        <td rowspan="3">**example**</td>
+        <td rowspan="3"><b>example</b></td>
         <td>name</td>
         <td>string</td>
         <td>name of example</td>
@@ -461,7 +461,7 @@ Now let's look closer to response structure.
     </tr>
     <tr>
         <td>example</td>
-        <td>{P\[x\] -> val}</td>
+        <td>{P[x] -> val}</td>
         <td>map of predicates/variables/values</td>
     </tr>
 </table>
