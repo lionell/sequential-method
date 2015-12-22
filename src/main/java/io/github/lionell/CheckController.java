@@ -38,7 +38,8 @@ public class CheckController {
                 wrapBuilder.setExamples(sequentialMethod.getCounterExamples());
             }
         } catch (SystemException e) {
-            wrapBuilder.setError(e.getMessage());
+            //wrapBuilder.setError(e.getMessage());
+            wrapBuilder.setError(expression);
         }
         return wrapBuilder.getWrap();
     }
