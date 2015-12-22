@@ -16,7 +16,6 @@
 	<script src="vendors/jquery.easings.min.js"></script>
 	<script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
 	<script type="text/javascript" src="jquery.fullPage.js"></script>
-	</script>
 	<script type="text/javascript"
 	src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 	<!--[if lte IE 9]>
@@ -89,10 +88,6 @@
 <body class="is-loading">
 <script type="text/javascript">
 	window.MathJax.Hub.Config({
-
-
-
-
 		jax: ['input/TeX', 'input/AsciiMath', 'input/MathML', 'output/SVG', 'output/NativeMML'],
 		messageStyle: 'none',
 		showMathMenu: false,
@@ -113,9 +108,9 @@
 			<hr />
 			<div id="form">
 				<div class="field">
-					<textarea name="expr" id="expr" placeholder="e.g. @xP[x] = #xQ[x]" rows="2"></textarea>
+					<textarea name="expr" id="expr" placeholder="Enter expression... e.g. @xP[x] = #yQ[y]" rows="2"></textarea>
 				</div>
-				<input  type="submit" value="Get Started"  onClick="treeC('http://localhost:8080/check?expr='+encodeURIComponent(document.getElementById('expr').value))" class="button"> <br />
+				<input  type="submit" value="Get Started"  onClick="treeC('http://localhost:8080/check?expr='+encodeURIComponent(document.getElementById('expr').value))" class="button" id="go"> <br />
 			</div>
 		</section>
 		<!-- Footer -->
@@ -127,6 +122,7 @@
 		</footer>
 	</div>
 	<div class="section" id="tree_section">
+
 		<section id="main" class="tree_viewer">
 			<header>
 				<span class="avatar"><img src="images/avatar.png" alt="" /></span>
@@ -162,6 +158,15 @@
 <div id="reload">
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 	<script type="text/javascript">
+		$("#go").click(
+				function() {
+					setTimeout(
+							function() {
+								$.fn.fullpage.moveSectionDown();
+							},
+					200)
+				}
+		);
 		NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 			for(var i = this.length - 1; i >= 0; i--) {
 				if(this[i] && this[i].parentElement) {
@@ -182,7 +187,7 @@
 				var lemm = document.getElementById("lemma");
 				console.log(ex.examples);
 				if (ex.verity != false && ex.verity != true) {
-					lemm.innerHTML = "<p class='delete_restart'>by König's infinity lemma</p>";
+					lemm.innerHTML = "<p class='delete_restart'>by <a href='https://en.wikipedia.org/wiki/K%C3%B6nig%27s_lemma'>König's infinity lemma</a></p>";
 				}
 				if (ex.examples != undefined) {
 					if (!ex_section.className.match(/(?:^|\s)section(?!\S)/) ) {ex_section.className = tempClassName; tempClassName ="none";}
@@ -206,7 +211,7 @@
 
 								var elem = document.createElement('div');
 
-								elem.innerHTML = "<img class='delete_restart' src='http://latex.codecogs.com/gif.latex?"+output+"'></img>";
+								elem.innerHTML = "<img class='delete_restart' src='http://latex.codecogs.com/gif.latex?"+output+"'>";
 								dd.appendChild(elem);
 							}
 					);
@@ -291,7 +296,6 @@
 			d3.select(self.frameElement).style("height", "800px");
 
 			function update(source) {
-				//	console.log("!!!");
 				// Compute the new tree layout.
 				var nodes = tree.nodes(root).reverse(),
 						links = tree.links(nodes);
@@ -318,7 +322,7 @@
 								return "#ff7496";
 							}
 							return "#c8cccf";
-						})
+						});
 
 
 				nodeEnter.append("foreignObject")
@@ -376,7 +380,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#fullpage').fullpage({
-			scrollOverflow: false,
+//			scrollOverflow: false,
 			//css3: false
 			scrollOverflow: true
 		});

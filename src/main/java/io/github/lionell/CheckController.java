@@ -27,6 +27,7 @@ public class CheckController {
         try {
             Parser parser = new Parser(expression);
             parser.run();
+            NameGenerator.reset();
             NameGenerator.setUsedVariableNames(parser.getFormula().getVariableNames());
             SequentialMethod sequentialMethod =
                     new SequentialMethod(parser.getFormula());

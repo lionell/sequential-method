@@ -321,6 +321,8 @@ Some valid examples of expressions:
   * `#xP[x] -> Q[x] = P[x] -> #xQ[x]`
   * `#x@yP[x, y] = @y#xP[x, y]`
   * `P[x] -> #xQ[x] = #xP[x] -> Q[x]`
+  * `P[x] | Q[x] | R[x] | T[x] | S[x] = @xP[x]`
+  * `@xP[x] = Q[x]`
 
 ## API
 There are only one service available, named `check`. To use it your query

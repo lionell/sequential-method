@@ -54,4 +54,11 @@ public class NameGenerator {
     public static void setUsedVariableNames(Set<String> variableNames) {
         usedVariableNames.addAll(variableNames);
     }
+
+    public static void reset() {
+        usedVariableNames.clear();
+        usedCounterExampleNames.clear();
+        currentVariableName = new StringBuilder();
+        currentCounterExampleName = new StringBuilder();
+    }
 }
