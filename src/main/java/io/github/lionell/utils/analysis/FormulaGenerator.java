@@ -64,13 +64,17 @@ public class FormulaGenerator {
                     if (stack.size() < 2) {
                         throw new GeneratorException("Unexpected stack size!");
                     }
-                    stack.push(new Conjunction(stack.pop(), stack.pop()));
+                    Formula andRight = stack.pop();
+                    Formula andLeft = stack.pop();
+                    stack.push(new Conjunction(andRight, andLeft));
                     break;
                 case OR:
                     if (stack.size() < 2) {
                         throw new GeneratorException("Unexpected stack size!");
                     }
-                    stack.push(new Disjunction(stack.pop(), stack.pop()));
+                    Formula orRight = stack.pop();
+                    Formula orLeft = stack.pop();
+                    stack.push(new Disjunction(orLeft, orRight));
                     break;
                 case ASSUME:
                     if (stack.isEmpty()) {
@@ -83,9 +87,9 @@ public class FormulaGenerator {
                     if (stack.size() < 2) {
                         throw new GeneratorException("Unexpected stack size!");
                     }
-                    Formula right = stack.pop();
-                    Formula left = stack.pop();
-                    stack.push(new Implication(left, right));
+                    Formula impliesRight = stack.pop();
+                    Formula impliesLeft = stack.pop();
+                    stack.push(new Implication(impliesLeft, impliesRight));
                     break;
                 default:
                     throw new ParserException("Unexpected token while generating RPN!");

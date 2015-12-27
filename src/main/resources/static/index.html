@@ -6,391 +6,446 @@
    -->
 <html>
 <head>
-	<title>First-order logic | Sequential method</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="vendors/jquery.easings.min.js"></script>
-	<script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
-	<script type="text/javascript" src="jquery.fullPage.js"></script>
-	<script type="text/javascript"
-	src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-	<!--[if lte IE 9]>
-	<link rel="stylesheet" href="assets/css/ie9.css" />
-	<![endif]-->
-	<!--[if lte IE 8]>
-	<link rel="stylesheet" href="assets/css/ie8.css" />
-	<![endif]-->
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
-	<style>
-		#input_form {
-			margin: 0 auto;
-		}
-		.tree_viewer {
-			width: 1060px;
-			margin: 0 auto;
-			margin-top: 80px;
-			margin-bottom: 80px;
-		}
-		.examples_viewer {
-			width: 1060px;
-			margin: 0 auto;
-			margin-top: 80px;
-		}
-	</style>
-	<style>
-		.node {
-			cursor: pointer;
-		}
-		.node circle {
-			fill: #fff;
-			stroke: #c8cccf;
-			/*stroke: rgb(240, 180, 180);*/
-			stroke-width: 1px;
-		}
-		.node text {
-			font: 10px sans-serif;
-		}
-		.link {
-			fill: none;
-			stroke: #c8cccf;
-			stroke-width: 1px;
-		}
-		.formula {
-			text-align: center;
-		}
-		@keyframes wrong-anim {
-			0%   {font-size: 5px; left:;}
-			10%  {font-size: 20px;}
-			30%  {font-size: 7px;}
-			50% {font-size: 13px;}
-			70% {font-size: 8px;}
-			100% {font-size: 10px;}
-		}
-		.wrong {
-			font-size: 10px;
-			position: fixed;
-			right: 0;
-			left: 0;
-			margin-right: auto;
-			margin-left: auto;
-			bottom: 10px;
-			animation-name: wrong-anim;
-			animation-duration: 0.7s;
-		}
-	</style>
+    <title>First-order logic | Sequential method</title>
+    <meta charset="utf-8"/>
+
+    <!--[if lte IE 8]>
+    <script src="assets/js/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="jquery.fullPage.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="vendors/jquery.easings.min.js"></script>
+    <script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="jquery.fullPage.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="assets/css/ie9.css"/>
+    <![endif]-->
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="assets/css/ie8.css"/>
+    <![endif]-->
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css"/>
+    </noscript>
+    <style>
+        #input_form {
+            margin: 0 auto;
+        }
+
+        .tree_viewer {
+            width: 1060px;
+            margin: 0 auto;
+            margin-top: 80px;
+            margin-bottom: 80px;
+        }
+
+        .examples_viewer {
+            width: 1060px;
+            margin: 0 auto;
+            margin-top: 80px;
+        }
+    </style>
+    <style>
+        .node {
+            cursor: pointer;
+        }
+
+        .node circle {
+            fill: #fff;
+            stroke: #c8cccf;
+            /*stroke: rgb(240, 180, 180);*/
+            stroke-width: 1px;
+        }
+
+        .node text {
+            font: 10px sans-serif;
+        }
+
+        .link {
+            fill: none;
+            stroke: #c8cccf;
+            stroke-width: 1px;
+        }
+
+        .formula {
+            text-align: center;
+        }
+
+        @keyframes wrong-anim {
+            0% {
+                font-size: 5px;
+            }
+            10% {
+                font-size: 20px;
+            }
+            30% {
+                font-size: 7px;
+            }
+            50% {
+                font-size: 13px;
+            }
+            70% {
+                font-size: 8px;
+            }
+            100% {
+                font-size: 10px;
+            }
+        }
+
+        .wrong {
+            font-size: 10px;
+            position: fixed;
+            right: 0;
+            left: 0;
+            margin-right: auto;
+            margin-left: auto;
+            bottom: 10px;
+            animation-name: wrong-anim;
+            animation-duration: 0.7s;
+        }
+    </style>
 </head>
 <body class="is-loading">
 <script type="text/javascript">
-	window.MathJax.Hub.Config({
-		jax: ['input/TeX', 'input/AsciiMath', 'input/MathML', 'output/SVG', 'output/NativeMML'],
-		messageStyle: 'none',
-		showMathMenu: false,
-		showProcessingMessages: false,
+    window.MathJax.Hub.Config({
+        jax: ['input/TeX', 'input/AsciiMath', 'input/MathML', 'output/SVG', 'output/NativeMML'],
+        messageStyle: 'none',
+        showMathMenu: false,
+        showProcessingMessages: false,
 
-	});
+    });
 </script>
 <!-- Wrapper -->
 <!-- Main -->
-<div id = "fullpage">
-	<div class="section" style="width: 480px;" id="input_form">
-		<section id="main">
-			<header>
-				<span class="avatar"><img src="images/avatar.png" alt="" /></span>
-				<h1>First-order Logic</h1>
-				<p>Sequential Method</p>
-			</header>
-			<hr />
-			<div id="form">
-				<div class="field">
-					<textarea name="expr" id="expr" placeholder="Enter expression... e.g. @xP[x] = #yQ[y]" rows="2"></textarea>
-				</div>
-				<input  type="submit" value="Get Started"  onClick="treeC('http://localhost:8080/check?expr='+encodeURIComponent(document.getElementById('expr').value))" class="button" id="go"> <br />
-			</div>
-		</section>
-		<!-- Footer -->
-		<footer id="footer">
-			<ul class="copyright">
-				<li>&copy; Eugene & Ruslan</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</footer>
-	</div>
-	<div class="section" id="tree_section">
+<div id="fullpage">
+    <div class="section" style="width: 480px;" id="input_form">
+        <section id="main">
+            <header>
+                <span class="avatar"><img src="images/avatar.png" alt=""/></span>
+                <h1>First-order Logic</h1>
+                <p>Sequential Method</p>
+            </header>
+            <hr/>
+            <div id="form">
+                <div class="field">
+                    <textarea name="expr" id="expr" placeholder="Enter expression... e.g. @xP[x] = #yQ[y]"
+                              rows="2"></textarea>
+                </div>
+                <input type="submit" value="Get Started"
+                       onClick="treeC('/check?expr='+encodeURIComponent(document.getElementById('expr').value))"
+                       class="button" id="go"> <br/>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="copyright">
+                <li>&copy; Eugene & Ruslan</li>
+                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </footer>
+    </div>
+    <div class="section" id="tree_section">
 
-		<section id="main" class="tree_viewer">
-			<header>
-				<span class="avatar"><img src="images/avatar.png" alt="" /></span>
-				<h1>Sequential tree</h1>
-			</header>
-			<hr />
-			<div id="tree">
-			</div>
-		</section>
-	</div>
-	<div class="section" id="example_section">
-		<section id="main" class="examples_viewer">
-			<header>
-				<span class="avatar"><img src="images/avatar.png" alt="" /></span>
-				<h1>Counter examples</h1>
-				<div id="lemma"></div>
-			</header>
-			<hr />
-			<div id = "examples">
-			</div>
-		</section>
-		<!-- Footer -->
-		<footer id="footer">
-			<ul class="copyright">
-				<li>&copy; Eugene & Ruslan</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</footer>
-	</div>
+        <section id="main" class="tree_viewer">
+            <header>
+                <span class="avatar"><img src="images/avatar.png" alt=""/></span>
+                <h1>Sequential tree</h1>
+            </header>
+            <hr/>
+            <div id="tree">
+            </div>
+        </section>
+    </div>
+    <div class="section" id="example_section">
+        <section id="main" class="examples_viewer">
+            <header>
+                <span class="avatar"><img src="images/avatar.png" alt=""/></span>
+                <h1>Counter examples</h1>
+                <div id="lemma"></div>
+            </header>
+            <hr/>
+            <div id="examples">
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="copyright">
+                <li>&copy; Eugene & Ruslan</li>
+                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </footer>
+    </div>
 </div>
 <!-- Scripts -->
-<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+<!--[if lte IE 8]>
+<script src="assets/js/respond.min.js"></script><![endif]-->
 <div id="reload">
-	<script src="http://d3js.org/d3.v3.min.js"></script>
-	<script type="text/javascript">
-		$("#go").click(
-				function() {
-					setTimeout(
-							function() {
-								$.fn.fullpage.moveSectionDown();
-							},
-					200)
-				}
-		);
-		NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-			for(var i = this.length - 1; i >= 0; i--) {
-				if(this[i] && this[i].parentElement) {
-					this[i].parentElement.removeChild(this[i]);
-				}
-			}
-		}
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">
+        $("#go").click(
+                function () {
+                    setTimeout(
+                            function () {
+                                $.fn.fullpage.moveSectionDown();
+                            },
+                            200)
+                }
+        );
+        NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {
+            for (var i = this.length - 1; i >= 0; i--) {
+                if (this[i] && this[i].parentElement) {
+                    this[i].parentElement.removeChild(this[i]);
+                }
+            }
+        }
 
-		window.onload= function() { treeC("http://localhost:8080/check?expr=@");};
-		var tempClassName = "none", tempClassNameTree = "none"; var firstRun = 0;
-		function treeC(json) {
-			document.getElementsByClassName("delete_restart").remove();
+        window.onload = function () {
+            treeC("/check?expr=@");
+        };
+        var tempClassName = "none", tempClassNameTree = "none";
+        var firstRun = 0;
+        function treeC(json) {
+            document.getElementsByClassName("delete_restart").remove();
 
-			function examples() {
+            function examples() {
 
-				var ex_section = document.getElementById("example_section")
-				var dd = document.getElementById("examples");
-				var lemm = document.getElementById("lemma");
-				console.log(ex.examples);
-				if (ex.verity != false && ex.verity != true) {
-					lemm.innerHTML = "<p class='delete_restart'>by <a href='https://en.wikipedia.org/wiki/K%C3%B6nig%27s_lemma'>König's infinity lemma</a></p>";
-				}
-				if (ex.examples != undefined) {
-					if (!ex_section.className.match(/(?:^|\s)section(?!\S)/) ) {ex_section.className = tempClassName; tempClassName ="none";}
-					ex.examples.forEach(
-							function(b) {
-								var name = b.name;
-								var output = "$$";
-								output+="\\delta = [";
-								Object.keys(b.delta).forEach(function(v){
-									output+=v+" \\mapsto "+b.delta[v]+", ";
-								});
-								output = output.substr(0, output.length-2)+"], ";
-								Object.keys(b.example).forEach(function(v){
+                var ex_section = document.getElementById("example_section")
+                var dd = document.getElementById("examples");
+                var lemm = document.getElementById("lemma");
+                console.log(ex.examples);
+                if (ex.verity != false && ex.verity != true) {
+                    lemm.innerHTML = "<p class='delete_restart'>by <a href='https://en.wikipedia.org/wiki/K%C3%B6nig%27s_lemma'>König's infinity lemma</a></p>";
+                }
+                if (ex.examples != undefined) {
+                    if (!ex_section.className.match(/(?:^|\s)section(?!\S)/)) {
+                        ex_section.className = tempClassName;
+                        tempClassName = "none";
+                    }
+                    ex.examples.forEach(
+                            function (b) {
+                                var name = b.name;
+                                var output = "$$";
+                                output += "\\delta = [";
+                                Object.keys(b.delta).forEach(function (v) {
+                                    output += v + " \\mapsto " + b.delta[v] + ", ";
+                                });
+                                output = output.substr(0, output.length - 2) + "], ";
+                                Object.keys(b.example).forEach(function (v) {
 
-									Object.keys(b.example[v]).forEach(function(z){
+                                    Object.keys(b.example[v]).forEach(function (z) {
 
-										output+=v+"_{"+name+"}("+z.substr(0, z.length-1).substring(1)+") = \\mathbb{"+(b.example[v][z]?"T":"F")+"}, ";
-									});
-								});
-								output = output.substr(0, output.length-2)+"$$";
+                                        output += v + "_{" + name + "}(" + z.substr(0, z.length - 1).substring(1) + ") = \\mathbb{" + (b.example[v][z] ? "T" : "F") + "}, ";
+                                    });
+                                });
+                                output = output.substr(0, output.length - 2) + "$$";
 
-								var elem = document.createElement('div');
+                                var elem = document.createElement('div');
 
-								elem.innerHTML = "<img class='delete_restart' src='http://latex.codecogs.com/gif.latex?"+output+"'>";
-								dd.appendChild(elem);
-							}
-					);
-				}
-				else {
-					if (tempClassName=="none") {
-						tempClassName = ex_section.className;}
-					ex_section.className = "";
-				}
-
-
-			}
-
-			var margin = {top: 20, right: 120, bottom: 20, left: 100},
-					width = 960 - margin.right - margin.left,
-					height = 800 - margin.top - margin.bottom;
-
-			var i = 0,
-					duration = 750,
-					root,
-					ex;
-
-			var tree = d3.layout.tree()
-					.size([height, width]);
-
-			var diagonal = d3.svg.diagonal()
-					.projection(function(d) { return [d.x, d.y]; });
-
-			var svg = d3.select("#tree").append("svg")
-					.attr("width", width + margin.right + margin.left)
-					.attr("height", height + margin.top + margin.bottom)
-					.attr("class", "delete_restart")
-					.append("g")
-					.attr("transform", "translate(" + margin.left + "," + (margin.top+20) + ")");
-
-			d3.json(json, function(error, flare) {
-
-				if (error) throw error;
-				var ex_section = document.getElementById("tree_section");
-
-				ex = flare;
-				if (ex.error == null) {
-					if (!ex_section.className.match(/(?:^|\s)section(?!\S)/) ) {ex_section.className = tempClassNameTree; tempClassNameTree = "none";}
-					examples();
-					root = flare.tree.root;
-					root.x0 = height / 2;
-					root.y0 = 0;
-					update(root);
-
-					getDepth = function (obj) {
-						var depth = 0;
-						if (obj.children) {
-							obj.children.forEach(function (d) {
-								var tmpDepth = getDepth(d)
-								if (tmpDepth > depth) {
-									depth = tmpDepth
-								}
-							})
-						}
-						return 1 + depth
-					}
-
-					d3.select("svg").attr("height", function(d) {return (getDepth(root)-1)*100+53});
-
-				}
-				else {
-
-					if (tempClassNameTree == "none") {tempClassNameTree = ex_section.className;}
-
-					ex_section.className = "";
-					if (firstRun == 0) {firstRun = 1;}
-					else {
-						var elem = document.createElement('p');
-						elem.innerHTML = "Wrong expression";
-						elem.style.color = "#ff7496";
-						elem.className += "delete_restart";
-						elem.className += " wrong";
-						document.getElementById("form").appendChild(elem);}
-				}
-			});
-
-			d3.select(self.frameElement).style("height", "800px");
-
-			function update(source) {
-				// Compute the new tree layout.
-				var nodes = tree.nodes(root).reverse(),
-						links = tree.links(nodes);
-
-				// Normalize for fixed-depth.
-				nodes.forEach(function(d) { d.y = d.depth * 100; });
-
-				// Declare the nodes…
-				var node = svg.selectAll("g.node")
-						.data(nodes, function(d) { return d.id || (d.id = ++i); });
-
-				// Enter the nodes.
-				var nodeEnter = node.enter().append("g")
-						.attr("class", "node")
-						.attr("transform", function(d) {
-							return "translate(" + d.x + "," + d.y + ")"; });
-
-				nodeEnter.append("circle")
-						.attr("r", 11)
-						.style("fill", "#fff")
-						.style("stroke", function(d) {
-
-							if (d.closed == true) {
-								return "#ff7496";
-							}
-							return "#c8cccf";
-						});
+                                elem.innerHTML = "<img class='delete_restart' src='http://latex.codecogs.com/gif.latex?" + output + "'>";
+                                dd.appendChild(elem);
+                            }
+                    );
+                }
+                else {
+                    if (tempClassName == "none") {
+                        tempClassName = ex_section.className;
+                    }
+                    ex_section.className = "";
+                }
 
 
-				nodeEnter.append("foreignObject")
-						.attr({
-							"x" : -300,
-							"y" : -40,
-							"width": 600,
+            }
 
-							"height": 20,
-							"requiredFeatures": "http://www.w3.org/TR/SVG11/feature#Extensibility"
-						})
-						.append("xhtml:div").attr({
-							"margin": 0,
-							"padding": 0,
-							"width": 600,
-							"height": 20,
-							"class": "formula"
-						})
-						.append("img").attr(
-						"src", function(d) {
-							var text=""; d.formulas.forEach(
-									function(d) {
-										text+=(d.value?"+":"-")+d.formula+",";
-									}
-							);
-							text =  text.substr(0, text.length-1);
-							text =  text.replace(/[@]/g, '\\forall ')
-									.replace(/[#]/g, '\\exists ')
-									.replace(/->/g, '\\rightarrow ')
-									.replace(/[+]/g, '\\vdash ')
-									.replace(/[-]/g, '\\dashv ')
-									.replace(/[=]/g, '\\vDash ')
-									.replace(/[!]/g, '\\neg ')
-									.replace(/[&]/g, '\\wedge ')
-									.replace(/[|]/g, '\\vee ');
+            var margin = {top: 20, right: 120, bottom: 20, left: 100},
+                    width = 960 - margin.right - margin.left,
+                    height = 800 - margin.top - margin.bottom;
 
-							text =  "http://latex.codecogs.com/gif.latex?"+text;
+            var i = 0,
+                    duration = 750,
+                    root,
+                    ex;
 
-							return text;});
-				// Declare the links…
-				var link = svg.selectAll("path.link")
-						.data(links, function(d) { return d.target.id; });
+            var tree = d3.layout.tree()
+                    .size([height, width]);
 
-				// Enter the links.
-				link.enter().insert("path", "g")
-						.attr("class", "link")
-						.attr("d", diagonal);
+            var diagonal = d3.svg.diagonal()
+                    .projection(function (d) {
+                        return [d.x, d.y];
+                    });
 
-			}
-		}
+            var svg = d3.select("#tree").append("svg")
+                    .attr("width", width + margin.right + margin.left)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .attr("class", "delete_restart")
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + (margin.top + 20) + ")");
+
+            d3.json(json, function (error, flare) {
+
+                if (error) throw error;
+                var ex_section = document.getElementById("tree_section");
+
+                ex = flare;
+                if (ex.error == null) {
+                    if (!ex_section.className.match(/(?:^|\s)section(?!\S)/)) {
+                        ex_section.className = tempClassNameTree;
+                        tempClassNameTree = "none";
+                    }
+                    examples();
+                    root = flare.tree.root;
+                    root.x0 = height / 2;
+                    root.y0 = 0;
+                    update(root);
+
+                    getDepth = function (obj) {
+                        var depth = 0;
+                        if (obj.children) {
+                            obj.children.forEach(function (d) {
+                                var tmpDepth = getDepth(d)
+                                if (tmpDepth > depth) {
+                                    depth = tmpDepth
+                                }
+                            })
+                        }
+                        return 1 + depth
+                    }
+
+                    d3.select("svg").attr("height", function (d) {
+                        return (getDepth(root) - 1) * 100 + 53
+                    });
+
+                }
+                else {
+
+                    if (tempClassNameTree == "none") {
+                        tempClassNameTree = ex_section.className;
+                    }
+
+                    ex_section.className = "";
+                    if (firstRun == 0) {
+                        firstRun = 1;
+                    }
+                    else {
+                        var elem = document.createElement('p');
+                        elem.innerHTML = "Wrong expression";
+                        elem.style.color = "#ff7496";
+                        elem.className += "delete_restart";
+                        elem.className += " wrong";
+                        document.getElementById("form").appendChild(elem);
+                    }
+                }
+            });
+
+            d3.select(self.frameElement).style("height", "800px");
+
+            function update(source) {
+                // Compute the new tree layout.
+                var nodes = tree.nodes(root).reverse(),
+                        links = tree.links(nodes);
+
+                // Normalize for fixed-depth.
+                nodes.forEach(function (d) {
+                    d.y = d.depth * 100;
+                });
+
+                // Declare the nodes…
+                var node = svg.selectAll("g.node")
+                        .data(nodes, function (d) {
+                            return d.id || (d.id = ++i);
+                        });
+
+                // Enter the nodes.
+                var nodeEnter = node.enter().append("g")
+                        .attr("class", "node")
+                        .attr("transform", function (d) {
+                            return "translate(" + d.x + "," + d.y + ")";
+                        });
+
+                nodeEnter.append("circle")
+                        .attr("r", 11)
+                        .style("fill", "#fff")
+                        .style("stroke", function (d) {
+
+                            if (d.closed == true) {
+                                return "#ff7496";
+                            }
+                            return "#c8cccf";
+                        });
 
 
-	</script>
+                nodeEnter.append("foreignObject")
+                        .attr({
+                            "x": -300,
+                            "y": -40,
+                            "width": 600,
+
+                            "height": 20,
+                            "requiredFeatures": "http://www.w3.org/TR/SVG11/feature#Extensibility"
+                        })
+                        .append("xhtml:div").attr({
+                            "margin": 0,
+                            "padding": 0,
+                            "width": 600,
+                            "height": 20,
+                            "class": "formula"
+                        })
+                        .append("img").attr(
+                        "src", function (d) {
+                            var text = "";
+                            d.formulas.forEach(
+                                    function (d) {
+                                        text += (d.value ? "+" : "-") + d.formula + ",";
+                                    }
+                            );
+                            text = text.substr(0, text.length - 1);
+                            text = text.replace(/[@]/g, '\\forall ')
+                                    .replace(/[#]/g, '\\exists ')
+                                    .replace(/->/g, '\\rightarrow ')
+                                    .replace(/[+]/g, '\\vdash ')
+                                    .replace(/[-]/g, '\\dashv ')
+                                    .replace(/[=]/g, '\\vDash ')
+                                    .replace(/[!]/g, '\\neg ')
+                                    .replace(/[&]/g, '\\wedge ')
+                                    .replace(/[|]/g, '\\vee ');
+
+                            text = "http://latex.codecogs.com/gif.latex?" + text;
+
+                            return text;
+                        });
+                // Declare the links…
+                var link = svg.selectAll("path.link")
+                        .data(links, function (d) {
+                            return d.target.id;
+                        });
+
+                // Enter the links.
+                link.enter().insert("path", "g")
+                        .attr("class", "link")
+                        .attr("d", diagonal);
+
+            }
+        }
+
+
+    </script>
 </div>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#fullpage').fullpage({
+    $(document).ready(function () {
+        $('#fullpage').fullpage({
 //			scrollOverflow: false,
-			//css3: false
-			scrollOverflow: true
-		});
-	});
+            //css3: false
+            scrollOverflow: true
+        });
+    });
 </script>
 <script>
-	if ('addEventListener' in window) {
-		window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
-		document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
-	}
+    if ('addEventListener' in window) {
+        window.addEventListener('load', function () {
+            document.body.className = document.body.className.replace(/\bis-loading\b/, '');
+        });
+        document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+    }
 </script>
 </body>
 </html>
