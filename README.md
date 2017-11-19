@@ -1,5 +1,11 @@
 # Sequential method
 
+<div align="center">
+    <img src="/src/main/resources/static/images/logo.png" alt="Logo">
+</div>
+
+A prover of logical formulas. Core of application is Sequential Method algorithm.
+
 ## Table of contents
   * [Getting started](#getting-started)
   * [How it works](#how-it-works)
@@ -24,13 +30,6 @@
   * [Used materials](#used-materials)
   * [Contributions](#contributions)
   * [License](#license)
-
-## Getting started
-It's a prover of logical formulas. Core of application is Sequential Method algorithm.
-Let's look closer how it works!
-<div align="center">
-    <img src="/src/main/resources/static/images/logo.png" alt="Logo">
-</div>
 
 ## How it works
 Application is divided in several independent modules:
