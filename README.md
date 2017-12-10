@@ -6,30 +6,6 @@
 
 A prover of logical formulas. Core of application is Sequential Method algorithm.
 
-## Table of contents
-  * [How it works](#how-it-works)
-    * [Algorithm](#algorithm)
-    * [Sequential formulas](#sequential-formulas)
-    * [Let's look at examples](#lets-look-at-examples)
-      * [Example 1](#example-1)
-      * [Example 2](#example-2)
-      * [Example 3](#example-3)
-        * [Left branch](#left-branch)
-        * [Right branch](#right-branch)
-        * [Summary](#summary)
-  * [Language Specification](#language-specification)
-    * [Valid expressions](#valid-expressions)
-  * [API](#api)
-    * [API Usage](#api-usage)
-    * [Response structure](#response-structure)
-  * [Installation](#installation)
-    * [Requirements](#requirements)
-    * [Building](#building)
-    * [Running](#running)
-  * [Used materials](#used-materials)
-  * [Contributions](#contributions)
-  * [License](#license)
-
 ## How it works
 Application is divided in several independent modules:
   1. [Parser][1-1] parse input string into AST.
