@@ -276,7 +276,7 @@ This is language grammar in [Backus-Naur-Form][bnf].
 
 <quantifier>                ::= <quantifier-keyword> <predicate-name> <formula>
 <quantifier-keyword>        ::= "#"        Stands for "exists"
-                              | "@"      Stands for "for all"
+                              | "@"        Stands for "for all"
 
 <letter>                    ::= "a"
                               | "b"
