@@ -453,12 +453,17 @@ Or if you have pre-built JAR you can run it by typing:
 
 `java -jar target/sequential-method-1.0-SNAPSHOT.jar`
 
+### Docker
+You can run this application using prebuild docker image like this `docker run -it -p 8080:8080 lionell/math-logic`.
+Alternatively you can use Docker Compose `docker-compose up -d`. This will start service locally and expose port 8080.
+
 ## Used materials
 Here is a list of materials used in app:
   * [D3.js](http://d3js.org) visualizing sequential tree
   * [HTML5 UP](http://html5up.net) design of main page
-  * [Spring](https://spring.io/) framework
-  * [Maven](https://maven.apache.org/) app architecture
+  * [Spring](https://spring.io) framework
+  * [Maven](https://maven.apache.org) app architecture
+  * [Docker](https://www.docker.com) isolated environment
 
 ## Contributions
 Here I want to say thanks to my friend [Fetiorin](http://vk.com/id234442497)

@@ -1,0 +1,7 @@
+version: '3'
+services:
+  math-logic:
+    image: 'lionell/math-logic'
+    ports:
+      - 8080:8080
+                
