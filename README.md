@@ -31,9 +31,9 @@ Now let's move to the **heart** of application.
 Here are description of one algorithm iteration.
   1. If all leaves are closed, **finish with positive verdict**.
   2. If all leaves are atomic, **finish with negative verdict**.
-  3. For each non-atomic, non-closed leaf.
-    1. Expand leaf.
-    2. Simplify result leaves.
+  3. For each non-atomic, non-closed leaf
+        * Expand leaf.
+        * Simplify result leaves.
   4. Goto step 1
 
 There is situation when algorithm will go to **INFINITE LOOP**.
